@@ -1,1 +1,1 @@
-Created a new Tx file in server for testing
+Tx.txt file is editted locally in the pc
