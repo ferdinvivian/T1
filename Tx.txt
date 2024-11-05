@@ -6,4 +6,4 @@ Tx.txt file is editted locally in the pc
 6th line added locally in lb1_test branch
 7th line added inside slave
 8th line using master branch
-
+9th line added in slave branch local for merging
