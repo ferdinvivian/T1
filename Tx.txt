@@ -7,5 +7,5 @@ Tx.txt file is editted locally in the pc
 7th line added inside slave
 8th line using master branch
 9th line added in slave branch local for merging
-10th line added to slave to checkrebase
-
+10th line added to master to checkrebase
+11th line added to slave to check rebase
