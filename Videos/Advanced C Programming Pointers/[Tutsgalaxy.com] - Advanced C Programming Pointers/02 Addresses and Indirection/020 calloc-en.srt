@@ -1,0 +1,176 @@
+1
+00:00:01,290 --> 00:00:09,720
+As well as my lawk there's another function called convoke it's often used when allocating memory just
+
+2
+00:00:09,720 --> 00:00:17,680
+like malloc lock clock function allocates memory but it also performs one additional step.
+
+3
+00:00:17,700 --> 00:00:19,910
+It clears the memory.
+
+4
+00:00:20,010 --> 00:00:28,650
+In other words it initializes the memory with nulls uninitialized memory contains unknown data junk
+
+5
+00:00:29,280 --> 00:00:33,930
+which you could accidentally try to use in your program.
+
+6
+00:00:33,930 --> 00:00:41,520
+If you allocate memory with Carlock a series of nodes will be written into memory until of course you
+
+7
+00:00:41,520 --> 00:00:44,800
+specifically write some of the data there.
+
+8
+00:00:45,390 --> 00:00:52,710
+If you are careful always to initialize allocated memory then by all means use malloc.
+
+9
+00:00:52,950 --> 00:00:57,310
+The clock function performs exactly the same function as malloc.
+
+10
+00:00:57,690 --> 00:01:05,640
+But in addition it ensures that the allocated memory is initialized and that allows you to test the
+
+11
+00:01:05,640 --> 00:01:13,710
+allocated memory if required so that you know whether or not any specific data the data that you intended
+
+12
+00:01:13,710 --> 00:01:19,620
+for hasn't yet been written into that memory.
+
+13
+00:01:19,620 --> 00:01:26,310
+The only difference to bear in mind is the syntax malloc takes a single argument which is the size in
+
+14
+00:01:26,310 --> 00:01:34,510
+bytes of the memory required to hold all the data you want to store clock takes two arguments.
+
+15
+00:01:34,760 --> 00:01:38,980
+The number of elements in the array and the size of each element.
+
+16
+00:01:39,320 --> 00:01:44,130
+You can calculate the size using the size of operator.
+
+17
+00:01:44,150 --> 00:01:48,050
+Incidentally you can also use size of with malloc if you need.
+
+18
+00:01:48,050 --> 00:01:58,240
+For example I could rewrite this line here which I've just got 6 as the single parameter to malloc.
+
+19
+00:01:58,250 --> 00:02:04,730
+I could rewrite it by calculating the size of the type which is here.
+
+20
+00:02:04,730 --> 00:02:13,300
+Char multiplied by size of.
+
+21
+00:02:13,480 --> 00:02:14,800
+That's entirely valid.
+
+22
+00:02:15,910 --> 00:02:21,890
+But since the simple chars just one byte in size this isn't necessary here but with other data types
+
+23
+00:02:21,890 --> 00:02:25,010
+such as doubles it would be needed.
+
+24
+00:02:27,630 --> 00:02:31,090
+So let me run my code to see how it works.
+
+25
+00:02:32,470 --> 00:02:40,040
+There's the results so here I just allocate memory with malloc but the memory is uninitialized.
+
+26
+00:02:40,080 --> 00:02:50,380
+So when my full loop iterates through it I just print out whatever random values happen to be the as
+
+27
+00:02:50,380 --> 00:02:55,130
+you can see all sorts of unpredictable numbers are returned.
+
+28
+00:02:55,840 --> 00:03:03,040
+But when I do the same thing with clock the memory that is the characters array array which my char
+
+29
+00:03:03,040 --> 00:03:06,060
+pointer points that's been initialized with knows.
+
+30
+00:03:06,310 --> 00:03:11,380
+And similarly the memory pointed to by my pointer p here.
+
+31
+00:03:11,420 --> 00:03:12,400
+Kulak 6.
+
+32
+00:03:12,430 --> 00:03:13,390
+Size of int.
+
+33
+00:03:13,570 --> 00:03:18,170
+Well not to has been initialized with novels.
+
+34
+00:03:18,230 --> 00:03:20,820
+I mean just close not.
+
+35
+00:03:21,160 --> 00:03:29,050
+Bear in mind that both malloc and Carlock return a generic pointer a pointer to void or a null pointer.
+
+36
+00:03:29,050 --> 00:03:34,960
+If the allocation of memory fails it's worth saying at this point.
+
+37
+00:03:35,010 --> 00:03:37,500
+What a null pointer actually is.
+
+38
+00:03:37,500 --> 00:03:41,760
+It's nothing more nor less than a pointer whose value is zero.
+
+39
+00:03:41,760 --> 00:03:48,510
+In other words whereas other pointers store a number greater than zero which is treated as an actual
+
+40
+00:03:48,510 --> 00:03:50,700
+address in memory.
+
+41
+00:03:50,700 --> 00:03:59,310
+By convention a pointer with the value 0 is considered to be one that does not point to a valid address
+
+42
+00:03:59,820 --> 00:04:02,480
+and we call a pointer with zero value.
+
+43
+00:04:02,670 --> 00:04:11,960
+Unknown pointer pointer that points to nothing and we can test for another pointer in our own code.
+
+44
+00:04:12,010 --> 00:04:19,240
+You can see an example here that I used in an earlier program where I test if X equals no.
+

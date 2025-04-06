@@ -1,0 +1,132 @@
+1
+00:00:00,910 --> 00:00:05,290
+The core learning materials in this course are the video lessons.
+
+2
+00:00:05,510 --> 00:00:07,940
+There are some supplementary materials too.
+
+3
+00:00:07,950 --> 00:00:12,080
+Most important of these is the source code archive.
+
+4
+00:00:13,460 --> 00:00:18,660
+The archive includes all the source code of all the examples shown in the videos.
+
+5
+00:00:19,430 --> 00:00:25,820
+You don't have to use code is quite possible that the video lessons will teach you everything you need
+
+6
+00:00:25,820 --> 00:00:26,790
+to know.
+
+7
+00:00:27,110 --> 00:00:34,790
+However I would suggest that you download and unzip the archive and at least take a closer look at the
+
+8
+00:00:34,790 --> 00:00:39,410
+code of any subjects that you find while complicated or difficult.
+
+9
+00:00:40,740 --> 00:00:47,520
+You can load the code into any C editor or ID and you should be able to run it with pretty much any
+
+10
+00:00:47,520 --> 00:00:51,220
+standard C compiler on any major operating system.
+
+11
+00:00:52,250 --> 00:00:58,430
+I've provided the code as Hughie's of projects that can be loaded into the free code Light editor.
+
+12
+00:01:00,010 --> 00:01:05,740
+If you want the simplest fastest way to load and run the code well you may want to install code right
+
+13
+00:01:05,830 --> 00:01:09,120
+and you can download a copy from code right.
+
+14
+00:01:09,190 --> 00:01:18,970
+Dot org However this is an advanced level course I'm assuming that you're already programming C.
+
+15
+00:01:19,000 --> 00:01:24,000
+Well you probably have your own favorite C editor that's no problem.
+
+16
+00:01:24,120 --> 00:01:35,630
+Just create an NTC project in whatever editor you like then load my code into a text editor and copy
+
+17
+00:01:35,930 --> 00:01:39,270
+and paste it into your C project.
+
+18
+00:01:41,450 --> 00:01:45,320
+Incidentally the programs contain a lot of comments.
+
+19
+00:01:45,590 --> 00:01:51,040
+So again if you need some clarification of exactly how the code works.
+
+20
+00:01:51,140 --> 00:01:58,480
+Reading the comments will probably be helpful if you're already a fairly experienced programmer.
+
+21
+00:01:58,480 --> 00:02:03,560
+You might want to skip the early lessons and go straight to some of the more advanced topics.
+
+22
+00:02:04,350 --> 00:02:11,880
+However bear in mind that even the early lessons helped to explain some essential basics of pointers.
+
+23
+00:02:12,000 --> 00:02:17,550
+Many books and tutorials on C tend to be quite vague on what the punter there really is.
+
+24
+00:02:17,550 --> 00:02:25,230
+They show pointers as arrows pointing to memory locations but without explaining what those arrows are
+
+25
+00:02:25,680 --> 00:02:33,720
+or how appointer knows where to point and it is vital to understand that these arrows were laid just
+
+26
+00:02:33,720 --> 00:02:34,350
+diagrams.
+
+27
+00:02:34,350 --> 00:02:39,060
+They don't really show what a pointer is or how it works.
+
+28
+00:02:39,240 --> 00:02:45,000
+Diagrams with heroes are sometimes useful undefined later in this course I'll occasionally use them
+
+29
+00:02:45,000 --> 00:02:52,710
+myself but they don't truly represent what pointers really are pointers.
+
+30
+00:02:52,890 --> 00:02:55,580
+Just a bit of data I value a number.
+
+31
+00:02:55,860 --> 00:03:02,110
+You really need to understand that at the outset only once you've understood what a pointer is.
+
+32
+00:03:02,300 --> 00:03:08,590
+Well the diagrams with all the arrows pointing to things start to make some sort of sense.
+
+33
+00:03:09,500 --> 00:03:12,420
+OK so let's stop.
+

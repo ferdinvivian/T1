@@ -1,0 +1,136 @@
+1
+00:00:02,040 --> 00:00:07,790
+Memory leaks occur when you allocate memory but you don't free it when it's no longer in use.
+
+2
+00:00:07,890 --> 00:00:12,340
+That is when it's no longer referenced in your program.
+
+3
+00:00:12,780 --> 00:00:17,640
+You may think that potential memory leaks are easy to spot but that isn't always the case.
+
+4
+00:00:17,640 --> 00:00:28,530
+Look at this code I create and allocate some strings by allocating 10 bytes for the char pointer be
+
+5
+00:00:28,590 --> 00:00:30,410
+inside a loop.
+
+6
+00:00:30,810 --> 00:00:32,490
+Then at the end I freeby.
+
+7
+00:00:32,620 --> 00:00:35,920
+Well that looks OK but it isn't.
+
+8
+00:00:35,930 --> 00:00:39,810
+I've actually lost 90 bytes of memory.
+
+9
+00:00:39,850 --> 00:00:45,310
+That's because each time I set to be pointed to point to a new chunk of memory inside the loop I lose
+
+10
+00:00:45,310 --> 00:00:50,950
+track of the chunk of memory that I allocated on the previous turn through the loop.
+
+11
+00:00:50,950 --> 00:00:58,840
+Now this sort of error can be frustratingly difficult to find and fix in a big program because the syntax
+
+12
+00:00:58,840 --> 00:00:59,590
+is all valid.
+
+13
+00:00:59,590 --> 00:01:07,230
+There are no errors or exceptions thrown so there is nothing to show that I have a memory leak.
+
+14
+00:01:07,870 --> 00:01:11,860
+But let's now look let's run it in the debugger.
+
+15
+00:01:14,350 --> 00:01:21,890
+OK so I've set a breakpoint at the end of the loop so that I can watch the value B in the debug window
+
+16
+00:01:21,890 --> 00:01:22,660
+down here.
+
+17
+00:01:23,690 --> 00:01:28,270
+This shows the address first then the characters at that address.
+
+18
+00:01:28,300 --> 00:01:33,070
+They are random as I don't bother initializing the data here but that's not important.
+
+19
+00:01:33,350 --> 00:01:39,910
+It's the address I wanted to focus on Courier I'm debugging.
+
+20
+00:01:39,970 --> 00:01:49,000
+This shows that I must be losing the memory that I allocate because look each time through the loop
+
+21
+00:01:49,900 --> 00:01:54,130
+I see that memory being allocated at a different address.
+
+22
+00:01:54,270 --> 00:01:59,040
+Let me quickly carry on through this loop until I get to the end.
+
+23
+00:02:00,030 --> 00:02:04,050
+The last iteration when I was nine.
+
+24
+00:02:04,200 --> 00:02:04,960
+OK.
+
+25
+00:02:05,220 --> 00:02:13,740
+Now let's make a note of this final address 0 0 0 0 5 4 F 6 9 8.
+
+26
+00:02:13,780 --> 00:02:22,740
+Carry on debugging and at this point I exit the loop and I hit this other breakpoint that I set at the
+
+27
+00:02:22,740 --> 00:02:24,550
+end of the function.
+
+28
+00:02:24,550 --> 00:02:30,380
+Now when I exit the loop the address pointed to by B remains unchanged.
+
+29
+00:02:30,750 --> 00:02:38,310
+And it's the memory here at this specific address that's freed the memory that was allocated as all
+
+30
+00:02:38,310 --> 00:02:41,910
+the other addresses in the previous turns through the loop.
+
+31
+00:02:42,180 --> 00:02:48,660
+Well that still remains allocated and that's where the memory leak occurs.
+
+32
+00:02:48,720 --> 00:02:56,880
+And remember that even though B is a local variable Marlock always allocates memory globally on the
+
+33
+00:02:56,880 --> 00:03:04,770
+heap so that memory remains allocated even after you exit the function containing the local variable
+
+34
+00:03:05,080 --> 00:03:05,770
+b.
+

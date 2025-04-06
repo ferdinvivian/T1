@@ -1,0 +1,152 @@
+1
+00:00:00,880 --> 00:00:09,340
+Arrays in C are actually just sequential data items stored at some location in memory the address of
+
+2
+00:00:09,340 --> 00:00:17,210
+the array is the same as the address of the first item in the array because it is where the array begins.
+
+3
+00:00:17,270 --> 00:00:25,780
+The name of the array that is the name you get to the array variable is also the address of the array.
+
+4
+00:00:25,990 --> 00:00:32,570
+To explain this let's look at how strings are used in C unlike many other languages.
+
+5
+00:00:32,590 --> 00:00:41,020
+C does not have a dedicated string data type in C A string is just an array of characters for convenience
+
+6
+00:00:41,110 --> 00:00:46,670
+C treats the null character Slash's zero as the string Terminator.
+
+7
+00:00:47,300 --> 00:00:55,240
+When you declare a string variable like this C automatically ODs a null char at the end.
+
+8
+00:00:55,540 --> 00:01:00,670
+Now let's see if we can find where this string is stored in memory.
+
+9
+00:01:00,670 --> 00:01:09,100
+Now here's my program and here you can see that I've just created a string hello world which I've assigned
+
+10
+00:01:09,190 --> 00:01:11,290
+to the string array variable.
+
+11
+00:01:11,370 --> 00:01:12,360
+S.T. all one.
+
+12
+00:01:12,400 --> 00:01:13,540
+So let's run this
+
+13
+00:01:17,450 --> 00:01:18,130
+first.
+
+14
+00:01:18,160 --> 00:01:24,010
+It displays the string that is the array of characters of the variable s.t. all one.
+
+15
+00:01:24,400 --> 00:01:31,820
+Then the character at index 0 that is at the first index of the array which is h of hello world.
+
+16
+00:01:32,700 --> 00:01:39,060
+Then I show the address of the array which is this number representing a memory location.
+
+17
+00:01:39,060 --> 00:01:44,610
+Now I get the address the first character remember that I said the address of the array is the same
+
+18
+00:01:44,850 --> 00:01:47,050
+as the address of the first item in the array.
+
+19
+00:01:47,070 --> 00:01:53,430
+Well we can see that's true because the address of the character H which is shown when I use the ampersand
+
+20
+00:01:53,490 --> 00:01:59,490
+address of operator is the same as the address of the string shown when I use the address of operator
+
+21
+00:01:59,820 --> 00:02:03,310
+with the string variable s.t. one.
+
+22
+00:02:03,340 --> 00:02:10,030
+But now look at this last value here instead of using the ampersand to get an address I just display
+
+23
+00:02:10,030 --> 00:02:11,870
+the variable itself.
+
+24
+00:02:12,090 --> 00:02:18,340
+Or one as an integer using percent D in my format string.
+
+25
+00:02:18,590 --> 00:02:25,780
+And this shows the same number which is the address of the array.
+
+26
+00:02:28,200 --> 00:02:30,110
+Now to understand how this works.
+
+27
+00:02:30,180 --> 00:02:35,220
+Let me repeat what I said at the beginning of this lesson because it's really important that you understand
+
+28
+00:02:35,220 --> 00:02:45,570
+this the address of an array is the same as the address of the first item in the array because it's
+
+29
+00:02:45,570 --> 00:02:53,010
+where the array begins and the name of the array that is the name you give to the array variable is
+
+30
+00:02:53,070 --> 00:02:56,280
+also the address of the array.
+
+31
+00:02:56,280 --> 00:03:03,720
+In other words why we may tend to think of arrays as fixed length lists and in many other programming
+
+32
+00:03:03,720 --> 00:03:07,080
+languages that may be all you need to know about arrays.
+
+33
+00:03:07,870 --> 00:03:18,280
+In fact the way your computer and the C language creates and stores an array is a bit different.
+
+34
+00:03:18,350 --> 00:03:27,410
+So remember that an array is really the same as an address in memory that defines the beginning of sequential
+
+35
+00:03:27,410 --> 00:03:29,390
+data items.
+
+36
+00:03:29,390 --> 00:03:36,450
+And when you deal with arrays including strings you're dealing with addresses.
+
+37
+00:03:36,630 --> 00:03:44,060
+And usually when you're dealing with addresses you will be using pointers that's what I'll explain in
+
+38
+00:03:44,060 --> 00:03:45,010
+the next lesson.
+

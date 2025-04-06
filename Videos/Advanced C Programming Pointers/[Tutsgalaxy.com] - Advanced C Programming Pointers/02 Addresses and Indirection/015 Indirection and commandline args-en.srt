@@ -1,0 +1,128 @@
+1
+00:00:01,170 --> 00:00:07,980
+Here's another very common example of multiple indirection you'll often find that the main function
+
+2
+00:00:07,980 --> 00:00:16,540
+of a C program declares the argument or the preceded by two stars as you know that means it's a pointer
+
+3
+00:00:16,870 --> 00:00:18,650
+to a pointer to.
+
+4
+00:00:18,670 --> 00:00:27,670
+In this case a char the OG C argument gives us the number or count of arguments while the ARG the argument
+
+5
+00:00:27,790 --> 00:00:34,140
+is initialized with any arguments passed at the command line the first argument is the program name
+
+6
+00:00:34,140 --> 00:00:36,380
+itself on subsequent arguments.
+
+7
+00:00:36,420 --> 00:00:39,780
+Are any strings entered after the program name.
+
+8
+00:00:40,290 --> 00:00:46,740
+If you want to access the arguments you can simply treat all the as an array and print out the strings
+
+9
+00:00:46,770 --> 00:00:49,590
+in a simple loop and that's what I've done here.
+
+10
+00:00:51,020 --> 00:00:59,150
+But you could equally well iterate through the elements by moving the ARG the pointer Oggy plus because
+
+11
+00:00:59,150 --> 00:01:08,960
+one then using the dereference operator star on the at each turn through the loop to access the current
+
+12
+00:01:08,960 --> 00:01:11,300
+string.
+
+13
+00:01:11,620 --> 00:01:13,090
+Now let's try this out.
+
+14
+00:01:13,300 --> 00:01:20,650
+I should say first of all that your ID may let you enter program arguments in some dialog box Homer
+
+15
+00:01:21,610 --> 00:01:22,350
+for example.
+
+16
+00:01:22,420 --> 00:01:32,500
+In code light I can click my project name and go to settings on here in this dialog.
+
+17
+00:01:32,500 --> 00:01:40,870
+I can add program arguments and that can be useful if you want to set breakpoints and step through your
+
+18
+00:01:40,870 --> 00:01:42,600
+code using a debugger.
+
+19
+00:01:44,860 --> 00:01:50,470
+However command line arguments are probably best tested from the command line itself and to do that
+
+20
+00:01:50,930 --> 00:01:59,500
+you need to open a command prompt system prompt or the terminal window and log into the directory where
+
+21
+00:01:59,500 --> 00:02:01,270
+your programs being built.
+
+22
+00:02:01,270 --> 00:02:08,760
+In this case I'm running Windows and if I see what's in this directory and here I can see that I've
+
+23
+00:02:08,760 --> 00:02:14,960
+got the program executive or command line args not exit.
+
+24
+00:02:15,070 --> 00:02:19,260
+Obviously that would be different on different operating systems.
+
+25
+00:02:19,260 --> 00:02:30,480
+Now let's execute this by entering program name on its own to run the program.
+
+26
+00:02:31,560 --> 00:02:38,220
+And if I execute it without supplying any arguments the executive name is received as the only argument
+
+27
+00:02:38,820 --> 00:02:41,040
+at index 0.
+
+28
+00:02:41,170 --> 00:02:50,370
+Back to the code so you can compare the output with the code shown.
+
+29
+00:02:50,720 --> 00:03:02,400
+But now if I add some arguments in addition to that one separated by spaces 1 to three and executes.
+
+30
+00:03:02,420 --> 00:03:04,260
+Now you can see the output here.
+
+31
+00:03:04,730 --> 00:03:12,140
+So these arguments are received by the main procedure as an array that initializes the ARG the argument
+
+32
+00:03:12,500 --> 00:03:17,390
+and then my code parses them out into individual strings.
+

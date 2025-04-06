@@ -1,0 +1,144 @@
+1
+00:00:01,510 --> 00:00:08,520
+In the last lesson we saw that adding 1 to a pointer cause the point to point to the next integer in
+
+2
+00:00:08,520 --> 00:00:09,680
+the array.
+
+3
+00:00:10,230 --> 00:00:17,440
+This doesn't only work with integers as long as she knows what the data type of an array is.
+
+4
+00:00:17,500 --> 00:00:26,220
+It's able to calculate the appropriate number of bytes needed to move from one element to the next.
+
+5
+00:00:26,220 --> 00:00:28,260
+Let's look at another example.
+
+6
+00:00:30,070 --> 00:00:35,390
+In the address arithmetic to project I've declared pointers to a variety of data types.
+
+7
+00:00:35,560 --> 00:00:46,120
+Int float double long long it short int and long and on each of these pointers points to an array of
+
+8
+00:00:46,120 --> 00:00:55,470
+the matching data type I've assigned the arrays to the pointers and fill the arrays with some data and
+
+9
+00:00:55,520 --> 00:00:56,970
+see them done here.
+
+10
+00:00:58,360 --> 00:01:07,600
+And now down here I've done some simple point arithmetic by adding one to each point to variable and
+
+11
+00:01:07,610 --> 00:01:10,940
+finally I print the results.
+
+12
+00:01:11,260 --> 00:01:12,490
+Let me run this
+
+13
+00:01:20,270 --> 00:01:20,680
+right.
+
+14
+00:01:20,720 --> 00:01:28,040
+So this is what I see when I've added one to the point of variables that's had the effect of moving
+
+15
+00:01:28,510 --> 00:01:32,390
+to the element at the next index of each array.
+
+16
+00:01:33,280 --> 00:01:38,710
+If you look at the array address and the address of the first element that is the result of adding 1
+
+17
+00:01:38,710 --> 00:01:40,510
+to the point of.
+
+18
+00:01:40,570 --> 00:01:50,070
+In each case the difference is the same as the size of the data type for fun an int 4.
+
+19
+00:01:50,090 --> 00:02:04,270
+For a float 8 for a double 8 for long long it to for short int for the long int you can pause the video
+
+20
+00:02:04,270 --> 00:02:10,240
+or run the source code yourself if you need longer to look at the decimal versions of these addresses
+
+21
+00:02:10,540 --> 00:02:13,550
+to see how they're incremented.
+
+22
+00:02:13,560 --> 00:02:16,260
+I haven't had to calculate the offset myself.
+
+23
+00:02:16,260 --> 00:02:22,800
+Nowhere in my code do I get the size of the data type and increment the address by that number of bytes.
+
+24
+00:02:22,830 --> 00:02:24,870
+C's pointer arithmetic.
+
+25
+00:02:24,990 --> 00:02:32,170
+When I add a value to a point of variable calculates the appropriate offset for me.
+
+26
+00:02:32,200 --> 00:02:37,450
+In fact on some platforms and with some C compilers the sizes of data types may be different from the
+
+27
+00:02:37,450 --> 00:02:38,600
+ones shown here.
+
+28
+00:02:39,820 --> 00:02:46,030
+I run this code just to test it out on my Mac for instance and when I did that I noticed that a long
+
+29
+00:02:46,030 --> 00:02:49,320
+int has a size of 8 bytes.
+
+30
+00:02:49,390 --> 00:02:51,120
+You can see that shown here.
+
+31
+00:02:52,360 --> 00:03:00,220
+Whereas on my Windows PC same long int data type has 4 bytes.
+
+32
+00:03:00,560 --> 00:03:08,480
+Even so I've been able to take the code that I wrote on my PC and recompile and run it on my Mac without
+
+33
+00:03:08,480 --> 00:03:16,610
+making any changes at all and it works correctly because the Mac compiler automatically calculates an
+
+34
+00:03:16,880 --> 00:03:21,220
+8 byte offset for my array of long illness.
+
+35
+00:03:21,680 --> 00:03:28,250
+So when I do my pointer arithmetic by adding one to the pointer variable it moves 8 bytes in memory
+
+36
+00:03:28,760 --> 00:03:36,220
+rather than 4 bytes as on my PC and that's how it references the next element of the array.
+

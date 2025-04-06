@@ -1,0 +1,112 @@
+1
+00:00:00,840 --> 00:00:08,230
+Welcome to this c course on pointer's before we get started let me say a bit about who this course is
+
+2
+00:00:08,240 --> 00:00:12,120
+for what you get out of it.
+
+3
+00:00:12,160 --> 00:00:18,510
+Now let me be clear I'm assuming you already have at least some experience of programming in C before
+
+4
+00:00:18,510 --> 00:00:20,160
+you start this course.
+
+5
+00:00:20,160 --> 00:00:24,000
+This is definitely not a course for beginners.
+
+6
+00:00:24,000 --> 00:00:30,480
+You need to know at least the basics of C programming syntax how to write functions parse arguments
+
+7
+00:00:31,020 --> 00:00:34,530
+how to edit and compile C programs.
+
+8
+00:00:34,560 --> 00:00:43,020
+You may also have at least some experience of using pointers but that isn't essential if you are completely
+
+9
+00:00:43,020 --> 00:00:48,600
+new to see where I already have another course on C programming for beginners.
+
+10
+00:00:48,840 --> 00:00:53,820
+And that's why you should start this course is more advanced.
+
+11
+00:00:53,850 --> 00:01:02,350
+It explains pointers in depth in the early stages I'll explain what pointers are and how to use them.
+
+12
+00:01:02,350 --> 00:01:10,780
+I'd explain addresses and in direction allocating and freeing memory pointer arithmetic and using pointers
+
+13
+00:01:10,780 --> 00:01:17,820
+to arrays and array elements and then go on to explain some of the more mysterious features of pointers
+
+14
+00:01:17,910 --> 00:01:19,490
+and memory.
+
+15
+00:01:19,580 --> 00:01:25,170
+Why a struct can sometimes take up more memory than the data it contains.
+
+16
+00:01:25,370 --> 00:01:29,640
+And why not cause problems when allocating memory.
+
+17
+00:01:29,870 --> 00:01:37,910
+How do you create linked lists with single or double links and how to add and delete list elements from
+
+18
+00:01:37,910 --> 00:01:41,580
+the end of a list or from somewhere in the middle.
+
+19
+00:01:41,580 --> 00:01:47,310
+I'll explain how to use punter's with specialist types such as stocks and Qs.
+
+20
+00:01:47,510 --> 00:01:53,410
+How to use pointers to functions or even how to use an array of function pointers.
+
+21
+00:01:54,470 --> 00:02:01,150
+And finally look at common problems that you experience with pointers memory leaks dereferencing null
+
+22
+00:02:01,150 --> 00:02:09,550
+pointers pointers out of scope errors to do with type casting and problems when making deep and shallow
+
+23
+00:02:09,550 --> 00:02:11,420
+copies.
+
+24
+00:02:11,670 --> 00:02:18,450
+If you've ever struggled to understand pointers or how to use them effectively and safely in your own
+
+25
+00:02:18,450 --> 00:02:21,240
+programs this is the code for you.
+
+26
+00:02:21,240 --> 00:02:27,900
+It covers a lot of ground and I have to admit some topics may be quite hard to grasp.
+
+27
+00:02:28,810 --> 00:02:35,050
+However if you watch all the lessons and use the sample source code that I provide by the time you've
+
+28
+00:02:35,050 --> 00:02:42,340
+completed this course you will have a deep and solid understanding of pointers in s.p.
+

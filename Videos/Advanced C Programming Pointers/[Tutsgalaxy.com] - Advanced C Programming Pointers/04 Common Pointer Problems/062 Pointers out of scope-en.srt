@@ -1,0 +1,180 @@
+1
+00:00:02,420 --> 00:00:06,640
+Pointers out of scope are definitely things to avoid.
+
+2
+00:00:06,700 --> 00:00:12,920
+Look here I've declared an array of chars which is initialized when the user enters a name.
+
+3
+00:00:13,080 --> 00:00:15,370
+Then I just return the array.
+
+4
+00:00:15,760 --> 00:00:20,900
+And here I print the returned name from it.
+
+5
+00:00:23,020 --> 00:00:27,120
+And my name except this doesn't work.
+
+6
+00:00:27,340 --> 00:00:33,300
+Instead of the name I entered I just see some random characters.
+
+7
+00:00:33,500 --> 00:00:40,210
+So why is that is because the variable b was local to the function.
+
+8
+00:00:40,340 --> 00:00:46,990
+It's an array which is an address and the return value of the function is that address.
+
+9
+00:00:47,140 --> 00:00:51,710
+But as B is a local variable its data is stored on the stock.
+
+10
+00:00:51,720 --> 00:00:59,430
+The stock remember is an area of memory that stores local variables but once the function exits the
+
+11
+00:00:59,430 --> 00:01:01,710
+stack is in effect clean up.
+
+12
+00:01:02,540 --> 00:01:07,160
+Data is not retained for later use.
+
+13
+00:01:07,230 --> 00:01:11,230
+Now let's have a look at this in code light to see if we get the same results.
+
+14
+00:01:13,150 --> 00:01:13,760
+Code right.
+
+15
+00:01:13,780 --> 00:01:18,940
+With the new compiler turns out to be a bit more helpful in this case let me run this and you can see
+
+16
+00:01:19,510 --> 00:01:21,260
+what happens.
+
+17
+00:01:23,850 --> 00:01:24,280
+OK.
+
+18
+00:01:24,290 --> 00:01:27,590
+So it shows me that the function returns null
+
+19
+00:01:31,000 --> 00:01:38,590
+by the way if you using code light or another ID with a builtin terminal emulator you may want to turn
+
+20
+00:01:38,590 --> 00:01:42,580
+off that option to use the commom the standard command prompt.
+
+21
+00:01:42,610 --> 00:01:48,820
+I mean code like to do that with settings preferences terminal and I would just uncheck this and it
+
+22
+00:01:48,820 --> 00:01:52,560
+would use the standard system prompt.
+
+23
+00:01:52,560 --> 00:01:58,110
+I'm going to leave this check for now because there is another work around.
+
+24
+00:01:58,140 --> 00:02:02,490
+Now let me explain first why why I suggest that this is something that needs to be done.
+
+25
+00:02:02,500 --> 00:02:10,470
+It's because the terminal uses buffering and that may prevent text from appearing immediately in the
+
+26
+00:02:10,470 --> 00:02:15,880
+built in terminal when you print a string and then go on to prompt you to enter something.
+
+27
+00:02:15,880 --> 00:02:20,460
+Now this is my alternative workaround because I am actually using the built in terminal.
+
+28
+00:02:20,670 --> 00:02:29,520
+So before I print and start reading strings to and from the terminal I add this line of code
+
+29
+00:02:32,310 --> 00:02:43,560
+and now that deals with the buffering it turns the buffering off so that when I enter and text it doesn't
+
+30
+00:02:43,560 --> 00:02:45,330
+cause any problems.
+
+31
+00:02:45,420 --> 00:02:51,330
+But if you do get problems either use the system terminal instead of the built in terminal or use that
+
+32
+00:02:51,330 --> 00:02:54,490
+workaround by adding this line of code.
+
+33
+00:02:55,530 --> 00:03:02,280
+Now at any rate whether you see this Mac message the that code like shows showing that NULL was returned
+
+34
+00:03:03,270 --> 00:03:15,780
+or you see the one the Microsoft compiler is that's the Microsoft compiler showed where some random
+
+35
+00:03:16,530 --> 00:03:19,400
+characters are shown.
+
+36
+00:03:19,430 --> 00:03:22,150
+So those are the two possibilities.
+
+37
+00:03:22,250 --> 00:03:27,220
+Either way it's clearly not desirable state of affairs.
+
+38
+00:03:27,230 --> 00:03:28,630
+It's a bug.
+
+39
+00:03:29,000 --> 00:03:37,940
+And that's because to clarify again the variable b reference is an array whose scope is within the function
+
+40
+00:03:38,270 --> 00:03:41,480
+and only within the function which is declared.
+
+41
+00:03:41,480 --> 00:03:47,960
+So even though the array B is correctly initialized and the syntax used for returning a pointer to the
+
+42
+00:03:47,960 --> 00:03:54,830
+address of that array is correct by the time I leave the scope of the function down here in main the
+
+43
+00:03:54,830 --> 00:03:58,400
+array to which the pointer returned by.
+
+44
+00:03:58,400 --> 00:04:06,980
+The problem for function that that array the one that was referenced by that it can no longer be accessed.
+
+45
+00:04:07,160 --> 00:04:10,030
+And that's why there is a problem.
+

@@ -1,0 +1,248 @@
+1
+00:00:01,490 --> 00:00:07,740
+When I created arrays and strings in the previous examples I either declared each array all string with
+
+2
+00:00:07,740 --> 00:00:12,600
+a fixed length prior to initializing it like this
+
+3
+00:00:15,630 --> 00:00:23,890
+or I assigned a string at the time of its declaration class.
+
+4
+00:00:24,070 --> 00:00:32,260
+Now in either case the actual size is the amount of memory needed to hold the data is known before I
+
+5
+00:00:32,260 --> 00:00:33,850
+even run my program.
+
+6
+00:00:33,880 --> 00:00:38,000
+The C compiler is then able to set aside the right amount of memory.
+
+7
+00:00:38,200 --> 00:00:45,730
+So I don't get any problems for example by accidentally writing bits of data into some memory that already
+
+8
+00:00:45,730 --> 00:00:47,740
+contains some other data.
+
+9
+00:00:47,890 --> 00:00:52,160
+But what if I need to create an array at runtime.
+
+10
+00:00:52,630 --> 00:01:00,090
+Say for example the user enters a string at the command prompt or some data is read in promise Kyle
+
+11
+00:01:01,320 --> 00:01:04,590
+eyechart NO prior to compiling my code.
+
+12
+00:01:04,590 --> 00:01:07,860
+Exactly how much data are we dealing with.
+
+13
+00:01:07,860 --> 00:01:14,550
+Maybe it'll be a string containing two or three characters or it could be text from a file containing
+
+14
+00:01:14,610 --> 00:01:18,160
+tens of thousands of characters.
+
+15
+00:01:18,360 --> 00:01:25,140
+When I create an array to hold those characters or other types of data I must have some way of calculating
+
+16
+00:01:25,140 --> 00:01:29,610
+how much space in memory I need to hold them all.
+
+17
+00:01:29,730 --> 00:01:38,250
+And then I need to allocate about memory that is I need to get a chunk of memory that can hold exactly
+
+18
+00:01:38,400 --> 00:01:46,050
+the right amount of data only by doing that can I be sure that I won't overwrite some memory that's
+
+19
+00:01:46,050 --> 00:01:50,280
+already been allocated for some other data.
+
+20
+00:01:50,280 --> 00:01:59,670
+Memory corruption like that is a serious bag and it can cause a program to malfunction or to crash.
+
+21
+00:01:59,670 --> 00:02:03,860
+Now let's see how we can handle memory allocation in C..
+
+22
+00:02:04,990 --> 00:02:11,770
+Or start with a function that receives a string as an argument and returns a string as a result.
+
+23
+00:02:11,830 --> 00:02:16,210
+This function could in principle be sent many different string arguments at different points in the
+
+24
+00:02:16,210 --> 00:02:17,320
+program.
+
+25
+00:02:17,320 --> 00:02:23,650
+So it has no way of knowing in advance how long a string argument will actually be.
+
+26
+00:02:23,650 --> 00:02:26,830
+Of course when I say receives and returns a string.
+
+27
+00:02:26,920 --> 00:02:31,840
+What I mean is that it receives and returns a pointer to a char.
+
+28
+00:02:32,110 --> 00:02:39,490
+So I declare the function return type and the string argument as char star.
+
+29
+00:02:39,630 --> 00:02:46,610
+I've defined a constant mux as steel and to be 100 and within the function I've declared a variable
+
+30
+00:02:46,670 --> 00:02:49,110
+s to be appointed to Achang.
+
+31
+00:02:49,610 --> 00:02:55,130
+And as we know a pointer to a chart may also be a pointer to an array of chars or to put it another
+
+32
+00:02:55,130 --> 00:02:59,380
+way to a chunk of memory that stores the characters of a string.
+
+33
+00:02:59,930 --> 00:03:08,180
+But before I can stuff some characters into memory safely I need to allocate that memory and I do that
+
+34
+00:03:08,270 --> 00:03:10,970
+using the malloc function here.
+
+35
+00:03:11,390 --> 00:03:21,730
+I allocate 100 bytes which is enough for 100 normal alphanumeric characters this assignment begins by
+
+36
+00:03:21,730 --> 00:03:26,560
+initializing a string with novel which creates an empty string.
+
+37
+00:03:27,850 --> 00:03:34,870
+Then I use the SDR cut function to concatenate hello with the string argument and finally a new line
+
+38
+00:03:34,870 --> 00:03:39,180
+character and right at the end I return a pointer to the string.
+
+39
+00:03:39,360 --> 00:03:47,200
+And here you can see I've called this argument twice and I decided to print the return value from the
+
+40
+00:03:47,200 --> 00:03:50,250
+argument in this code here.
+
+41
+00:03:51,860 --> 00:03:56,810
+And I have used two strings of different lengths to test that the string function daz correctly with
+
+42
+00:03:56,810 --> 00:03:56,950
+it.
+
+43
+00:03:56,950 --> 00:03:59,650
+Let me run the code on.
+
+44
+00:03:59,920 --> 00:04:01,040
+Here's the result.
+
+45
+00:04:01,060 --> 00:04:07,930
+So you can see it works correctly it's allocated the correct amount of memory to deal with two strings
+
+46
+00:04:08,020 --> 00:04:09,190
+of different lengths.
+
+47
+00:04:11,070 --> 00:04:16,900
+Incidentally it's worth mentioning that malloc allocates memory on the heap.
+
+48
+00:04:17,220 --> 00:04:24,660
+That's important but local variables declared inside a function are allocated memory in an area called
+
+49
+00:04:24,660 --> 00:04:28,380
+with stack when you exit from a function.
+
+50
+00:04:28,470 --> 00:04:36,390
+The variables on the stock are cleaned up to all intents and purposes they no longer exist when the
+
+51
+00:04:36,390 --> 00:04:38,460
+function exits.
+
+52
+00:04:38,670 --> 00:04:42,420
+But the heap is when global data is stored in memory.
+
+53
+00:04:43,330 --> 00:04:50,950
+Data assigned to variables on the heap continues to exist even after you've exited the function in which
+
+54
+00:04:50,950 --> 00:04:52,110
+they were allocated.
+
+55
+00:04:53,760 --> 00:04:58,710
+So now I have 100 bytes set aside for my string.
+
+56
+00:04:58,710 --> 00:05:06,560
+Everything works correctly as long as I don't try to create a string that has more than 100 characters.
+
+57
+00:05:07,360 --> 00:05:09,710
+But what if I do need a longer string.
+
+58
+00:05:10,000 --> 00:05:14,830
+And there's another problem too by allocating more memory than I need.
+
+59
+00:05:15,210 --> 00:05:21,360
+Wasting memory in a very big program one that handles large amounts of data.
+
+60
+00:05:21,390 --> 00:05:27,990
+Or conversely if I'm writing a program for some sort of hardware device that has very small amounts
+
+61
+00:05:27,990 --> 00:05:33,710
+of memory wasting memory in this way could be a problem.
+
+62
+00:05:34,920 --> 00:05:38,700
+I'll explain how to avoid that in the next lesson.
+

@@ -1,0 +1,156 @@
+1
+00:00:01,650 --> 00:00:10,020
+So as I've said an incorrect cost can result in serious problems but sometimes incorrect costs may not
+
+2
+00:00:10,050 --> 00:00:12,480
+be immediately obvious.
+
+3
+00:00:12,480 --> 00:00:20,630
+For example look back at the generic pointer's sample program from earlier in this course.
+
+4
+00:00:20,910 --> 00:00:25,930
+I must admit that when I first wrote this I got the cast completely wrong.
+
+5
+00:00:27,010 --> 00:00:29,940
+I declared GP as a generic pointer.
+
+6
+00:00:29,950 --> 00:00:32,620
+A pointer to void.
+
+7
+00:00:32,790 --> 00:00:39,990
+And then I created an array of strings pointers to char called words and then iterated over the array
+
+8
+00:00:40,260 --> 00:00:54,590
+casting the GP to a pointer to char at each step like this cha style GP run I run my program expecting
+
+9
+00:00:54,590 --> 00:00:55,840
+it all to it correctly.
+
+10
+00:00:55,850 --> 00:00:57,420
+This is what happened.
+
+11
+00:01:01,800 --> 00:01:05,810
+In case of some unspecified error.
+
+12
+00:01:06,110 --> 00:01:07,780
+So what did I do wrong.
+
+13
+00:01:08,200 --> 00:01:16,980
+Well it turns out that I forgot that my array words was really an array of arrays an array containing
+
+14
+00:01:16,980 --> 00:01:21,750
+strings on strings are of course arrays of chars.
+
+15
+00:01:22,020 --> 00:01:32,040
+So in order to dereference the arrays of chars from within the words array I needed not one star.
+
+16
+00:01:32,540 --> 00:01:33,630
+As I got here.
+
+17
+00:01:34,470 --> 00:01:37,100
+Char style.
+
+18
+00:01:37,200 --> 00:01:45,580
+I needed to this chastise store just All-Starr just asked.
+
+19
+00:01:45,600 --> 00:01:54,200
+Also in each case those costs have to include the two stars the two asterisks not just the one.
+
+20
+00:01:54,780 --> 00:01:57,500
+So I corrected that mistake.
+
+21
+00:01:57,530 --> 00:02:00,300
+Let's rerun my code on this time.
+
+22
+00:02:00,300 --> 00:02:03,670
+You can see it works just fine.
+
+23
+00:02:03,830 --> 00:02:07,400
+So this is an example of a cost that is syntactically correct.
+
+24
+00:02:07,430 --> 00:02:15,370
+When I put one star char star on which the C-compiler didn't warn me about when I made a mistake.
+
+25
+00:02:15,530 --> 00:02:20,240
+That's because my cost specifically tells the compiler to trust me.
+
+26
+00:02:20,270 --> 00:02:28,770
+I know what I'm doing so I really will only use the pointers that I declare to point to what I say.
+
+27
+00:02:28,790 --> 00:02:30,910
+I'm going to point them to.
+
+28
+00:02:32,000 --> 00:02:36,240
+But in this case it turned out that I didn't know what I was doing.
+
+29
+00:02:36,600 --> 00:02:39,570
+That this is what I had.
+
+30
+00:02:39,660 --> 00:02:45,470
+So this is how I declared them previously.
+
+31
+00:02:45,520 --> 00:02:49,710
+I made a mistake and the compiler didn't help me to fix it.
+
+32
+00:02:49,720 --> 00:02:53,700
+Now that is both the strength and weakness of type casting.
+
+33
+00:02:53,800 --> 00:03:01,480
+In this case the compiler let me use a generic pointer as a pointer to a specific type and if the cost
+
+34
+00:03:01,570 --> 00:03:02,680
+is correct.
+
+35
+00:03:02,680 --> 00:03:09,910
+That's an extremely useful thing to be able to do but if the cost is incorrect the compiler is not going
+
+36
+00:03:09,910 --> 00:03:10,980
+to help me out.
+
+37
+00:03:11,020 --> 00:03:13,260
+It's my own responsibility.
+
+38
+00:03:14,400 --> 00:03:21,000
+So when you cast one type to another and especially when you cast a generic pointer to a pointer to
+
+39
+00:03:21,000 --> 00:03:30,050
+a specific data type you need to be very very careful that not cost is correct.
+

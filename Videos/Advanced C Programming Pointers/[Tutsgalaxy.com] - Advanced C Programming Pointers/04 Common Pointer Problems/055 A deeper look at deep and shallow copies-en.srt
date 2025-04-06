@@ -1,0 +1,304 @@
+1
+00:00:00,870 --> 00:00:07,750
+Let's look at how to do a deep and a shallow copy of a list of struts amusing my cue program as the
+
+2
+00:00:07,750 --> 00:00:11,520
+basis for this although there's quite a lot of code in this example.
+
+3
+00:00:11,740 --> 00:00:17,200
+Well you've seen most of it before the list elements struts with the next and prev pointer's the list
+
+4
+00:00:17,200 --> 00:00:21,570
+header the end QUE QUE QUE Lang functions.
+
+5
+00:00:21,640 --> 00:00:24,490
+I've explained all of those earlier.
+
+6
+00:00:24,970 --> 00:00:29,870
+Here I declare three variables and they will be the header struts for three lists.
+
+7
+00:00:29,890 --> 00:00:34,860
+The original list and the two copies will be a deep copy.
+
+8
+00:00:34,900 --> 00:00:37,910
+The other a shallow copy.
+
+9
+00:00:37,990 --> 00:00:39,770
+Now down here
+
+10
+00:00:42,780 --> 00:00:46,980
+and this is where it really starts to get interesting.
+
+11
+00:00:48,420 --> 00:00:57,840
+Let's look first at the shallow copy this sets the temp pointer to point to the first element in the
+
+12
+00:00:57,840 --> 00:00:59,500
+original list.
+
+13
+00:00:59,790 --> 00:01:07,500
+Then allocate some memory for a new list item and uses meme's to copy the data from the original item
+
+14
+00:01:08,040 --> 00:01:14,100
+into the new item and it cause enqueue with the address of the destination list which is here.
+
+15
+00:01:14,100 --> 00:01:21,560
+Q And the pointer to the new element and q then adds the element to that Q.
+
+16
+00:01:21,900 --> 00:01:27,490
+Now at first sight it may seem that we now have two distinct copies.
+
+17
+00:01:27,490 --> 00:01:31,440
+The meme's happy wife function and other similar functions.
+
+18
+00:01:31,440 --> 00:01:36,210
+Copy bytes from one chunk of memory into another.
+
+19
+00:01:36,210 --> 00:01:45,660
+It makes an exact copy so surely my shallow copy queue should contain completely new copies of the original
+
+20
+00:01:45,680 --> 00:01:53,320
+Strats that's run the program and see if that's the case.
+
+21
+00:01:53,900 --> 00:01:56,750
+Well there's good news and there's bad news.
+
+22
+00:01:56,780 --> 00:02:02,000
+The good news is that yes the shallow copy queue contains the correct data.
+
+23
+00:02:02,000 --> 00:02:06,940
+It's a true copy of the original Q And I can see that here.
+
+24
+00:02:07,010 --> 00:02:12,220
+The bad news is that later on in my program when I delete the original Q.
+
+25
+00:02:12,600 --> 00:02:15,280
+Then try to iterate through the shallow copy queue.
+
+26
+00:02:15,320 --> 00:02:20,220
+I see this is some meaningless junk instead of the data.
+
+27
+00:02:20,220 --> 00:02:26,720
+I thought I'd copied so what's going on to help understand the problem.
+
+28
+00:02:26,730 --> 00:02:32,220
+I've printed out the addresses of the data in each struct in the queue and the address where that data
+
+29
+00:02:32,220 --> 00:02:35,970
+is stored and look in the shallow copy.
+
+30
+00:02:36,000 --> 00:02:40,260
+The addresses are the same as in the original copy.
+
+31
+00:02:40,950 --> 00:02:47,370
+So when I delete the original Q and free the memory of each of its elements the shallow copy ends up
+
+32
+00:02:47,370 --> 00:02:49,760
+pointing to invalid data.
+
+33
+00:02:51,350 --> 00:02:53,300
+Now to understand why that is.
+
+34
+00:02:53,300 --> 00:03:00,510
+Think about what exactly we are doing when we copy a pointer.
+
+35
+00:03:00,740 --> 00:03:08,590
+Let's take a look at the declaration of my list item struct that's up here.
+
+36
+00:03:08,720 --> 00:03:13,120
+You'll see that is data is not a simple int as in earlier examples.
+
+37
+00:03:13,130 --> 00:03:15,610
+This time it's a pointer to a char.
+
+38
+00:03:15,700 --> 00:03:17,940
+That's a very common data type.
+
+39
+00:03:17,960 --> 00:03:21,310
+It's the way we declare strings in C..
+
+40
+00:03:21,320 --> 00:03:26,090
+Now remember that the value of a pointer is a number.
+
+41
+00:03:26,280 --> 00:03:34,630
+It's a number that indicates the address at which some data here a char or a string is stored.
+
+42
+00:03:34,780 --> 00:03:48,020
+So go down here right down in this code when we created a copy using memes C.P. why the value of each
+
+43
+00:03:48,020 --> 00:03:52,500
+pointer was copied into the structure added to the new.
+
+44
+00:03:52,500 --> 00:04:01,050
+Q That means that each data item the data is the char pointer inside each struct in the shallow copy.
+
+45
+00:04:01,050 --> 00:04:11,600
+Q references the same memory location the same char string as the char pointer in the struts in the
+
+46
+00:04:11,600 --> 00:04:13,010
+original Q..
+
+47
+00:04:13,770 --> 00:04:23,730
+Because the value of each pointer in each copied struct is the same value the same address as the pointer
+
+48
+00:04:23,880 --> 00:04:25,080
+in the original struct
+
+49
+00:04:28,530 --> 00:04:29,940
+now.
+
+50
+00:04:30,300 --> 00:04:38,550
+Down here I destroy the original Q And I free the memory of the strings referenced by the data char
+
+51
+00:04:38,550 --> 00:04:48,610
+pointer of each struct but the char pointers in the streets in my shallow copy queue continue to point
+
+52
+00:04:48,670 --> 00:04:51,160
+to that data.
+
+53
+00:04:51,160 --> 00:04:57,940
+And that's why we end up seeing junk when I try to display the data from the shallow copy after the
+
+54
+00:04:57,940 --> 00:05:01,150
+original Q was destroyed.
+
+55
+00:05:01,160 --> 00:05:04,980
+Now let's look how I can solve that problem.
+
+56
+00:05:06,950 --> 00:05:11,020
+This is how I create and initialize my deep copy queue.
+
+57
+00:05:11,360 --> 00:05:13,780
+It starts off in the same way as my shallow copy.
+
+58
+00:05:13,790 --> 00:05:19,980
+I copy the data using meme's why but now look here's another step.
+
+59
+00:05:19,980 --> 00:05:28,320
+I use this PPI data variable which I declared earlier as a pointer to char and I allocate a new block
+
+60
+00:05:28,320 --> 00:05:30,900
+of memory to hold some string data.
+
+61
+00:05:30,900 --> 00:05:37,530
+For simplicity I'm allocating 10 bytes here as defined by the mux baffling constant.
+
+62
+00:05:37,530 --> 00:05:44,880
+Then I make a new copy of the string data whose address is now referenced by P data and finally assigning
+
+63
+00:05:44,880 --> 00:05:54,020
+the address of this new copy of the string to the data pointer of my copied struct and only then do
+
+64
+00:05:54,020 --> 00:06:01,360
+I call NQ to add the copied struct with its pointer now set to a new copy of the string data.
+
+65
+00:06:01,460 --> 00:06:07,820
+I can now safely delete the original Q and free the memory used by the struts and the strings to which
+
+66
+00:06:07,820 --> 00:06:11,390
+their data pointers point because my new Q..
+
+67
+00:06:11,390 --> 00:06:19,540
+The one that is truly a deep copy has no pointers to any data of any description from the original Q
+
+68
+00:06:20,900 --> 00:06:30,170
+And when I run my code again well you can see that is true that deep copy Q and all its string data
+
+69
+00:06:30,590 --> 00:06:35,080
+remains intact after the original Q is destroyed.
+
+70
+00:06:35,260 --> 00:06:40,250
+And if you look at the addresses of its data items you can clearly see why that's the case.
+
+71
+00:06:40,400 --> 00:06:49,280
+Whereas the data pointers in the shallow copy reference strings at the same addresses as in the original
+
+72
+00:06:49,370 --> 00:07:01,770
+Q While the data pointers in the deep copy reference copies of the original strings and these copies
+
+73
+00:07:01,830 --> 00:07:05,530
+are stored at different addresses in memory.
+
+74
+00:07:07,600 --> 00:07:12,900
+Bugs that result from making shallow copies can be really hard to track down.
+
+75
+00:07:13,270 --> 00:07:20,410
+In some cases as I've shown here you may think you're making deep copies when in fact the pointers in
+
+76
+00:07:20,410 --> 00:07:27,850
+the elements of the copied list point to the same data as the pointers in the original list.
+

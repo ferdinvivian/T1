@@ -1,0 +1,104 @@
+1
+00:00:00,890 --> 00:00:06,960
+While a stock could be implemented as a linked list that's not really necessary.
+
+2
+00:00:07,740 --> 00:00:15,360
+In fact unlike a Q or any type of linked list a stock is typically declared to be of a fixed size.
+
+3
+00:00:15,360 --> 00:00:21,780
+If you have a fixed size stack and you want to increase its size Well you'd need to allocate a new block
+
+4
+00:00:21,780 --> 00:00:26,400
+of memory and copy the existing stack elements into it.
+
+5
+00:00:26,850 --> 00:00:29,440
+But for the sake of simplicity I'm not going to do that.
+
+6
+00:00:29,460 --> 00:00:36,290
+We've already seen other data structures like linked lists and Qs whose size can be increased easily
+
+7
+00:00:38,690 --> 00:00:40,300
+with this example of a stock.
+
+8
+00:00:40,310 --> 00:00:49,930
+I'm going to assume that you will set a maximum stock size and that won't be changed my stock implementation
+
+9
+00:00:50,080 --> 00:00:55,000
+is a simple sequential list of elements and there are no links between them.
+
+10
+00:00:55,000 --> 00:01:02,760
+That is the elements don't have next prev pointers to other elements as they did in a queue.
+
+11
+00:01:02,820 --> 00:01:09,100
+The stock occupies a single contiguous block of memory and in that respect it is like an array.
+
+12
+00:01:09,360 --> 00:01:16,530
+This stock is intended to contain a fixed number of items each of a given size being quite a simple
+
+13
+00:01:16,530 --> 00:01:17,590
+structure.
+
+14
+00:01:17,610 --> 00:01:24,900
+A stock is typically faster to use than AQ and since there are no pointers between elements that means
+
+15
+00:01:24,900 --> 00:01:27,740
+that it can contain any type of data.
+
+16
+00:01:27,750 --> 00:01:33,070
+It's not restricted to working with struts that contain pointers.
+
+17
+00:01:35,140 --> 00:01:41,110
+Let's first consider how a stock is structured in my program.
+
+18
+00:01:41,110 --> 00:01:44,700
+The stock occupies a chunk of memory that starts at base.
+
+19
+00:01:45,070 --> 00:01:53,090
+That is the address where my base pointer points on the ends at end of my end pointer points.
+
+20
+00:01:53,140 --> 00:01:59,140
+I have a top pointer that's updated to point to the top item of the stock.
+
+21
+00:01:59,140 --> 00:02:02,700
+The stock grows in memory from the bottom upwards.
+
+22
+00:02:03,630 --> 00:02:09,870
+That isn't necessarily the case since then you can create a stock that grows downwards from a high address
+
+23
+00:02:09,930 --> 00:02:10,800
+to a lower address.
+
+24
+00:02:10,830 --> 00:02:14,040
+But this is the way my stock grows.
+
+25
+00:02:14,280 --> 00:02:19,980
+Just like a stack of plates it grows upwards as you add more plates onto it.
+
+26
+00:02:21,420 --> 00:02:25,480
+Now let's look at the code in more detail.
+

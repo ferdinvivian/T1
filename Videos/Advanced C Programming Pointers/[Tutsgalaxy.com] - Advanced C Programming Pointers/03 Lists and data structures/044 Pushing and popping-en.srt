@@ -1,0 +1,212 @@
+1
+00:00:02,190 --> 00:00:07,670
+By tradition when you add an item onto the top of a stock it's said that you push it back.
+
+2
+00:00:08,700 --> 00:00:12,150
+I've written the push function that does that in my code here.
+
+3
+00:00:12,630 --> 00:00:17,610
+I first check to see if the stock has room for another item by checking if top.
+
+4
+00:00:17,940 --> 00:00:25,350
+That's my point at the top of the stack equals and which is the pointer to the end of the memory.
+
+5
+00:00:25,350 --> 00:00:28,050
+Set aside hold the stock.
+
+6
+00:00:28,100 --> 00:00:31,140
+You can see how these points has being assigned.
+
+7
+00:00:31,840 --> 00:00:38,850
+Down here in main base pointer is where the memory for my stock begins.
+
+8
+00:00:38,900 --> 00:00:46,220
+That's because malloc returns a pointer to the start of the allocated memory and is a pointer to the
+
+9
+00:00:46,220 --> 00:00:54,620
+end of the allocated memory because it's the address of base plus stock size which is a constant I defined
+
+10
+00:00:54,710 --> 00:01:02,660
+earlier and here that happens to be five and top the top element in the stock is here the same as base
+
+11
+00:01:03,110 --> 00:01:05,950
+as that isn't yet anything in this stock.
+
+12
+00:01:07,320 --> 00:01:07,950
+Now let's look at
+
+13
+00:01:11,680 --> 00:01:18,580
+so as I said I first check that there is room for a new element if the top of the stock has reached
+
+14
+00:01:18,580 --> 00:01:20,630
+the end of allocated memory.
+
+15
+00:01:20,640 --> 00:01:25,570
+Well there isn't any room otherwise this code executes.
+
+16
+00:01:25,570 --> 00:01:29,520
+It uses the meme's C-p y function to copy the data.
+
+17
+00:01:29,710 --> 00:01:37,300
+A new item which happens to be a struct at the location of the top of the stack it then increments the
+
+18
+00:01:37,300 --> 00:01:39,050
+top pointer.
+
+19
+00:01:39,100 --> 00:01:41,210
+This is another example of pointer arithmetic.
+
+20
+00:01:41,210 --> 00:01:47,410
+We increment top by the size of one element of the type to which top points.
+
+21
+00:01:47,530 --> 00:01:51,200
+And here that's a data struct.
+
+22
+00:01:51,360 --> 00:01:55,850
+When you take something off a stock you are usually said to pop it off.
+
+23
+00:01:55,850 --> 00:01:58,200
+And that's what my pop function does.
+
+24
+00:01:58,540 --> 00:02:02,100
+The pop function is the exact reverse of the push function.
+
+25
+00:02:02,250 --> 00:02:09,270
+It tests topic's base in which case there's nothing left to pop it's an empty stock otherwise it decrements
+
+26
+00:02:09,270 --> 00:02:14,040
+the top pointer and returns a pointer to the data struct to be removed.
+
+27
+00:02:15,400 --> 00:02:18,140
+Now let's go back to have another look at main
+
+28
+00:02:20,740 --> 00:02:22,150
+So here do.
+
+29
+00:02:22,150 --> 00:02:31,030
+While loop calls pop for each data item in the stock it's p data variable is a pointer to a data item.
+
+30
+00:02:31,030 --> 00:02:34,580
+So that lets me get at the data fields down here.
+
+31
+00:02:36,410 --> 00:02:43,200
+Be careful however the data in the stock has not been deleted from memory.
+
+32
+00:02:43,280 --> 00:02:49,260
+It's purely the pointer referencing the top item that has moved up and down.
+
+33
+00:02:50,070 --> 00:02:55,720
+Is this pointer that tells us where the last valid element in the stock occurs.
+
+34
+00:02:55,890 --> 00:03:03,480
+It would be quite possible to read data from memory areas anywhere in the stock structure between the
+
+35
+00:03:03,480 --> 00:03:05,270
+base and and pointers.
+
+36
+00:03:05,280 --> 00:03:12,620
+But if you read data in a location above the top pointer that would be an error although in some respects
+
+37
+00:03:12,620 --> 00:03:18,290
+creating and maintaining a stack in this way is simpler than creating and maintaining a linked list
+
+38
+00:03:18,740 --> 00:03:26,420
+because you have only three pointers to worry about base and on top you still need to take great care
+
+39
+00:03:26,570 --> 00:03:34,820
+when adding or pushing new items check that there's enough memory and when deleting and popping them
+
+40
+00:03:35,210 --> 00:03:43,400
+check is a valid item to be deleted and when accessing the data in an item such as the INT and double
+
+41
+00:03:43,400 --> 00:03:51,290
+fields a and b of my struct here I have to be sure that I use a pointer to the correct types of data
+
+42
+00:03:51,320 --> 00:03:59,780
+item like my PDA to a pointer to data so that you access the correct amount of memory.
+
+43
+00:03:59,830 --> 00:04:07,390
+Finally notice as I don't try to free up memory on an element by element basis I allocated memory for
+
+44
+00:04:07,390 --> 00:04:13,490
+the entire stack area at the outset and assign that to the base pointer.
+
+45
+00:04:13,730 --> 00:04:23,630
+When I finish with the stack I clean up by freeing base to deallocate memory block in a single operation.
+
+46
+00:04:23,660 --> 00:04:25,130
+I finally see this running
+
+47
+00:04:28,100 --> 00:04:28,640
+OK.
+
+48
+00:04:28,790 --> 00:04:34,160
+So remember a stock is a last in first out structure.
+
+49
+00:04:34,160 --> 00:04:41,410
+You can see that the last item added pushed onto the stock is the struct containing the integer and
+
+50
+00:04:41,410 --> 00:04:45,040
+floating point numbers 4 and 8.
+
+51
+00:04:45,140 --> 00:04:54,530
+And when I pop the items off the stock the last item is the one that's removed first and so on through
+
+52
+00:04:54,530 --> 00:04:58,910
+the entire stack one by one going through the items.
+
+53
+00:04:58,910 --> 00:05:01,290
+Four three two one zero.
+

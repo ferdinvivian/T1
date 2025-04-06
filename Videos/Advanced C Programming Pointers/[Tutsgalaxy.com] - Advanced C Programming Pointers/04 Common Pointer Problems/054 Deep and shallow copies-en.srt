@@ -1,0 +1,172 @@
+1
+00:00:02,160 --> 00:00:09,750
+You may recall that when I gave an example of copying one list into another list earlier on ID cute
+
+2
+00:00:09,810 --> 00:00:14,690
+items from one list and included them on to a second list.
+
+3
+00:00:14,790 --> 00:00:19,990
+In other words I removed them from list one before adding them to list 2.
+
+4
+00:00:20,060 --> 00:00:21,250
+And why did I do that.
+
+5
+00:00:21,330 --> 00:00:28,080
+Well why didn't I just add them onto this too and also leave them in list one.
+
+6
+00:00:28,530 --> 00:00:36,030
+I did it to avoid having to deal with one of the common problems when copying lists when two lists contain
+
+7
+00:00:36,030 --> 00:00:41,480
+the same elements or other pointers to the same elements.
+
+8
+00:00:41,640 --> 00:00:49,560
+Any operation done to the elements in one list can have unintended side effects on the other list.
+
+9
+00:00:49,620 --> 00:00:57,060
+For example if I deleted an element from list to this one might continue to try to use that same element
+
+10
+00:00:57,730 --> 00:01:00,580
+if two lists contain pointers to the same elements.
+
+11
+00:01:00,710 --> 00:01:05,220
+If any of the elements in two lists contain pointers to the same data.
+
+12
+00:01:05,340 --> 00:01:13,010
+Then when the data is changed or freed by one list it can have unpredictable effects on the other list.
+
+13
+00:01:14,180 --> 00:01:19,140
+It's important to understand that there are two ways of making a copy of some data.
+
+14
+00:01:19,490 --> 00:01:23,020
+The first is to create a pointer to a bit of existing data.
+
+15
+00:01:23,170 --> 00:01:25,460
+That's called a shallow copy.
+
+16
+00:01:25,460 --> 00:01:29,580
+There is one little data that two pointers to it.
+
+17
+00:01:29,600 --> 00:01:33,170
+The second is to make a new copy of the data itself.
+
+18
+00:01:33,380 --> 00:01:35,820
+And that's called a deep copy.
+
+19
+00:01:35,930 --> 00:01:40,650
+Shallow copies are typically fairly fast because no real copying is done.
+
+20
+00:01:40,810 --> 00:01:48,740
+You are just creating a new reference a pointer whose value is the address of some existing bit of data.
+
+21
+00:01:49,890 --> 00:01:56,730
+Deep copying is clearly going to be slower because you have to get to the original data and copy it
+
+22
+00:01:56,760 --> 00:01:59,970
+to a new memory allocation.
+
+23
+00:02:00,000 --> 00:02:05,280
+Now in my short and simple programs that while it might not seem like a big deal the speed difference
+
+24
+00:02:05,700 --> 00:02:07,290
+would be negligible.
+
+25
+00:02:07,800 --> 00:02:11,280
+But in a real world program the data could be enormous.
+
+26
+00:02:11,280 --> 00:02:19,200
+You might need to make copies of huge arrays of complex list containing vast numbers of Stults each
+
+27
+00:02:19,200 --> 00:02:22,970
+of which contains large amounts of data.
+
+28
+00:02:23,820 --> 00:02:28,820
+So when making copies you need to be aware of the pros and cons of deep copying.
+
+29
+00:02:28,860 --> 00:02:34,440
+This is shallow copying shallow copies are pretty fast and efficient.
+
+30
+00:02:34,650 --> 00:02:39,330
+They don't mess around with the original data and they don't have to make new copies of it.
+
+31
+00:02:40,170 --> 00:02:45,480
+But they're inherently unsafe if you make changes to one copy.
+
+32
+00:02:45,480 --> 00:02:50,770
+Those changes can affect the other copy and not necessarily in a good way.
+
+33
+00:02:51,560 --> 00:02:53,530
+But deep copies they are safer.
+
+34
+00:02:53,710 --> 00:02:56,220
+They have real copies.
+
+35
+00:02:56,500 --> 00:03:03,580
+So when you make a deep copy you end up with two completely separate sets of data which might be contained
+
+36
+00:03:03,580 --> 00:03:07,690
+in arrays lists or queues at the outset.
+
+37
+00:03:07,720 --> 00:03:14,440
+Those datasets will be the same or at any rate and contain the same data because there are identical
+
+38
+00:03:14,440 --> 00:03:16,080
+copies.
+
+39
+00:03:16,300 --> 00:03:21,570
+But when you make changes to one set those changes won't propagate through to the other set.
+
+40
+00:03:23,070 --> 00:03:31,060
+If not it may not always be obvious to you when you are creating a shallow copy in some cases you might
+
+41
+00:03:31,180 --> 00:03:38,010
+think you are creating a deep copy but you aren't really in the next video.
+
+42
+00:03:38,020 --> 00:03:44,580
+I show an example in which it may appear at first sight that I've created a completely new copy that
+
+43
+00:03:44,580 --> 00:03:53,040
+is a deep copy of a list until I run the program and discover a serious problem.
+

@@ -1,0 +1,184 @@
+1
+00:00:01,530 --> 00:00:03,360
+So that's it.
+
+2
+00:00:03,360 --> 00:00:11,160
+You've now arrived at the end of the course we covered so many different topics punter's dresses array's
+
+3
+00:00:11,300 --> 00:00:20,760
+indirection allocating and freeing memory data type alignment pointer arithmetic linguists stucks cues
+
+4
+00:00:20,760 --> 00:00:24,300
+function pointers deep and shallow copying.
+
+5
+00:00:24,350 --> 00:00:26,680
+Well lots more besides.
+
+6
+00:00:27,060 --> 00:00:33,690
+Even though pointers are really quite simple things they can be used in all sorts of very complicated
+
+7
+00:00:33,690 --> 00:00:34,790
+ways.
+
+8
+00:00:34,890 --> 00:00:41,250
+And as I've shown in this last few lessons even simple mistakes on using pointers can result in really
+
+9
+00:00:41,250 --> 00:00:43,880
+serious program errors.
+
+10
+00:00:44,640 --> 00:00:47,400
+So where to next in this course.
+
+11
+00:00:47,460 --> 00:00:51,160
+I certainly haven't covered everything you can do with pointers.
+
+12
+00:00:52,020 --> 00:00:52,910
+Per example.
+
+13
+00:00:52,910 --> 00:00:59,510
+There are all sorts of complex data structures that you could create with pointers branching trees for
+
+14
+00:00:59,510 --> 00:01:08,550
+instance instead of linear lists under numerous searching out rhythms that can be used to find data
+
+15
+00:01:08,550 --> 00:01:15,600
+items in structures linked to using pointers point.
+
+16
+00:01:16,440 --> 00:01:23,560
+The point of this point of course is not to cover all the things that pointers can be used for.
+
+17
+00:01:23,880 --> 00:01:27,290
+That would make a very very long course indeed.
+
+18
+00:01:27,540 --> 00:01:34,470
+In any case there are lots of books and online tutorials about data structures in file handling searching
+
+19
+00:01:34,470 --> 00:01:36,770
+and sorting out rhythms and so on.
+
+20
+00:01:36,960 --> 00:01:40,430
+All of which you may use pointers.
+
+21
+00:01:40,430 --> 00:01:45,710
+The aim of this course is to explain exactly how pointers work.
+
+22
+00:01:45,750 --> 00:01:53,460
+So having completed the course you should now be able to use pointers safely in your own programs and
+
+23
+00:01:53,460 --> 00:01:59,940
+understand how to allocate and free memory or how to create data structures and ensure the pointers
+
+24
+00:01:59,940 --> 00:02:07,500
+that link together the elements of those structures always refer to point to the correct things.
+
+25
+00:02:08,610 --> 00:02:16,290
+In short you should have a pretty good understanding of what pointers are and how they work and you
+
+26
+00:02:16,290 --> 00:02:19,290
+should be able to use them correctly.
+
+27
+00:02:19,500 --> 00:02:24,860
+And that is one of the most important skills any C programmer can have.
+
+28
+00:02:26,020 --> 00:02:33,040
+A deep understanding of pointers really separates a good programmer a professional programmer from an
+
+29
+00:02:33,160 --> 00:02:45,100
+average programmer hobbyist or an amateur know that you have that skill you can use pointers properly.
+
+30
+00:02:45,120 --> 00:02:51,450
+It may of course take some time and coding practice until you've really absorbed all this information
+
+31
+00:02:51,730 --> 00:02:54,030
+and then it becomes second nature to you.
+
+32
+00:02:54,760 --> 00:03:00,580
+To do that take your time to watch videos on any topics you find especially difficult.
+
+33
+00:03:00,840 --> 00:03:04,050
+And be sure to use the source code supplied with this course.
+
+34
+00:03:04,100 --> 00:03:10,950
+The best next steps to take to deepen your knowledge is to modify some of my own code examples.
+
+35
+00:03:10,950 --> 00:03:12,450
+Try rewriting.
+
+36
+00:03:12,500 --> 00:03:17,620
+I dunno maybe to remove not just one but a whole range of elements from a list or.
+
+37
+00:03:17,810 --> 00:03:25,430
+Or to create stocks that grow downwards instead of upwards and then pick your own programming subject.
+
+38
+00:03:25,430 --> 00:03:28,380
+Something that interests you.
+
+39
+00:03:28,390 --> 00:03:37,720
+Disk Utility or a simple database game whatever you find interesting and use pointers in them.
+
+40
+00:03:39,190 --> 00:03:45,700
+Now there's no getting away from the fact that using pointers and using them well is difficult.
+
+41
+00:03:45,980 --> 00:03:53,060
+But now you've completed this course you've already gone far further to gain a really solid understanding
+
+42
+00:03:53,060 --> 00:03:56,880
+of pointers than the vast majority of programmers.
+
+43
+00:03:57,170 --> 00:04:03,860
+So finally all that remains is for me to thank you for putting in the time and the effort to study this
+
+44
+00:04:03,860 --> 00:04:08,390
+course and believe me I do know how much effort this takes.
+
+45
+00:04:09,290 --> 00:04:16,770
+Let me end by giving you my best wishes for your future programming career with pantos.
+
+46
+00:04:16,770 --> 00:04:19,840
+Lots and lots of pointers point to.
+

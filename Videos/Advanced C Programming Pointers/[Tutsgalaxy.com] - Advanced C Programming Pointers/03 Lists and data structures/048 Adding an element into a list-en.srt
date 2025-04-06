@@ -1,0 +1,232 @@
+1
+00:00:01,600 --> 00:00:08,170
+But if you want to add a new item to a list because it's pretty straightforward to out an item onto
+
+2
+00:00:08,170 --> 00:00:10,010
+the end of a list using a stock or.
+
+3
+00:00:10,040 --> 00:00:14,630
+Q But how about adding an item somewhere in the middle.
+
+4
+00:00:16,760 --> 00:00:24,260
+In order to do that you'd need to make the pointer's of the new item point to the elements on either
+
+5
+00:00:24,260 --> 00:00:25,120
+side of it.
+
+6
+00:00:26,580 --> 00:00:33,120
+So if you wanted added after element 3 then it would need its Prev and next pointers to point to elements
+
+7
+00:00:33,240 --> 00:00:34,500
+3 and 4.
+
+8
+00:00:35,300 --> 00:00:43,430
+And element 3 and 4 would also need have one each of their pointers pointing to the new item.
+
+9
+00:00:43,430 --> 00:00:49,730
+Only by doing that can we be sure that the integrity of the list is preserved that all the next and
+
+10
+00:00:49,730 --> 00:00:57,280
+prev pointers of the new item and the items on either side or point the right things.
+
+11
+00:00:57,290 --> 00:01:01,180
+So the list items are all properly joined up together.
+
+12
+00:01:02,690 --> 00:01:06,350
+That's what I do in my ADD after function.
+
+13
+00:01:07,280 --> 00:01:15,590
+Given a position an index into the Q and the pointer to a new element item I try to add the new item
+
+14
+00:01:15,680 --> 00:01:22,540
+to the existing queue this function needs to work with a queue that actually contains some elements.
+
+15
+00:01:22,640 --> 00:01:26,510
+So I start by checking to see that the queue is not empty.
+
+16
+00:01:26,630 --> 00:01:34,080
+Then I execute some code and here I iterate to the next item in the queue.
+
+17
+00:01:34,090 --> 00:01:36,560
+This may look quite familiar.
+
+18
+00:01:36,600 --> 00:01:47,350
+In fact these two bits of code are identical to the code in my queue length function.
+
+19
+00:01:47,370 --> 00:01:56,750
+In fact all that's different is this block of code here this is how this works.
+
+20
+00:01:56,890 --> 00:02:02,130
+I've set up a counter variable i.e. and on each turn through this loop I increment.
+
+21
+00:02:02,140 --> 00:02:09,140
+I.e. the code inside these brackets only executes when I equals position.
+
+22
+00:02:09,490 --> 00:02:13,660
+That happens when I moved to the array element at the desired position.
+
+23
+00:02:14,690 --> 00:02:18,850
+Remember position is an argument that's passed to the function.
+
+24
+00:02:18,920 --> 00:02:25,840
+When I arrive at that position this code requires all the pointers so that the new element here that
+
+25
+00:02:25,960 --> 00:02:33,380
+the struct referenced by the item pointer is inserted into the queue immediately after the item at the
+
+26
+00:02:33,380 --> 00:02:37,450
+specified position the item about index is here.
+
+27
+00:02:37,450 --> 00:02:40,130
+The struct pointed to by temp.
+
+28
+00:02:40,640 --> 00:02:42,570
+Let's see how it does this.
+
+29
+00:02:42,580 --> 00:02:43,800
+Here are the new items.
+
+30
+00:02:43,810 --> 00:02:50,830
+Next pointer is set to point to the next item after the current position in the queue.
+
+31
+00:02:51,100 --> 00:02:59,540
+Then the next pointer of the item at the current position of temp is set to point to the new item.
+
+32
+00:02:59,590 --> 00:03:07,570
+So if temp was Item 3 then item is now item for item 3 is next pointer.
+
+33
+00:03:07,570 --> 00:03:12,250
+Now point to item for an item for next pointer.
+
+34
+00:03:12,250 --> 00:03:18,460
+Now points to what used to be the fourth item but is now shifted one position down the queue so it's
+
+35
+00:03:18,460 --> 00:03:20,010
+now item 5.
+
+36
+00:03:20,200 --> 00:03:22,420
+OK that's fairly straightforward.
+
+37
+00:03:22,710 --> 00:03:25,210
+It makes sure no links are broken in one direction.
+
+38
+00:03:25,240 --> 00:03:31,540
+The direction that goes from element to Element via the next pointers to fix up the links in the reverse
+
+39
+00:03:31,540 --> 00:03:33,690
+direction we make exactly the same changes.
+
+40
+00:03:33,700 --> 00:03:36,260
+But this time using the press pointers.
+
+41
+00:03:36,490 --> 00:03:40,330
+The end result is our new item is added to the existing queue.
+
+42
+00:03:40,360 --> 00:03:42,980
+No links are broken at that point.
+
+43
+00:03:43,030 --> 00:03:46,750
+We can stop iterating through the queue as there's nothing left to do.
+
+44
+00:03:46,930 --> 00:03:50,280
+That's what this break Yoda's.
+
+45
+00:03:50,610 --> 00:03:57,450
+Incidentally when I initialize a new list element down here I set its data to the negative of whatever
+
+46
+00:03:57,450 --> 00:03:59,070
+index the user entered.
+
+47
+00:03:59,220 --> 00:04:01,960
+When the program was run there's no significance to that.
+
+48
+00:04:02,040 --> 00:04:07,470
+Other than that it makes it easy for us to see which element is the new N when we run the program so
+
+49
+00:04:07,470 --> 00:04:09,210
+let's do that now.
+
+50
+00:04:11,630 --> 00:04:13,080
+See the results.
+
+51
+00:04:14,920 --> 00:04:17,170
+At the outset the length of the queue is 5.
+
+52
+00:04:17,170 --> 00:04:19,220
+It contains 5 elements.
+
+53
+00:04:19,450 --> 00:04:25,890
+I want to add a new element after the one at index 3 q is indexed from 0.
+
+54
+00:04:26,080 --> 00:04:28,970
+So index 3 indicates the fourth element.
+
+55
+00:04:29,020 --> 00:04:35,030
+Let's try that and you can see this is what's happened.
+
+56
+00:04:35,030 --> 00:04:37,880
+The Q started out with five elements.
+
+57
+00:04:37,940 --> 00:04:47,470
+Now it has 6 and the new n you containing the data minus 3 has been added after the element added index
+
+58
+00:04:47,490 --> 00:04:47,790
+3.
+

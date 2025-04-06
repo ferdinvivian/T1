@@ -1,0 +1,220 @@
+1
+00:00:00,870 --> 00:00:07,650
+Some of the short programs we've looked at in this course I reiterated over the items in an array just
+
+2
+00:00:07,650 --> 00:00:10,890
+by adding one to the point of variable.
+
+3
+00:00:10,890 --> 00:00:19,770
+For example here I add one to p i.e. That's a pointer to an integer in order to move to the next element
+
+4
+00:00:20,160 --> 00:00:22,340
+in an array of integers.
+
+5
+00:00:25,970 --> 00:00:33,770
+And here I iterate to the next character in a string by adding one to the PC variable which is a pointer
+
+6
+00:00:33,770 --> 00:00:38,200
+to char.
+
+7
+00:00:38,240 --> 00:00:46,020
+But wait a minute since the value of a pointer is a number that represents an address in memory.
+
+8
+00:00:46,040 --> 00:00:53,890
+Why does adding one to a point to have the effect of moving it to the next element in an array.
+
+9
+00:00:54,080 --> 00:01:01,640
+Maybe it's because it just increases the value by one byte so it moves the pointer one byte in memory
+
+10
+00:01:01,640 --> 00:01:05,390
+and that's where the next element in the array is stored.
+
+11
+00:01:06,350 --> 00:01:10,300
+But no that but simply doesn't make sense either.
+
+12
+00:01:10,820 --> 00:01:16,550
+I know that my C-compiler in Windows needs 4 bytes for an integer.
+
+13
+00:01:17,060 --> 00:01:26,080
+So I'd seen that when I add one to my pointer I actually move four bytes in memory to the next into
+
+14
+00:01:26,160 --> 00:01:27,020
+my array.
+
+15
+00:01:28,460 --> 00:01:36,290
+To understand what's really going on here we need to look at how pointer arithmetic is done in C..
+
+16
+00:01:38,510 --> 00:01:46,160
+Here in my address arithmetic one sample program I create an array of 4 integers since I've declared
+
+17
+00:01:46,220 --> 00:01:52,190
+the arrays size at the time of its declaration memory will automatically be allocated for it.
+
+18
+00:01:52,220 --> 00:01:59,600
+So I don't need to call the malloc function this for loop I initialize the array with four integers
+
+19
+00:01:59,750 --> 00:02:00,970
+from zero to three.
+
+20
+00:02:01,220 --> 00:02:09,320
+And I set the pointer to point to it that is by assigning the array A to the point of P I set the value
+
+21
+00:02:09,320 --> 00:02:11,740
+of P to the address of a.
+
+22
+00:02:11,750 --> 00:02:16,480
+Now let me run this code so you can see the results.
+
+23
+00:02:18,960 --> 00:02:25,260
+First I showed the address of the array A and the value of the pointer p and they're the same as you'd
+
+24
+00:02:25,260 --> 00:02:33,300
+expect then Id reference P which shows me the integer to which it points its zero.
+
+25
+00:02:33,300 --> 00:02:37,140
+The first element of the array the address of the array never changes.
+
+26
+00:02:37,140 --> 00:02:41,400
+So this number remains the same throughout my program.
+
+27
+00:02:41,410 --> 00:02:49,610
+Now I add one to the pointer variable P by default pointer values are shown in hexadecimal and that's
+
+28
+00:02:49,650 --> 00:02:51,350
+this number here.
+
+29
+00:02:51,870 --> 00:02:58,230
+For clarity I've also shown it in decimal format though it's possible that a compiler may object to
+
+30
+00:02:58,230 --> 00:02:59,310
+that.
+
+31
+00:02:59,910 --> 00:03:05,820
+And look even though I added one to the pointer its value is increased by 4.
+
+32
+00:03:06,120 --> 00:03:12,510
+So it points to an address in memory that's not one byte but four bytes further along from the start
+
+33
+00:03:12,510 --> 00:03:13,550
+of the array.
+
+34
+00:03:13,560 --> 00:03:22,590
+In other words adding one to the pointer has increased its value by the size in bytes of a single array
+
+35
+00:03:22,770 --> 00:03:27,430
+element and now it points to to the second element of this array.
+
+36
+00:03:27,460 --> 00:03:30,250
+And that's the integer 1.
+
+37
+00:03:30,370 --> 00:03:37,870
+Why does adding one to the pointer to increase its value by 4 is because he knows that my array contains
+
+38
+00:03:37,960 --> 00:03:38,930
+ints.
+
+39
+00:03:38,950 --> 00:03:40,190
+That's how I've declared it.
+
+40
+00:03:40,240 --> 00:03:46,990
+It knows it takes up 4 bytes and so it knows that when I add one to my pointer what I mean to do is
+
+41
+00:03:46,990 --> 00:03:55,090
+to increase the value of that pointer is to increment the address that it stores by however many bytes
+
+42
+00:03:55,210 --> 00:04:01,500
+are needed to move to the next element of the array.
+
+43
+00:04:01,500 --> 00:04:07,800
+Now I add two to the pointer and I can see that it's value the address to which it points has been increased
+
+44
+00:04:08,100 --> 00:04:09,180
+by 8.
+
+45
+00:04:09,210 --> 00:04:15,560
+That is two times the size of an int previously pointed to the second element.
+
+46
+00:04:15,570 --> 00:04:19,370
+Now it points to the fourth element and that's the integer 3.
+
+47
+00:04:19,410 --> 00:04:24,250
+And finally I decide to see what happens if I increment the pointer once again.
+
+48
+00:04:24,660 --> 00:04:28,530
+It already points to the final element in the array.
+
+49
+00:04:28,530 --> 00:04:30,070
+So what will it point to now.
+
+50
+00:04:30,240 --> 00:04:32,910
+Well the answer is your guess is as good as mine.
+
+51
+00:04:32,910 --> 00:04:38,600
+It points to whatever happens to be in the memory for bytes after the end of the array.
+
+52
+00:04:38,610 --> 00:04:42,330
+I shouldn't really be trying to access that memory at all.
+
+53
+00:04:42,390 --> 00:04:48,780
+So in a real world program you would need to check very carefully that any pointer arithmetic operations
+
+54
+00:04:48,900 --> 00:04:59,580
+only take you to some known memory location such as an index in an array which you have previously allocated
+
+55
+00:04:59,910 --> 00:05:01,180
+and initialized.
+

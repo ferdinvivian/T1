@@ -1,0 +1,176 @@
+1
+00:00:01,830 --> 00:00:07,400
+Let's look at another example of multiple indirection this time with an array of strings.
+
+2
+00:00:08,100 --> 00:00:14,850
+Yeah I have a char pointer PC and a pointer to a char pointer PPC.
+
+3
+00:00:14,850 --> 00:00:19,890
+I've declared an array of words to hold a sequence of strings.
+
+4
+00:00:20,040 --> 00:00:24,760
+Remember that in C A string is a sequence of characters terminated by now.
+
+5
+00:00:25,080 --> 00:00:33,180
+So I can declare a string as a pointer to a char that is a pointer to the address of the start of the
+
+6
+00:00:33,180 --> 00:00:35,460
+array of characters in a string.
+
+7
+00:00:36,400 --> 00:00:44,500
+When I initialize a string variable or as a string element in an array C automatically appends a null
+
+8
+00:00:44,500 --> 00:00:46,420
+terminator to that string.
+
+9
+00:00:48,130 --> 00:00:53,710
+The code here assigns my PPC variabilis the pointer to a pointer to the array.
+
+10
+00:00:53,710 --> 00:00:57,150
+That is to the address of the start of the array.
+
+11
+00:00:57,370 --> 00:01:02,410
+In this for loop I iterate through the array of strings and then in this why loop I iterate through
+
+12
+00:01:02,410 --> 00:01:10,870
+the characters in each string printing them out one by one the outer for loop moves the PPC pointer
+
+13
+00:01:11,200 --> 00:01:15,470
+through the array by adding 1 to the array address here.
+
+14
+00:01:15,580 --> 00:01:20,860
+PPC equals words plus one.
+
+15
+00:01:21,000 --> 00:01:27,040
+When I say it moves the point what I mean is that the address that's the number stored by the Point
+
+16
+00:01:27,040 --> 00:01:30,400
+available is updated to a different address.
+
+17
+00:01:30,750 --> 00:01:37,590
+And we can think of this as moving the pointer because the value point available stores determines the
+
+18
+00:01:37,590 --> 00:01:44,830
+address that can be accessed using the pointer at each turn through the follow up.
+
+19
+00:01:44,850 --> 00:01:51,340
+PPC is moved to point to the start of the next string in the array.
+
+20
+00:01:52,680 --> 00:02:01,410
+PCI-E the pointer to char is then also moved to point to the first character of the string pointed to
+
+21
+00:02:01,650 --> 00:02:04,620
+by PPC.
+
+22
+00:02:04,640 --> 00:02:19,780
+I do this by dereferencing the PPC pointer star PPC to access the pointer PC to which PPC points.
+
+23
+00:02:20,090 --> 00:02:27,780
+Now this while loop executes and this runs as long as the char pointed to by P C is not known.
+
+24
+00:02:27,920 --> 00:02:28,920
+Remember I get it.
+
+25
+00:02:28,940 --> 00:02:38,560
+The char itself by dereferencing the pointer by placing an asterisk before it Star b c this printf statement
+
+26
+00:02:38,590 --> 00:02:48,340
+prints the current char Plus a space then the PC char pointer is moved to point to the next char in
+
+27
+00:02:48,340 --> 00:02:58,320
+the current string PC plus because one and I can run it and check that I get the results that I am expecting.
+
+28
+00:02:58,320 --> 00:03:08,940
+So here you can see that is iterated through the array of 3 strings 0 1 2 and printed them out one character
+
+29
+00:03:08,940 --> 00:03:17,580
+at a time separated by spaces which is what I've expected from the loops I've written.
+
+30
+00:03:17,590 --> 00:03:23,380
+Once again if you're new to pointers this code may take some thinking about it to understand exactly
+
+31
+00:03:23,380 --> 00:03:28,750
+how it works and you might find it useful to trace through your code with a debugger.
+
+32
+00:03:29,930 --> 00:03:35,630
+You can use whatever ID you prefer Visual Studio Net beans and so on here I happened to be using code
+
+33
+00:03:35,660 --> 00:03:43,100
+light debug a Windows doctor at the bottom so I could add watches and view the coal.
+
+34
+00:03:43,370 --> 00:03:48,490
+All sorts of other debugging tools might be available in your preferred ID either.
+
+35
+00:03:48,620 --> 00:03:52,490
+So let's have a look at a simple example of how I might trace through this.
+
+36
+00:03:52,610 --> 00:03:59,290
+I could put a breakpoint for example here on this line PC plus equals one in code light.
+
+37
+00:03:59,300 --> 00:04:05,750
+I just double click in the margin and it adds this little break point marker.
+
+38
+00:04:06,490 --> 00:04:12,620
+And now I can view the addresses and values of the pointer variables at each turn through the loops
+
+39
+00:04:12,620 --> 00:04:21,840
+I start the debugger and when it pauses the break point you can see that I can open up the various variable
+
+40
+00:04:21,840 --> 00:04:27,720
+values here in this debugger window and it shows me what the current value is like higher up tracing
+
+41
+00:04:27,720 --> 00:04:33,560
+through and the values change as I carry on debugging.
+
+42
+00:04:33,570 --> 00:04:39,300
+So in order to understand pointers because they really are quite difficult to understand when you are
+
+43
+00:04:39,420 --> 00:04:47,670
+learning how to use them I really advise you to take your time to write some code and use your debugger
+
+44
+00:04:48,000 --> 00:04:53,910
+to see how the pointers work what they're pointing out and how their values change.
+

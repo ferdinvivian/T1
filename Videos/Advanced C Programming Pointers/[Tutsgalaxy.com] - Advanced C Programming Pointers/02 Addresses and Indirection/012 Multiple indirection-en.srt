@@ -1,0 +1,68 @@
+1
+00:00:01,430 --> 00:00:08,990
+Up to now I've explained how to create pointer variables that point data items such as integers and
+
+2
+00:00:08,990 --> 00:00:10,400
+characters.
+
+3
+00:00:10,430 --> 00:00:14,300
+In fact a pointer can also point to another pointer.
+
+4
+00:00:14,360 --> 00:00:20,860
+So if for example you have a pointer variable called PIII that points to an integer.
+
+5
+00:00:21,110 --> 00:00:30,740
+You can have another pointer variable called BPI that points to the pointer variable PIII when you use
+
+6
+00:00:30,830 --> 00:00:39,080
+a pointer to access data stored at an address we call it dereferencing or in direction using a pointer
+
+7
+00:00:39,080 --> 00:00:46,320
+to access data referenced by another pointer maybe called multiple indirection.
+
+8
+00:00:46,350 --> 00:00:55,190
+That's because it requires more than one step more than one level of indirection to get out of the data
+
+9
+00:00:55,250 --> 00:01:00,500
+such as an integer character or array that is being referenced.
+
+10
+00:01:00,500 --> 00:01:07,490
+You may wonder why on earth you'd want to do that well multiple indirection can be used when working
+
+11
+00:01:07,490 --> 00:01:09,580
+with lists and arrays.
+
+12
+00:01:09,920 --> 00:01:16,020
+You might have lists of lists that are accessed using pointers to pointers.
+
+13
+00:01:16,340 --> 00:01:21,210
+We see examples of this sort of thing later in this course.
+
+14
+00:01:21,350 --> 00:01:24,110
+Don't worry about that panel though at the moment.
+
+15
+00:01:24,140 --> 00:01:28,580
+All you need to know is how pointers to pointers work.
+
+16
+00:01:29,030 --> 00:01:35,490
+Even if you don't use the use in your own programs you need to be able to understand them.
+
+17
+00:01:35,660 --> 00:01:38,190
+If you see them in other people's program.
+

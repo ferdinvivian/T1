@@ -1,0 +1,228 @@
+1
+00:00:01,560 --> 00:00:10,230
+Let's now see how I can allocate just the right amount of memory to hold an array containing a specific
+
+2
+00:00:10,230 --> 00:00:12,080
+amount of data.
+
+3
+00:00:12,450 --> 00:00:19,260
+Once again my program will use a string with a char array as an example.
+
+4
+00:00:19,300 --> 00:00:22,440
+All I want to do here is copy a string into an array.
+
+5
+00:00:22,450 --> 00:00:26,830
+I do this using the SDR and p y.
+
+6
+00:00:26,860 --> 00:00:32,760
+Function the array into which I want to copy characters is the first argument.
+
+7
+00:00:32,830 --> 00:00:35,410
+S sorcerer.
+
+8
+00:00:35,410 --> 00:00:40,490
+In other words the string I want to copy is the second argument here that's Hello.
+
+9
+00:00:40,760 --> 00:00:47,550
+The third argument is the number of characters that I want to be copied on.
+
+10
+00:00:47,560 --> 00:00:50,220
+Obviously I want that to be the size of the string.
+
+11
+00:00:50,230 --> 00:00:52,990
+The question is how do I calculate the size.
+
+12
+00:00:53,650 --> 00:00:56,460
+That's where size of comes in.
+
+13
+00:00:57,960 --> 00:01:01,500
+At first sight this looks like a regular C function.
+
+14
+00:01:01,500 --> 00:01:09,990
+In fact it's an operator and it calculates the size of the data available an array or structure placed
+
+15
+00:01:10,050 --> 00:01:11,730
+between the parentheses.
+
+16
+00:01:13,540 --> 00:01:17,270
+And of course right here is the string hello.
+
+17
+00:01:17,360 --> 00:01:23,480
+The value returned is an integer that represents the number of bytes required to store the data object
+
+18
+00:01:24,500 --> 00:01:25,580
+in this program.
+
+19
+00:01:25,580 --> 00:01:28,990
+I've simply used size up to calculate the number of bytes in the string.
+
+20
+00:01:29,000 --> 00:01:29,930
+Hello.
+
+21
+00:01:30,380 --> 00:01:37,850
+I've then called malloc to allocate that number of bytes to the char point s.
+
+22
+00:01:37,850 --> 00:01:41,980
+Notice the cost char star here.
+
+23
+00:01:43,050 --> 00:01:49,290
+Which is required to cast the generic pointer returned by malloc to the specific pointer type pointer
+
+24
+00:01:49,290 --> 00:01:51,970
+to char and for safety.
+
+25
+00:01:51,970 --> 00:01:59,770
+I've added this little test down here to check that the operation succeeded.
+
+26
+00:01:59,800 --> 00:02:01,410
+Undresses not now then.
+
+27
+00:02:01,430 --> 00:02:02,840
+Or being ral.
+
+28
+00:02:02,840 --> 00:02:12,980
+I use SDR in c.p y to copy the chaws from the string Hello into the memory location that that's referenced
+
+29
+00:02:12,980 --> 00:02:19,690
+by the pointer and finally just to prove the test has been initialized with the chars and is now a valid
+
+30
+00:02:19,690 --> 00:02:20,520
+array.
+
+31
+00:02:20,620 --> 00:02:25,780
+I've just used the normal array indexing syntax down here.
+
+32
+00:02:27,850 --> 00:02:38,210
+And here what I've done is I've changed the first character from H to C so hello becomes Chello.
+
+33
+00:02:38,290 --> 00:02:40,370
+There's one final point I need to mention.
+
+34
+00:02:40,390 --> 00:02:42,810
+You can see that I put some breakpoints here.
+
+35
+00:02:42,820 --> 00:02:46,850
+I put a breakpoint here and another one here.
+
+36
+00:02:49,900 --> 00:02:55,820
+Now that will let me run this in the debugger and examine the values of variables at these points here.
+
+37
+00:02:55,860 --> 00:03:01,240
+I'm using Microsoft Visual Studio because I happen to like its debugger.
+
+38
+00:03:01,240 --> 00:03:04,480
+But you should be able to see similar results in other debuggers.
+
+39
+00:03:04,990 --> 00:03:09,780
+So let me start the debugging session stop at the first breakpoint.
+
+40
+00:03:10,060 --> 00:03:15,270
+Now as you can see down here the value of string size is 6.
+
+41
+00:03:15,280 --> 00:03:20,830
+That's the variable that was assigned the return value from size of how low the string Hello.
+
+42
+00:03:20,860 --> 00:03:26,860
+So even though Hello only has five characters string size has the value of 6.
+
+43
+00:03:26,860 --> 00:03:31,840
+And that's because it includes the string Terminator Nuddle in its current.
+
+44
+00:03:32,230 --> 00:03:33,070
+But how can I show that.
+
+45
+00:03:33,070 --> 00:03:36,440
+Let me run to the next break point.
+
+46
+00:03:37,980 --> 00:03:46,920
+OK so since S is a pointer to char the debugger only shows me the char that it actually points to expand
+
+47
+00:03:46,950 --> 00:03:49,940
+airstone here shows me just the value H.
+
+48
+00:03:49,950 --> 00:03:53,620
+That's the first character the start of the string s.
+
+49
+00:03:53,670 --> 00:04:00,960
+But I only need to find the sixth char that is the one that fav characters along in memory from the
+
+50
+00:04:00,960 --> 00:04:08,910
+char at index 0 at the at the position the the pointer S points to Visual Studio.
+
+51
+00:04:08,910 --> 00:04:17,160
+I can evaluate arbitrary expressions in the immediate window down here so I can enter s and put in index
+
+52
+00:04:17,250 --> 00:04:25,500
+5 to see what characters actually aren't index 5 in the in my string.
+
+53
+00:04:25,830 --> 00:04:27,910
+And here you can see it is indeed.
+
+54
+00:04:27,960 --> 00:04:29,830
+No it's the terminating now.
+
+55
+00:04:29,850 --> 00:04:38,760
+Hence size of hello is 6 because it measures the size of the string of 5 characters that I can see a
+
+56
+00:04:38,820 --> 00:04:39,960
+G W O.
+
+57
+00:04:40,230 --> 00:04:42,540
+Plus the the null at the end.
+

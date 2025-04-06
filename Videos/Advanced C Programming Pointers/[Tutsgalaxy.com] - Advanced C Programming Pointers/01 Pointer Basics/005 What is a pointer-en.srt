@@ -1,0 +1,140 @@
+1
+00:00:01,260 --> 00:00:08,430
+Before we go any further you need to be sure that you understand exactly what a pointer is in many languages
+
+2
+00:00:08,460 --> 00:00:13,280
+languages such as Java Ruby C-Sharp and others.
+
+3
+00:00:13,350 --> 00:00:21,540
+You either never come across pointers or Tor or only in very special circumstances behind the scenes.
+
+4
+00:00:21,570 --> 00:00:26,240
+All those languages use pointers but they hide them from the programmer.
+
+5
+00:00:26,520 --> 00:00:34,080
+And that's because pointers can be quite hard to use and if you use them incorrectly they can cause
+
+6
+00:00:34,380 --> 00:00:35,860
+all sorts of errors.
+
+7
+00:00:37,190 --> 00:00:40,880
+In C on the other hand there's no getting away from pointers.
+
+8
+00:00:40,940 --> 00:00:48,710
+That's because C operates at a relatively low level by low level.
+
+9
+00:00:48,860 --> 00:00:57,510
+I mean it's a language that makes it fairly easy to access the operating system and the computer hardware.
+
+10
+00:00:58,010 --> 00:01:05,670
+On the plus side that means that you can optimize your programs to make them very fast and very efficient.
+
+11
+00:01:06,790 --> 00:01:15,410
+On the downside it means that C does not protect your programs from making silly or even dangerous mistakes.
+
+12
+00:01:16,610 --> 00:01:28,240
+And one of the commonest causes of programmer errors in C pointers so let's be clear what exactly is
+
+13
+00:01:28,780 --> 00:01:31,250
+a pointer.
+
+14
+00:01:31,330 --> 00:01:40,950
+Put simply a pointer is a variable that refers to all points to an address in your computer's memory.
+
+15
+00:01:41,590 --> 00:01:47,850
+Ok so now you need to be sure that you understand what Watson addresses.
+
+16
+00:01:48,020 --> 00:01:55,250
+Think of the computer memory as a long series of locations where bits of data stored on the location
+
+17
+00:01:55,340 --> 00:02:00,540
+or position in memory where some piece of data is stored is an address.
+
+18
+00:02:01,130 --> 00:02:08,020
+So if you want to find a specific piece of data in memory you need to find the address where it's stored.
+
+19
+00:02:08,840 --> 00:02:13,060
+And that's what a point does.
+
+20
+00:02:13,160 --> 00:02:18,980
+If you find that hard to visualize try thinking how you'd get something that's been stored somewhere
+
+21
+00:02:19,400 --> 00:02:21,760
+in the real world.
+
+22
+00:02:22,160 --> 00:02:25,770
+Imagine a long road with lots of warehouses on it.
+
+23
+00:02:26,060 --> 00:02:29,780
+Each warehouse contains an artifact.
+
+24
+00:02:29,990 --> 00:02:37,460
+I know that a specific artifact has been stored in a specific warehouse and I want you to get it for
+
+25
+00:02:37,460 --> 00:02:37,930
+me.
+
+26
+00:02:38,210 --> 00:02:48,380
+But how are you going to locate the warehouse on a road where there are hundreds thousands or even millions
+
+27
+00:02:48,530 --> 00:02:49,920
+of different warehouses.
+
+28
+00:02:50,090 --> 00:03:00,980
+Well of course I need to give you the address and here it has so I've written the address Warehouse
+
+29
+00:03:00,980 --> 00:03:03,990
+13 on this index card.
+
+30
+00:03:04,010 --> 00:03:08,990
+Now you have the address so you can go to the correct location.
+
+31
+00:03:08,990 --> 00:03:12,890
+And in computer terms this card is like a pointer variable.
+
+32
+00:03:12,930 --> 00:03:18,690
+Its value is an address by using the pointer to locate the address.
+
+33
+00:03:18,830 --> 00:03:22,470
+That is a precise location in computer memory.
+
+34
+00:03:22,580 --> 00:03:30,990
+I can access data stored at that location or alternatively I can store a new piece of data at that location.
+
+35
+00:03:32,750 --> 00:03:37,770
+And the next lesson will see how you would do this in a C program.
+

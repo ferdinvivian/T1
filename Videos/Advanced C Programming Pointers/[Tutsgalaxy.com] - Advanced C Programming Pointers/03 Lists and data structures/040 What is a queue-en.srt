@@ -1,0 +1,116 @@
+1
+00:00:01,140 --> 00:00:07,000
+A Q is a list in which the first thing you are is the first thing that you remove.
+
+2
+00:00:07,020 --> 00:00:12,730
+In other words if I create a list from eight years and I would build the list by adding a first and
+
+3
+00:00:13,050 --> 00:00:16,240
+last one I want to remove an item from the queue.
+
+4
+00:00:16,410 --> 00:00:21,820
+I take a first then B C D and so on.
+
+5
+00:00:22,560 --> 00:00:27,410
+Queues are typically used when you want to deal with things in a time based order.
+
+6
+00:00:27,640 --> 00:00:34,590
+The things that are added to the queue early on have higher priority than the things that are added
+
+7
+00:00:34,590 --> 00:00:35,440
+later on.
+
+8
+00:00:35,640 --> 00:00:43,530
+That's the way for example that your computer handles a printer queue you odd document one then document
+
+9
+00:00:43,560 --> 00:00:49,020
+to then documents three to the queue and the printer prints them in that order.
+
+10
+00:00:49,020 --> 00:00:54,650
+The first thing you did document 1 is the first thing that gets printed.
+
+11
+00:00:54,980 --> 00:01:01,220
+Q is sometimes called a first in first out I F.O. structure.
+
+12
+00:01:01,340 --> 00:01:07,540
+For that reason is a very common data structures in programming.
+
+13
+00:01:07,540 --> 00:01:12,540
+Another example of a Q Is the event Q maintained by your operating system.
+
+14
+00:01:12,550 --> 00:01:17,760
+This is the queue that keeps track of keyboard or mouse events.
+
+15
+00:01:18,190 --> 00:01:23,550
+A mouse move or a mouse click event is put onto the end of the event.
+
+16
+00:01:23,560 --> 00:01:28,590
+Q Where it waits until the operating system has time to process it.
+
+17
+00:01:28,830 --> 00:01:35,740
+When it does the event is pulled off the end of the queue and sent to the program that ensures that
+
+18
+00:01:35,740 --> 00:01:42,700
+most events are processed in the correct order so that for example if you clicked the last left mouse
+
+19
+00:01:42,700 --> 00:01:49,210
+button to select a cell in a spreadsheet and then you make a series of most moves each of which generates
+
+20
+00:01:49,300 --> 00:01:51,770
+a mouse move event.
+
+21
+00:01:52,000 --> 00:01:55,640
+Those events are processed in the right order.
+
+22
+00:01:55,660 --> 00:01:56,890
+Now if they weren't.
+
+23
+00:01:56,960 --> 00:02:03,850
+If for example the mouse move events were processed before the mouse click you wouldn't end up selecting
+
+24
+00:02:03,850 --> 00:02:06,810
+cells as you intended.
+
+25
+00:02:06,820 --> 00:02:13,420
+Similarly if keyboard events weren't processed in the order in which these were pressed you would never
+
+26
+00:02:13,420 --> 00:02:21,340
+be able to write meaningful sentences in a word processor because the characters would appear in a different
+
+27
+00:02:21,400 --> 00:02:25,200
+order when he entered them on the keyboard.
+
+28
+00:02:25,270 --> 00:02:28,610
+Q ensures that the correct order is maintained.
+
+29
+00:02:28,900 --> 00:02:34,020
+So your spreadsheet and your word processor work as intended.
+

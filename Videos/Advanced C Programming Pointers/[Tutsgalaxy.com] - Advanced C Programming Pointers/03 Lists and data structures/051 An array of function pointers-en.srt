@@ -1,0 +1,164 @@
+1
+00:00:03,200 --> 00:00:09,170
+In this example I want to show how a single piece of code can code different functions using function
+
+2
+00:00:09,170 --> 00:00:09,980
+pointers.
+
+3
+00:00:11,090 --> 00:00:18,290
+I start out by defining four functions with the same arguments and return types identity just returns
+
+4
+00:00:18,290 --> 00:00:20,270
+the value of the arguments sent to it.
+
+5
+00:00:21,030 --> 00:00:27,040
+Square multiplies the argument value by itself cube multiplies it once more.
+
+6
+00:00:27,040 --> 00:00:27,780
+And.
+
+7
+00:00:27,870 --> 00:00:33,830
+Yet one small down here I declare an array of function pointers.
+
+8
+00:00:33,990 --> 00:00:41,680
+The PFI type is declared just as it was in my last example program this array contains the names of
+
+9
+00:00:41,680 --> 00:00:43,720
+my four functions.
+
+10
+00:00:43,720 --> 00:00:50,300
+When compiled these names are equivalent to the function addresses when the program runs.
+
+11
+00:00:50,300 --> 00:00:54,320
+I prompt the user to select a function from 1 to 4.
+
+12
+00:00:54,620 --> 00:00:56,620
+Then I ask for value.
+
+13
+00:00:56,690 --> 00:01:00,930
+This needs to be an integer that can be passed to one of the functions.
+
+14
+00:01:01,520 --> 00:01:05,930
+But first I test that the integer used to select the function is valid.
+
+15
+00:01:06,140 --> 00:01:09,190
+If it's less than or equal to zero that's an error.
+
+16
+00:01:09,500 --> 00:01:14,630
+I could test if it's greater than 4 here but who knows maybe I want to add more functions to my array
+
+17
+00:01:14,630 --> 00:01:15,640
+later on.
+
+18
+00:01:15,980 --> 00:01:18,490
+So I've written this test instead.
+
+19
+00:01:18,530 --> 00:01:22,100
+This has if xponent that's the function selector.
+
+20
+00:01:22,340 --> 00:01:24,870
+That's the integer value that user entered.
+
+21
+00:01:24,920 --> 00:01:32,030
+If exponent is greater than the size of the array divided by the size of a function pointer then that's
+
+22
+00:01:32,030 --> 00:01:33,100
+an error.
+
+23
+00:01:33,110 --> 00:01:40,400
+In other words it's an error if the exponent integer is bigger than the number of elements in the array
+
+24
+00:01:40,400 --> 00:01:41,810
+of function pointers.
+
+25
+00:01:42,790 --> 00:01:47,530
+When I want to call a function I call the function point array with an index.
+
+26
+00:01:47,580 --> 00:01:54,070
+Here I subtract one from the value entered by the user to allow for the fact that the array 0 based
+
+27
+00:01:54,080 --> 00:02:01,420
+in so its first index is 0 and its last is 3 and I passed the argument the value entered by the user
+
+28
+00:02:01,810 --> 00:02:03,400
+between parentheses here.
+
+29
+00:02:03,540 --> 00:02:08,830
+Well let's see this.
+
+30
+00:02:08,850 --> 00:02:15,230
+First of all it's a test that my tests for an invalid index are correct so zero shouldn't work.
+
+31
+00:02:15,390 --> 00:02:20,410
+OK it's an five shouldn't work or anything about 4.
+
+32
+00:02:20,550 --> 00:02:22,190
+Yep that was an error.
+
+33
+00:02:23,040 --> 00:02:33,750
+Now let's try the valid numbers or 1 to call the identity function for a value without it is for the
+
+34
+00:02:33,750 --> 00:02:37,860
+law makes sense because identity up here you can see the identity function.
+
+35
+00:02:37,860 --> 00:02:40,580
+It simply returns the value sent to it.
+
+36
+00:02:41,250 --> 00:02:50,450
+So if I enter too it should select the square function of the second function.
+
+37
+00:02:50,660 --> 00:02:59,920
+Here in my array Let's try the two into value.
+
+38
+00:03:00,060 --> 00:03:09,820
+Sure enough is squared go through those three into value because the cube function
+
+39
+00:03:13,580 --> 00:03:21,380
+for value it calls the full function and 256 is returned.
+
+40
+00:03:21,590 --> 00:03:24,860
+So they have it an array function pointers.
+
+41
+00:03:25,190 --> 00:03:29,860
+This allows you to code different functions selectively at runtime.
+

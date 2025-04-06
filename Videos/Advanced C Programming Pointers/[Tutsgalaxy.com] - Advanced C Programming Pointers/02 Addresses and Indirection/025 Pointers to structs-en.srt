@@ -1,0 +1,320 @@
+1
+00:00:01,770 --> 00:00:08,160
+In an earlier program I showed how you can allocate a specific amount of memory here that's 12 bytes
+
+2
+00:00:09,120 --> 00:00:16,160
+to hold data of a specific size allocating a fixed number of bytes like this is all well and good in
+
+3
+00:00:16,170 --> 00:00:23,220
+a simple demonstration program but in a real world program it's a very bad idea because of the size
+
+4
+00:00:23,220 --> 00:00:29,220
+of data types can sometimes vary according to which compiler or operating system you are using.
+
+5
+00:00:29,520 --> 00:00:35,280
+Well we've already seen an example of that with a longing which has a different size on my PC and on
+
+6
+00:00:35,280 --> 00:00:43,080
+my Mac with more complex data types such as struts you should never assume that you know how much memory
+
+7
+00:00:43,260 --> 00:00:45,750
+is actually required.
+
+8
+00:00:45,750 --> 00:00:48,960
+Let's look at this program that uses struts here.
+
+9
+00:00:48,960 --> 00:00:50,870
+I've declared a struct containing two.
+
+10
+00:00:50,880 --> 00:00:54,720
+It's a double on the long long int.
+
+11
+00:00:55,290 --> 00:01:00,750
+Well I've used these data types before and I know that each end takes up 4 bytes while the others take
+
+12
+00:01:00,750 --> 00:01:03,470
+up 8 bytes each of them together.
+
+13
+00:01:03,480 --> 00:01:06,140
+I get 24 bytes.
+
+14
+00:01:06,180 --> 00:01:11,890
+Look I can show that this is the case by running this program and do that now
+
+15
+00:01:17,270 --> 00:01:19,340
+and see it.
+
+16
+00:01:19,530 --> 00:01:25,140
+I print out the size of my struct and it says 24.
+
+17
+00:01:25,940 --> 00:01:32,390
+So when I want to allocate memory for an array of my struts I just need to allocate 24 bytes for each
+
+18
+00:01:33,230 --> 00:01:36,280
+write wrong.
+
+19
+00:01:37,150 --> 00:01:38,140
+But why is this wrong.
+
+20
+00:01:38,140 --> 00:01:39,520
+It works after all.
+
+21
+00:01:40,360 --> 00:01:48,500
+We we've just seen that the program runs fine on here I allocate 24 bytes for each struct.
+
+22
+00:01:48,610 --> 00:01:49,260
+So what's the matter.
+
+23
+00:01:49,280 --> 00:01:57,130
+Well it's not so much that it's absolutely wrong for the time being in the present case as the code
+
+24
+00:01:57,220 --> 00:02:05,110
+stands at the moment but it is at any rate still a very very bad idea.
+
+25
+00:02:05,110 --> 00:02:06,610
+Let me show you why.
+
+26
+00:02:07,360 --> 00:02:12,060
+Let's say I decide to reorder the features of my struct.
+
+27
+00:02:12,280 --> 00:02:16,480
+After all C should logically come off to be shouldn't it.
+
+28
+00:02:16,480 --> 00:02:17,470
+So let me do that.
+
+29
+00:02:17,470 --> 00:02:22,770
+I'll just move B into the right position.
+
+30
+00:02:22,770 --> 00:02:24,140
+A B C
+
+31
+00:02:26,890 --> 00:02:27,830
+tidy up this very
+
+32
+00:02:32,240 --> 00:02:35,250
+k.
+
+33
+00:02:35,600 --> 00:02:38,190
+Now let's assume that I've written this program.
+
+34
+00:02:38,240 --> 00:02:41,020
+Tested it to see that it works as I've just done.
+
+35
+00:02:41,240 --> 00:02:47,180
+And then at the end of the day I just tidy up the struct as I've just done and I think no more about
+
+36
+00:02:47,180 --> 00:02:47,900
+it.
+
+37
+00:02:48,380 --> 00:02:53,840
+I send my program out into the world and when I get back to my desk the next morning everyone's going
+
+38
+00:02:53,840 --> 00:02:54,680
+nuts.
+
+39
+00:02:54,690 --> 00:03:00,110
+Why Well that's run my program again.
+
+40
+00:03:00,150 --> 00:03:00,970
+Here we go.
+
+41
+00:03:01,040 --> 00:03:01,390
+Oh
+
+42
+00:03:05,510 --> 00:03:10,020
+OK so we have a problem shut this down.
+
+43
+00:03:13,690 --> 00:03:20,560
+Some know my program and maybe in real life this would be a really important program one that runs an
+
+44
+00:03:20,560 --> 00:03:27,900
+international banking system or an airline control network who knows what my program now keeps crashing.
+
+45
+00:03:29,430 --> 00:03:30,240
+But what did I do.
+
+46
+00:03:30,240 --> 00:03:36,400
+I didn't change anything did I just tidy up the struct definition by reordering the features.
+
+47
+00:03:36,930 --> 00:03:44,010
+Well it turns out that is a change and it's not a trivial change either because strange as it may seem
+
+48
+00:03:44,370 --> 00:03:49,510
+my strat no longer takes up 24 bytes of memory.
+
+49
+00:03:49,860 --> 00:03:55,940
+So when I allocate 24 bytes I not allocating the correct amount.
+
+50
+00:03:56,000 --> 00:04:03,590
+This is why you should always use size of to calculate the actual size of a piece of data rather than
+
+51
+00:04:03,590 --> 00:04:05,710
+assuming you know its size.
+
+52
+00:04:07,580 --> 00:04:15,080
+So this is the problem line where I do the allocation that you replace that sort of allocating 24 bytes
+
+53
+00:04:15,290 --> 00:04:20,740
+the size of my struct
+
+54
+00:04:23,410 --> 00:04:25,090
+and run the code again.
+
+55
+00:04:27,760 --> 00:04:32,300
+And this time it works.
+
+56
+00:04:32,320 --> 00:04:35,570
+Now let's put the struct back the way it was before.
+
+57
+00:04:37,070 --> 00:04:47,570
+So if I move integer back into here order the struct feels
+
+58
+00:04:50,440 --> 00:04:55,470
+DCV and run it again and it still works.
+
+59
+00:04:57,200 --> 00:05:02,930
+Because no matter what the size of the struct size of returns the correct value when memory needs to
+
+60
+00:05:02,930 --> 00:05:04,480
+be allocated.
+
+61
+00:05:04,580 --> 00:05:09,170
+But I see why this program crashed when I changed the order of the fields.
+
+62
+00:05:09,230 --> 00:05:17,510
+This is now the struct as it was initially defined with two integer fields followed by a double and
+
+63
+00:05:17,570 --> 00:05:21,110
+then a long long int.
+
+64
+00:05:21,110 --> 00:05:28,390
+And when I print size this show this again you can see up here it comes to 24 bytes.
+
+65
+00:05:28,810 --> 00:05:36,450
+And that worked when I specifically allocate it as I did in my original code 24 bytes per struct.
+
+66
+00:05:36,710 --> 00:05:42,470
+Now if I change the order of the fields again OK.
+
+67
+00:05:42,730 --> 00:05:45,010
+So now we've got to double an.
+
+68
+00:05:45,060 --> 00:05:47,790
+And the long long int.
+
+69
+00:05:48,250 --> 00:05:53,100
+Now let's see what happens when I run not.
+
+70
+00:05:53,830 --> 00:05:56,870
+Scroll to the top and you can see the size of my structure is different.
+
+71
+00:05:56,870 --> 00:05:59,590
+It's now thirty two bytes.
+
+72
+00:05:59,590 --> 00:06:06,340
+And that's why the program crashed when I tried to add more bytes per struct than I allocated because
+
+73
+00:06:06,340 --> 00:06:09,070
+I'd only allocated 24 bytes.
+
+74
+00:06:09,940 --> 00:06:17,640
+But look the struct itself actually contains the same data now as it did before.
+
+75
+00:06:17,650 --> 00:06:25,030
+To lots of 4 bytes the two ints I'm two lots of eight bytes the double and the long long int and that
+
+76
+00:06:25,030 --> 00:06:27,210
+adds up to 24.
+
+77
+00:06:28,080 --> 00:06:31,460
+But it says my struct takes up 32 bytes.
+
+78
+00:06:31,540 --> 00:06:33,300
+When the fields are in this order.
+
+79
+00:06:33,550 --> 00:06:41,640
+So where are these extra bytes actually come from to understand that you have to understand how the
+
+80
+00:06:41,640 --> 00:06:46,390
+C-compiler lines the data in memory.
+

@@ -1,0 +1,44 @@
+1
+00:00:02,100 --> 00:00:05,760
+Up to now we've looked at pointers to data of some sort.
+
+2
+00:00:05,850 --> 00:00:09,120
+But you could also have pointers to functions.
+
+3
+00:00:09,120 --> 00:00:16,980
+Function pointers are typically used when handling asynchronous events events that can happen at unpredictable
+
+4
+00:00:16,980 --> 00:00:22,460
+moments and which have to be able to trigger a function call to handle them.
+
+5
+00:00:22,470 --> 00:00:30,810
+For example you may want to call a certain function when an event fires to signal that the final document
+
+6
+00:00:31,020 --> 00:00:33,060
+in a printer queue has been printed.
+
+7
+00:00:33,630 --> 00:00:38,080
+Or you may want to call a function on a specific mouse event occurs.
+
+8
+00:00:38,340 --> 00:00:44,070
+Say when a menu item is clicked in your application function pointers.
+
+9
+00:00:44,170 --> 00:00:50,950
+While they may seem a bit obscure and it is quite possible that you may never need to use them but in
+
+10
+00:00:50,950 --> 00:00:57,980
+special cases they are useful and it's certainly worth knowing about them in the next couple of lessons.
+
+11
+00:00:58,120 --> 00:01:03,960
+I'll explain how to declare and use function pointers in C.
+

@@ -1,0 +1,80 @@
+1
+00:00:02,140 --> 00:00:06,820
+A point or that set to now doesn't point to any usable memory.
+
+2
+00:00:06,820 --> 00:00:11,200
+So if I try to use that pointer I'd be in deep trouble.
+
+3
+00:00:11,520 --> 00:00:13,840
+Here's a simple example.
+
+4
+00:00:13,960 --> 00:00:15,460
+Point B is a sign.
+
+5
+00:00:15,490 --> 00:00:16,650
+No.
+
+6
+00:00:16,650 --> 00:00:20,350
+And down here I tried to assign some data.
+
+7
+00:00:20,940 --> 00:00:27,860
+When I run the program home it instantly blows up.
+
+8
+00:00:28,020 --> 00:00:35,910
+And what should happen with just about any C-compiler on my desktop computer.
+
+9
+00:00:36,030 --> 00:00:41,040
+So you'll be able to find and fix this sort of problem straight away even more so if I run this in the
+
+10
+00:00:41,040 --> 00:00:46,010
+debugger and you can see exception thrown and it gives me details here.
+
+11
+00:00:46,040 --> 00:00:54,220
+B was now BTR null pointer and it tells me there's a right access violation so I can find and fix that
+
+12
+00:00:54,880 --> 00:00:56,560
+straight away.
+
+13
+00:00:56,620 --> 00:01:03,730
+However if you happen to be programming microcontrollers without virtual memory management an error
+
+14
+00:01:03,730 --> 00:01:05,930
+like this might not be so obvious.
+
+15
+00:01:05,980 --> 00:01:14,240
+In fact in that case it'll probably be quite difficult to find and fix this error is sometimes called
+
+16
+00:01:14,390 --> 00:01:17,940
+dereferencing a null pointer.
+
+17
+00:01:17,960 --> 00:01:20,510
+Once again the error is obvious.
+
+18
+00:01:20,510 --> 00:01:22,400
+In my sample code.
+
+19
+00:01:22,860 --> 00:01:29,150
+But it may be far more difficult to track down in a long and complex program.
+
+20
+00:01:29,150 --> 00:01:38,800
+Dereferencing a null pointer is a serious bag and you should take great care that you never do it.
+

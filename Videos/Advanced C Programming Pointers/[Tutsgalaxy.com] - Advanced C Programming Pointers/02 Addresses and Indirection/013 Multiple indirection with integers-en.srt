@@ -1,0 +1,324 @@
+1
+00:00:03,140 --> 00:00:09,470
+Let's start by looking at a fairly simple example of multiple indirection here I declare an array to
+
+2
+00:00:09,470 --> 00:00:15,100
+store three integers where length equals three this loop.
+
+3
+00:00:15,220 --> 00:00:22,870
+Put some values into the array 0 1 and 2 and this loop just prints those values for me to check that
+
+4
+00:00:22,870 --> 00:00:25,000
+everything's correct.
+
+5
+00:00:25,000 --> 00:00:31,600
+Now let's see how I can access those values using both simple indirection is using a pointer to an integer
+
+6
+00:00:32,120 --> 00:00:38,830
+and multiple indirection using a pointer to a pointer to an integer.
+
+7
+00:00:38,890 --> 00:00:45,400
+I warn you in advance that simple as this may seem you'll probably need to stare at this quite a while
+
+8
+00:00:45,400 --> 00:00:47,450
+in order to understand what's going on.
+
+9
+00:00:49,100 --> 00:00:51,600
+Here are my two pointer variables p i.
+
+10
+00:00:51,860 --> 00:01:00,410
+Which is a pointer as the asterisk shows to an int and P PIII which as it's declared with two asterisks
+
+11
+00:01:00,950 --> 00:01:09,790
+All Stars is a pointer to a pointer to an int data is an array of integers as we know.
+
+12
+00:01:09,790 --> 00:01:11,020
+An array is an address.
+
+13
+00:01:11,020 --> 00:01:15,590
+It's the place in memory where a list of data items begins.
+
+14
+00:01:15,730 --> 00:01:22,890
+So I can simply assign not address that array variable data to my point to variable API.
+
+15
+00:01:23,290 --> 00:01:30,860
+Now I assign the address of PIII using the ampersand address of operator to my variable p p.
+
+16
+00:01:30,910 --> 00:01:40,880
+So p p is a pointer which points to the data array and PTI points to the pointer p i.e..
+
+17
+00:01:40,920 --> 00:01:45,210
+Now this loop iterates from 0 to 1 less than the length of the array.
+
+18
+00:01:45,270 --> 00:01:50,980
+That is the loop runs only while I is less than length.
+
+19
+00:01:51,000 --> 00:01:56,280
+In other words from zero to two and it prints out various bits of information which we look at shortly
+
+20
+00:01:57,480 --> 00:02:02,940
+at each turn through the loop the pointer is advanced to the next element in the array by adding one
+
+21
+00:02:03,270 --> 00:02:05,350
+to the point of variable P-I.
+
+22
+00:02:05,460 --> 00:02:12,100
+This is a simple example of pointer arithmetic which will be explained later in the course.
+
+23
+00:02:12,240 --> 00:02:15,420
+Now let's look at these printf statements before we do that.
+
+24
+00:02:15,420 --> 00:02:24,770
+Let me run the program and see the results so you can see the first print statement prints the array
+
+25
+00:02:24,770 --> 00:02:27,240
+address the percentage.
+
+26
+00:02:27,240 --> 00:02:33,530
+The format specifier is used to print an address as a hexadecimal value in address never changes of
+
+27
+00:02:33,530 --> 00:02:34,160
+course.
+
+28
+00:02:34,160 --> 00:02:48,580
+So we see the same number at each turn through the loop.
+
+29
+00:02:48,590 --> 00:02:56,270
+Next we dereference the int pointer PIII to display the integer at each index of the array.
+
+30
+00:02:56,330 --> 00:03:02,390
+The first turn through the loop PIII points to the start of the array and the first element 0 is displayed
+
+31
+00:03:02,920 --> 00:03:04,330
+in subsequent turns through the loop.
+
+32
+00:03:04,340 --> 00:03:12,320
+The other integers which we added to the array 1 and 2 are shown and now we display the item pointed
+
+33
+00:03:12,320 --> 00:03:22,160
+to by PBI you recall that PBI is a pointer that points to another pointer PIII we assigned the data
+
+34
+00:03:22,160 --> 00:03:23,760
+array to PIII.
+
+35
+00:03:23,870 --> 00:03:30,560
+So remember that an array is an address and at the first turn through the loop we dereference PBI to
+
+36
+00:03:30,560 --> 00:03:34,210
+get the value stored at whatever it points to.
+
+37
+00:03:34,250 --> 00:03:39,560
+It points to the point of variable PIII and that is the address of the data array.
+
+38
+00:03:41,280 --> 00:03:47,870
+So you can see that PBI points to p i.e. which points to the array.
+
+39
+00:03:48,120 --> 00:03:55,290
+The address of the array is shown here so that when we dereference PBI we get the address of the array
+
+40
+00:03:55,560 --> 00:04:04,650
+stored in the pointer PIII in order to go further and get the value pointed to by the pointer.
+
+41
+00:04:04,660 --> 00:04:05,670
+PIII.
+
+42
+00:04:06,180 --> 00:04:13,370
+We need to use this double indirection operator stop stop BPI says.
+
+43
+00:04:13,570 --> 00:04:22,090
+Get the value of what is pointed to by the pointer that p p p points to.
+
+44
+00:04:22,090 --> 00:04:27,130
+So Peepy I points to the pointer PIII and PIII points to an int.
+
+45
+00:04:27,280 --> 00:04:38,310
+So Stass stop PBI gets the value of the int pointed to by PIII at each turn through the loop API is
+
+46
+00:04:38,310 --> 00:04:42,010
+incremented to point to the next element of the array.
+
+47
+00:04:42,090 --> 00:04:50,460
+And when we use double indirection starstuff PBI that returns the value pointed to by API which is the
+
+48
+00:04:50,460 --> 00:04:53,420
+next integer in the array.
+
+49
+00:04:53,430 --> 00:04:57,940
+Now I know this can be hard to follow so let's look at this final printf statement.
+
+50
+00:04:59,040 --> 00:05:06,960
+This displays the address of the integer pointer variable API and the value of the pointer variable
+
+51
+00:05:07,540 --> 00:05:08,390
+PPA.
+
+52
+00:05:09,800 --> 00:05:14,880
+So when you run it you can see that the numbers are the same and they stay the same.
+
+53
+00:05:14,880 --> 00:05:22,610
+But it shows the value stored by the PBI variable is the address of the variable in this program.
+
+54
+00:05:22,610 --> 00:05:24,760
+That address never changes.
+
+55
+00:05:25,190 --> 00:05:29,800
+So the value of pi is the address of the thing it points to.
+
+56
+00:05:29,930 --> 00:05:33,030
+It points to API API points to it.
+
+57
+00:05:33,380 --> 00:05:41,780
+So one level of indirection stop API gets the value of the pointer PIII which happens to be the address
+
+58
+00:05:41,870 --> 00:05:45,760
+of an integer two levels of indirection.
+
+59
+00:05:45,850 --> 00:05:55,810
+Star Star PBI gets the value of PIII that is the data stored at the address pointed to by PIII.
+
+60
+00:05:55,940 --> 00:06:02,430
+And in this program that's the integer 0 1 or 2 at that address.
+
+61
+00:06:02,600 --> 00:06:09,290
+Finally add one more line to clarify this I hope even further.
+
+62
+00:06:09,290 --> 00:06:11,960
+Just copy and paste this in full speed
+
+63
+00:06:16,660 --> 00:06:20,370
+save it and run it again.
+
+64
+00:06:22,660 --> 00:06:32,010
+Now this line prints the value of the pointer PIII which is an address and by indirection stop by.
+
+65
+00:06:32,420 --> 00:06:39,410
+So there we get the integer that stored at that address the address of PIII is incremented at the end
+
+66
+00:06:39,410 --> 00:06:40,170
+of the loop.
+
+67
+00:06:40,400 --> 00:06:49,390
+So the number shown changes on each pass through the loop the value pointed to also changes to if you
+
+68
+00:06:49,420 --> 00:06:54,100
+look back here in the print half where we used to start before the variable.
+
+69
+00:06:54,100 --> 00:06:57,180
+That is two levels of indirection.
+
+70
+00:06:57,320 --> 00:07:05,290
+The value returned is the same value which we got when using one level of indirection with the P variable
+
+71
+00:07:05,580 --> 00:07:06,320
+here.
+
+72
+00:07:07,740 --> 00:07:12,720
+That's because Peepy I points to p.
+
+73
+00:07:12,760 --> 00:07:17,560
+I so one level of indirection goes to p.
+
+74
+00:07:17,580 --> 00:07:20,430
+I on the second level of indirection.
+
+75
+00:07:20,610 --> 00:07:33,640
+Goes to the integer to which P I points as I know I really know that this stuff can be really hard to
+
+76
+00:07:33,640 --> 00:07:40,870
+get to grips with especially if you've never used pointers or on multiple in before and you may need
+
+77
+00:07:40,870 --> 00:07:47,440
+to try out this code sample or write your own and maybe use a debugger to step through it one line at
+
+78
+00:07:47,440 --> 00:07:48,130
+a time.
+
+79
+00:07:48,130 --> 00:07:50,950
+It really is worth the effort though.
+
+80
+00:07:51,280 --> 00:07:57,790
+Once you can understand this you'll have crossed one of the major barriers to understanding how pointers
+
+81
+00:07:58,000 --> 00:07:59,210
+really work.
+

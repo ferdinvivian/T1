@@ -1,0 +1,292 @@
+1
+00:00:02,070 --> 00:00:11,250
+Often when you add or delete items to and from a list you do so in strict sequential order that is you
+
+2
+00:00:11,340 --> 00:00:18,630
+odd or delete the item from one end of the list then the next item and so on.
+
+3
+00:00:19,590 --> 00:00:27,820
+We've already seen how to do that with cues where you add items at the end of the queue and you take
+
+4
+00:00:27,820 --> 00:00:38,030
+items from the front of the queue and with stocks where you add items on the top and take them off the
+
+5
+00:00:38,030 --> 00:00:39,230
+top as well.
+
+6
+00:00:41,420 --> 00:00:47,100
+But what happens if you want to delete an item from the middle of a list or at a specific index in the
+
+7
+00:00:47,100 --> 00:00:47,810
+list.
+
+8
+00:00:48,150 --> 00:00:55,320
+Well that's a bit trickier because you need to deal with any pointers from the elements on either side
+
+9
+00:00:55,500 --> 00:01:03,430
+of the deleted item if you just delete an element the punters the previously pointed to it.
+
+10
+00:01:03,580 --> 00:01:11,410
+Now Punkte to some random bit of memory you need to make sure that deleting an item does not break the
+
+11
+00:01:11,410 --> 00:01:13,500
+links in the list.
+
+12
+00:01:13,540 --> 00:01:19,930
+You have to rewire the pointers in the elements on either side of the deleted item to make sure that
+
+13
+00:01:19,930 --> 00:01:24,200
+they point to valid elements in the list.
+
+14
+00:01:24,330 --> 00:01:26,040
+And this program I build a list.
+
+15
+00:01:26,070 --> 00:01:31,980
+In this case containing five elements and ask the user to enter an index.
+
+16
+00:01:31,980 --> 00:01:36,760
+My aim is to delete the element at that specific index.
+
+17
+00:01:36,840 --> 00:01:40,830
+This is done by passing that index to my remove function.
+
+18
+00:01:41,000 --> 00:01:42,920
+And let's see what that does.
+
+19
+00:01:45,850 --> 00:01:53,440
+It gets the first item just as we've done in several other programs then this do while loop iterate
+
+20
+00:01:53,440 --> 00:02:01,240
+over the queue until I get to the element at the index I'm looking for when I equals position and position
+
+21
+00:02:01,300 --> 00:02:07,840
+is the index is entered by the user and I return that item and then down here
+
+22
+00:02:11,040 --> 00:02:13,620
+so down here the returned item is not now.
+
+23
+00:02:13,640 --> 00:02:17,020
+That is if it's a valid element then I free it.
+
+24
+00:02:17,510 --> 00:02:23,560
+OK so finding an item at a specific index and freeing its memory is pretty straightforward.
+
+25
+00:02:23,930 --> 00:02:30,530
+But if I freed its memory when the item was still part of the list that would cause all kinds of problems
+
+26
+00:02:30,950 --> 00:02:31,800
+in effect.
+
+27
+00:02:32,030 --> 00:02:39,440
+I would have broken the list structure the previous and next items the elements on either either side
+
+28
+00:02:39,470 --> 00:02:46,250
+of the one I've just removed would still be trying to point to the removed element and the pointer values
+
+29
+00:02:46,310 --> 00:02:52,370
+would continue to be the address of an element that no longer exists.
+
+30
+00:02:52,370 --> 00:02:54,580
+So let's look how I deal with that.
+
+31
+00:02:54,970 --> 00:03:03,220
+And we go back up to the function there move that function and look at the code.
+
+32
+00:03:03,230 --> 00:03:11,030
+So when I locate the item to be removed I have to rewire the pointers on either side so that the next
+
+33
+00:03:11,030 --> 00:03:17,390
+pointer in the previous element points to whatever the element I'm about to delete currently points
+
+34
+00:03:17,390 --> 00:03:18,570
+to.
+
+35
+00:03:18,690 --> 00:03:20,470
+That's what I do here.
+
+36
+00:03:21,970 --> 00:03:28,810
+And similarly the prev pointer in the next element needs to point to whatever the pointer in the element
+
+37
+00:03:28,960 --> 00:03:32,490
+I'm removing currently points to.
+
+38
+00:03:32,630 --> 00:03:33,800
+And that's what I do here.
+
+39
+00:03:35,530 --> 00:03:36,860
+And that's it.
+
+40
+00:03:37,050 --> 00:03:43,140
+Once I've rewired the pointers from the elements on either side of the thing I'm about to remove.
+
+41
+00:03:43,140 --> 00:03:46,400
+There's no longer anything in the list that points to it.
+
+42
+00:03:46,600 --> 00:03:50,470
+And for neatness I know said This items pointers to Nawal.
+
+43
+00:03:50,910 --> 00:03:53,390
+That's usually good practice though.
+
+44
+00:03:53,460 --> 00:03:58,970
+In fact in the present case it's not really necessary as I'm about to free its memory anyway.
+
+45
+00:03:59,220 --> 00:04:04,120
+And when I do that this list element of the temp structure will no longer exist.
+
+46
+00:04:04,920 --> 00:04:09,750
+More important is what I've done with the prev and next pointers in the struts that either side of the
+
+47
+00:04:09,750 --> 00:04:13,190
+deleted struct by reassigning those pointers.
+
+48
+00:04:13,440 --> 00:04:15,830
+So they continue to point to valid list elements.
+
+49
+00:04:15,990 --> 00:04:20,020
+I've maintained the integrity of the list itself.
+
+50
+00:04:20,960 --> 00:04:25,280
+Now let's run this and see how it works.
+
+51
+00:04:27,170 --> 00:04:31,400
+OK so here let me try entering three
+
+52
+00:04:34,010 --> 00:04:39,620
+so I've entered three and the element at index 3 that's the fourth element in this zero based list is
+
+53
+00:04:39,620 --> 00:04:40,090
+deleted.
+
+54
+00:04:40,100 --> 00:04:43,100
+But all the other elements remain in the list.
+
+55
+00:04:43,100 --> 00:04:50,210
+Tried again and this time I'll enter for
+
+56
+00:04:53,170 --> 00:04:55,250
+the last element is deleted.
+
+57
+00:04:56,740 --> 00:05:03,110
+I enter 0 the first element is deleted.
+
+58
+00:05:03,960 --> 00:05:12,720
+If I enter an incorrect index that's one that doesn't exist strike 10 where nothing is removed cannot
+
+59
+00:05:12,720 --> 00:05:16,740
+remove at 10 it tells me.
+
+60
+00:05:16,940 --> 00:05:23,950
+Now incidentally if you want to remove all elements above the certain index you can just put this code
+
+61
+00:05:25,680 --> 00:05:27,480
+in me just show you down here.
+
+62
+00:05:28,820 --> 00:05:34,920
+This code you can put it inside this loop hanging comment my loop delimiters here.
+
+63
+00:05:38,460 --> 00:05:40,130
+And let's try this again.
+
+64
+00:05:41,520 --> 00:05:44,130
+So for example I note into the index three
+
+65
+00:05:47,240 --> 00:05:53,350
+and you can see that matching item is removed and the next item in the list becomes the new element
+
+66
+00:05:53,360 --> 00:05:54,390
+index 3.
+
+67
+00:05:54,630 --> 00:05:56,440
+The loop executes again.
+
+68
+00:05:56,440 --> 00:05:58,460
+And so this element is also removed.
+
+69
+00:05:58,460 --> 00:05:59,660
+And so on.
+
+70
+00:05:59,810 --> 00:06:01,660
+Right up to the end of the list.
+
+71
+00:06:01,940 --> 00:06:04,130
+So you can examine the code in your own time.
+
+72
+00:06:04,130 --> 00:06:09,740
+If you see if you want to understand how that happens but essentially that gives us the option of either
+
+73
+00:06:09,740 --> 00:06:16,280
+removing one item from a specific index or that item on the items above it.
+

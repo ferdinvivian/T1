@@ -1,0 +1,120 @@
+1
+00:00:02,440 --> 00:00:09,050
+Now if I compile this code in Microsoft Visual Studio I have a problem.
+
+2
+00:00:09,100 --> 00:00:13,130
+I'm told that by default see the error message.
+
+3
+00:00:13,550 --> 00:00:22,450
+SDR and CPI is considered to be a deprecated function and I should use the safer SDR in C.P. why underscore
+
+4
+00:00:22,450 --> 00:00:23,260
+Yes.
+
+5
+00:00:23,650 --> 00:00:28,540
+Now it is quite possible that your C compiler will complain about some functions either this one or
+
+6
+00:00:28,540 --> 00:00:34,930
+maybe some of those functions that I use in my code but which your compiler warns you are old that pre-created
+
+7
+00:00:35,230 --> 00:00:36,250
+or unsafe.
+
+8
+00:00:36,430 --> 00:00:38,620
+So why am I using them.
+
+9
+00:00:38,620 --> 00:00:44,890
+Simple answer is to make sure that my code will run in pretty much any C compiler.
+
+10
+00:00:44,890 --> 00:00:50,630
+Often I use the simplest most traditional functions for clarity and to ensure compatibility.
+
+11
+00:00:50,770 --> 00:00:57,520
+But it is true that in many cases there may be better and safer alternative functions which you may
+
+12
+00:00:57,520 --> 00:01:00,030
+prefer to use in your own programs.
+
+13
+00:01:00,990 --> 00:01:07,440
+If for example your compiler or your ID tells you that the function is unsafe you may want to stop to
+
+14
+00:01:07,440 --> 00:01:12,370
+look up the documentation of the recommended function and use that instead.
+
+15
+00:01:12,390 --> 00:01:19,070
+Or you can define the constant suggested so you can see here it suggests to disable the application.
+
+16
+00:01:19,140 --> 00:01:28,900
+Use this constant down here so I could copy that into my source code.
+
+17
+00:01:28,920 --> 00:01:33,970
+I've already made a copy ready to go and put it up here.
+
+18
+00:01:35,900 --> 00:01:43,350
+Saved my program and should tell the compiler to stop pestering me with error messages about the function
+
+19
+00:01:43,500 --> 00:01:48,870
+in question so see if that works.
+
+20
+00:01:49,080 --> 00:01:54,260
+Try rebuilding it goes a little think about it.
+
+21
+00:01:54,300 --> 00:01:57,640
+And yes so this time it seems to be quite happy.
+
+22
+00:01:57,650 --> 00:02:00,130
+Compile the program on there are no errors
+
+23
+00:02:02,920 --> 00:02:08,500
+so although there on your end say for functions that C compilers and platforms may use.
+
+24
+00:02:08,500 --> 00:02:11,830
+The danger is that they are going to be specific to those compilers.
+
+25
+00:02:11,830 --> 00:02:19,030
+The SDR and CPI underscore as function for example is provided by Microsoft but it may not work with
+
+26
+00:02:19,030 --> 00:02:20,380
+other compilers.
+
+27
+00:02:20,980 --> 00:02:30,850
+So bear in mind that my code in this course sticks whenever possible to older traditional while widely
+
+28
+00:02:30,940 --> 00:02:35,620
+supported functions purely for compatibility.
+
+29
+00:02:35,620 --> 00:02:43,960
+Even though your C system may have newer and safer alternatives and you can look those up in the documentation
+
+30
+00:02:44,470 --> 00:02:46,960
+and use them if they are recommended.
+

@@ -1,0 +1,92 @@
+1
+00:00:00,420 --> 00:00:07,330
+So as a general rule never assume that you know how many bytes are required to hold a piece of data.
+
+2
+00:00:07,590 --> 00:00:11,630
+Don't allocate memory using a simple integer such as 24.
+
+3
+00:00:11,910 --> 00:00:18,750
+As shown here when you were allocating a specific number of bytes instead make a habit of using size
+
+4
+00:00:18,750 --> 00:00:29,940
+of Dickau collect the amount of memory needed like this but is much much safer.
+
+5
+00:00:29,940 --> 00:00:36,240
+The good news is when you do pointer arithmetic you can let the compiler work out how many bytes it
+
+6
+00:00:36,240 --> 00:00:41,100
+needs to move in order to go to the next element.
+
+7
+00:00:41,100 --> 00:00:49,510
+Recall that in the earlier program that I wrote here I did some pointer arithmetic with ints so I've
+
+8
+00:00:49,530 --> 00:00:55,110
+got an array of ints and when I added one to the pointer variable that caused the pointer to reference
+
+9
+00:00:55,110 --> 00:01:00,470
+the element 4 bytes along from the previous element.
+
+10
+00:01:00,700 --> 00:01:10,450
+And now with my struct I have a more complex data type which can take up either 24 or 32 bytes according
+
+11
+00:01:10,450 --> 00:01:13,860
+to how I declare it fields.
+
+12
+00:01:13,860 --> 00:01:19,590
+This only works by the way with arrays of specific data types you can't do pointer arithmetic with generic
+
+13
+00:01:19,590 --> 00:01:29,000
+pointers pointers to void unless they're first cost to a known type pointer arithmetic with fairly complex
+
+14
+00:01:29,000 --> 00:01:29,390
+types.
+
+15
+00:01:29,420 --> 00:01:37,580
+Such a struct is just as simple as with simple types such as integers adding one to the pointer variable
+
+16
+00:01:37,850 --> 00:01:40,390
+moves it to the next element.
+
+17
+00:01:40,720 --> 00:01:44,380
+That is the second element in my array of struct.
+
+18
+00:01:44,400 --> 00:01:46,920
+That's a great thing about pointer arithmetic.
+
+19
+00:01:46,920 --> 00:01:52,360
+The compiler can figure out how many bytes each element in an array occupies.
+
+20
+00:01:53,550 --> 00:01:57,420
+When I add one I'm not adding a specific number.
+
+21
+00:01:57,420 --> 00:02:02,210
+Certainly not the integer value one to the value of the pointer.
+
+22
+00:02:02,280 --> 00:02:12,990
+I'm telling the pointer to move one complete element along the array and that is how pointer arithmetic
+
+23
+00:02:13,380 --> 00:02:14,330
+works.
+

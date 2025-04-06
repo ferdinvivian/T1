@@ -1,0 +1,160 @@
+1
+00:00:01,980 --> 00:00:08,490
+Sometimes you may want to change the size of a block of allocated memory.
+
+2
+00:00:08,620 --> 00:00:13,400
+You can do that using Retallack here for example.
+
+3
+00:00:13,610 --> 00:00:17,270
+I've allocated enough memory to hold the string hello.
+
+4
+00:00:17,330 --> 00:00:25,360
+That's six bytes as calculated by size of five characters on the null terminator.
+
+5
+00:00:25,440 --> 00:00:30,010
+But now I decide I want to display the string Hello world.
+
+6
+00:00:30,420 --> 00:00:34,190
+So what do I do just increase the string length here.
+
+7
+00:00:38,930 --> 00:00:41,500
+And then just go ahead and print it anyway.
+
+8
+00:00:41,840 --> 00:00:54,400
+Or he thought works ran my program on and I just got some dumdum junk after that each time I get some
+
+9
+00:00:54,400 --> 00:01:03,750
+different character displayed completely unpredictable and says hello five.
+
+10
+00:01:03,770 --> 00:01:12,890
+Each time I run it you can see I'm getting something else some unpredictable junk that's looking around
+
+11
+00:01:13,100 --> 00:01:22,380
+in memory and that's because I've only allocated enough memory for hello but I tried to copy a largest
+
+12
+00:01:22,380 --> 00:01:28,770
+string into memory that has not been set aside to hold it and that just does not work.
+
+13
+00:01:28,780 --> 00:01:38,960
+I must allocate memory first but maybe I think well I can just concatenate world onto my existing string
+
+14
+00:01:39,660 --> 00:01:42,330
+and just comment this out first and try that out.
+
+15
+00:01:42,330 --> 00:01:49,700
+So I've called the function SDR caught with my string which currently contains the characters follow.
+
+16
+00:01:50,170 --> 00:01:52,590
+And I've tried to concatenate world onto it.
+
+17
+00:01:52,610 --> 00:01:56,390
+Let's run this program again and see what happens.
+
+18
+00:01:58,690 --> 00:01:59,810
+Even worse.
+
+19
+00:02:00,130 --> 00:02:09,970
+So I really messed up my program big time here by trying to cut and paste a string onto the original
+
+20
+00:02:09,970 --> 00:02:15,050
+string without allocating memory first.
+
+21
+00:02:15,070 --> 00:02:25,270
+So let me just shut this down and put my code but to use previous form.
+
+22
+00:02:25,530 --> 00:02:32,270
+Now since the string hello world contains 12 characters that's higher than hello one for the space Feiffer
+
+23
+00:02:32,300 --> 00:02:34,970
+world and one for the null terminator.
+
+24
+00:02:34,970 --> 00:02:43,730
+I need to allocate 12 bytes of memory and just fix this back to the correct version of the code first.
+
+25
+00:02:43,820 --> 00:02:51,540
+Now look down here this is where I do that re-allocation I call real cloak with the pointer to the previously
+
+26
+00:02:51,720 --> 00:03:01,830
+allocated block of memory which is a pointer to chawl as the first argument and the new size required
+
+27
+00:03:01,830 --> 00:03:05,730
+here that's 12 bytes as the second argument.
+
+28
+00:03:05,730 --> 00:03:13,050
+Now you can use the alc as an alternative to calling free in order to deallocate the previously allocated
+
+29
+00:03:13,170 --> 00:03:18,060
+memory block followed by malloc to allocate it with a given size.
+
+30
+00:03:18,060 --> 00:03:19,410
+See if this works.
+
+31
+00:03:20,720 --> 00:03:23,230
+And this time it correctly displays.
+
+32
+00:03:23,280 --> 00:03:24,270
+Hello world.
+
+33
+00:03:24,270 --> 00:03:34,280
+So the first time through it space hello because I have calculated the size of hello and then allocated
+
+34
+00:03:34,610 --> 00:03:39,050
+about size using malloc and the second time it displays.
+
+35
+00:03:39,050 --> 00:03:40,160
+Hello world.
+
+36
+00:03:40,340 --> 00:03:42,390
+Because I have relooked.
+
+37
+00:03:42,380 --> 00:03:49,190
+I called the function the new size the correct size to hold the string Hello world.
+
+38
+00:03:49,250 --> 00:03:51,620
+So all is well and good.
+
+39
+00:03:51,770 --> 00:04:00,620
+So think of reality as a simple convenient way of allocating a new amount of memory referenced by an
+
+40
+00:04:00,620 --> 00:04:01,670
+existing pointer.
+

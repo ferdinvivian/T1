@@ -1,0 +1,64 @@
+1
+00:00:01,290 --> 00:00:06,180
+Let's see how I can find the value of the integer to which my pointer is pointing.
+
+2
+00:00:06,330 --> 00:00:11,140
+In fact this variable number 2 does exactly that.
+
+3
+00:00:11,290 --> 00:00:19,330
+I want to assign to them to the value stored at the address referenced by the pointer variable number
+
+4
+00:00:19,410 --> 00:00:28,740
+TTR remember PTA points to the address ampersand dom of the NUM variable and that variable has the value
+
+5
+00:00:28,900 --> 00:00:30,920
+100.
+
+6
+00:00:31,000 --> 00:00:35,420
+Here I once again use the store operator that has an asterisk.
+
+7
+00:00:35,760 --> 00:00:42,930
+And when I put this in front of a pointer variable it returns not the address but the data that is found
+
+8
+00:00:42,930 --> 00:00:49,750
+at that address and I can now assign that data to my individual number two.
+
+9
+00:00:50,220 --> 00:00:53,170
+And when I run my program let's do that now.
+
+10
+00:00:54,940 --> 00:01:01,240
+So you can see now that I can maybe have to verify that number two has indeed been assigned the value
+
+11
+00:01:01,450 --> 00:01:10,040
+of was 100 to the value 100.
+
+12
+00:01:10,050 --> 00:01:21,090
+So in summary the pointer PDR gave me the address of the NUM variable and the store operator returned
+
+13
+00:01:21,330 --> 00:01:30,260
+the data stored at that address accessing data stored at an address in this way is sometimes known as
+
+14
+00:01:30,260 --> 00:01:35,330
+dereferencing or in direction pointer.
+
+15
+00:01:35,350 --> 00:01:42,550
+Gives me a reference to an address and the asterisk which is sometimes called the dereferencing operator
+
+16
+00:01:42,580 --> 00:01:50,020
+or the indirection operator gives me access to the data it's stored at that address.
+

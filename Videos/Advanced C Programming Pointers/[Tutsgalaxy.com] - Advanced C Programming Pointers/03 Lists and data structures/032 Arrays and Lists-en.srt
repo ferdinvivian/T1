@@ -1,0 +1,68 @@
+1
+00:00:01,260 --> 00:00:09,720
+Up to now whenever I want to to create a list of data items I've used an array arrays are very convenient
+
+2
+00:00:09,800 --> 00:00:16,680
+as they are fairly easy to use and they make it easy to get a specific element by putting an index number
+
+3
+00:00:16,680 --> 00:00:19,290
+between square brackets.
+
+4
+00:00:19,290 --> 00:00:21,390
+In many cases a simple array.
+
+5
+00:00:21,520 --> 00:00:29,410
+Maybe all you need whenever you want to create a new list of items but arrays have some disadvantages.
+
+6
+00:00:29,790 --> 00:00:34,350
+The most obvious of these is the array has a fixed length.
+
+7
+00:00:34,420 --> 00:00:40,070
+If I declare an array for five elements I can't add a sixth on the end of it.
+
+8
+00:00:40,210 --> 00:00:44,430
+Once an array is being created its size is fixed.
+
+9
+00:00:44,440 --> 00:00:49,850
+A workaround would be to create an array much bigger than I think I'll ever need.
+
+10
+00:00:50,200 --> 00:00:56,350
+So I might declare an array capable of storing a hundred elements but only initialize it with 20.
+
+11
+00:00:56,560 --> 00:01:01,090
+But it gives me the option of adding another 80 elements if I happen to need them.
+
+12
+00:01:02,120 --> 00:01:04,540
+But this is obviously inefficient.
+
+13
+00:01:04,700 --> 00:01:07,870
+And in any case my initial estimate might be wrong.
+
+14
+00:01:07,880 --> 00:01:13,330
+I might need to add 81 new elements in which case I have a problem again.
+
+15
+00:01:14,330 --> 00:01:19,370
+One way around this problem is to create a linked list instead of an array.
+
+16
+00:01:20,210 --> 00:01:23,120
+So what's the difference between a linked list and an array.
+
+17
+00:01:23,330 --> 00:01:25,780
+Well let's find out next.
+

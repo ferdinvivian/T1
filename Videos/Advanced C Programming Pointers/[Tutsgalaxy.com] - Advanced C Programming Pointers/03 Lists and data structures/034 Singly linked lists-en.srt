@@ -1,0 +1,204 @@
+1
+00:00:01,230 --> 00:00:05,280
+Here's an example of a linked list of integers.
+
+2
+00:00:05,280 --> 00:00:18,560
+First I define a struct with fields to store some data here so simple int on the pointer.
+
+3
+00:00:18,780 --> 00:00:28,550
+Note that the pointer points to a data item of the same type as the struct itself called that list item.
+
+4
+00:00:28,600 --> 00:00:34,660
+It's my intention to create a list of struts with each struct containing or in an integer value and
+
+5
+00:00:34,680 --> 00:00:36,740
+a pointer to the next element.
+
+6
+00:00:36,760 --> 00:00:48,660
+That's the next struct in the list in my program I create two pointer variables this Ted and temp at
+
+7
+00:00:48,750 --> 00:00:56,400
+the start I set list head to No helped show what's going on here.
+
+8
+00:00:56,400 --> 00:00:59,600
+I've written this into a spreadsheet.
+
+9
+00:00:59,760 --> 00:01:01,910
+Here it is.
+
+10
+00:01:01,960 --> 00:01:04,730
+Now at the moment this is very very simple of course.
+
+11
+00:01:04,980 --> 00:01:10,650
+All I got here is the note that list head is equal to no simple it is at the moment.
+
+12
+00:01:10,650 --> 00:01:14,490
+I know that but things are soon going to get a whole lot more complicated.
+
+13
+00:01:14,490 --> 00:01:19,000
+So so bear with me while we look at the rest of the code.
+
+14
+00:01:19,160 --> 00:01:22,650
+Ok so now I execute this for loop
+
+15
+00:01:25,980 --> 00:01:30,900
+and what that does it creates and initializes three list items.
+
+16
+00:01:31,210 --> 00:01:33,540
+Allocating the correct amount of memory for each.
+
+17
+00:01:33,610 --> 00:01:42,240
+Using malloc and then initialize the data field of each struct to the integer I.
+
+18
+00:01:42,280 --> 00:01:46,290
+And that's from 0 to 2 as the form executes.
+
+19
+00:01:46,500 --> 00:01:57,280
+And then I assign that list head to the struts next pointer which I declared Iran and us as you know
+
+20
+00:01:57,850 --> 00:01:59,280
+set to No.
+
+21
+00:01:59,740 --> 00:02:02,100
+But let's keep track of this carefully.
+
+22
+00:02:02,560 --> 00:02:07,770
+So let's go back to my spreadsheet.
+
+23
+00:02:07,820 --> 00:02:12,790
+So at the first turn through the loop this is what we've got.
+
+24
+00:02:13,610 --> 00:02:20,640
+We have my struct to pointer temp pointing to a struct with data equals zero.
+
+25
+00:02:21,350 --> 00:02:31,760
+And it's point to the next pointer pointing to what list had points to which here is no.
+
+26
+00:02:31,840 --> 00:02:42,050
+Now finally in my code I've temp the temp pointer here is assigned to the list head pointer.
+
+27
+00:02:44,010 --> 00:02:45,090
+So Buckey my spreadsheet.
+
+28
+00:02:45,090 --> 00:02:47,130
+I make that adjustment.
+
+29
+00:02:47,130 --> 00:02:59,380
+This is not the situation we have just had points to that struct and its pointer points back to No.
+
+30
+00:03:00,060 --> 00:03:02,730
+Now on the next turn through the loop.
+
+31
+00:03:02,860 --> 00:03:10,320
+Another struct is created its data field is assigned the value 1 because the loop variable has now been
+
+32
+00:03:10,330 --> 00:03:12,690
+incremented to 1 its next point.
+
+33
+00:03:12,760 --> 00:03:17,830
+Once again points to list head which points to the last struct we created.
+
+34
+00:03:17,830 --> 00:03:20,980
+So in my spreadsheet we now have this
+
+35
+00:03:23,820 --> 00:03:32,100
+and again the list had pointer is updated at the end point to the newly created struct.
+
+36
+00:03:32,150 --> 00:03:36,770
+So this is how things stand now on the second turn through the for loop.
+
+37
+00:03:36,990 --> 00:03:43,700
+The list had pointer points to the struct containing 1 which points to the struct containing 0 which
+
+38
+00:03:43,700 --> 00:03:48,530
+points to know the same thing is repeated on the third term through the loop.
+
+39
+00:03:50,860 --> 00:03:54,180
+So we end up with something like this.
+
+40
+00:03:54,400 --> 00:03:59,440
+The list had pointer now parts to the last dropped we added Whose data field is to its next field which
+
+41
+00:03:59,440 --> 00:04:05,980
+is a pointer points to the previous struct we added Whose data field is one its pointer points to another
+
+42
+00:04:05,980 --> 00:04:13,930
+struct whose data is zero and its pointer points to know which is the end of the list and then you run
+
+43
+00:04:13,930 --> 00:04:16,210
+the program.
+
+44
+00:04:16,660 --> 00:04:22,370
+So I execute this while loop to trace through the list from the last item I added which is up ahead
+
+45
+00:04:22,420 --> 00:04:27,270
+of the list right back to the first item I added its next pointer points to now.
+
+46
+00:04:27,310 --> 00:04:32,380
+So I know I've come to the end of the list under loop exits.
+
+47
+00:04:33,560 --> 00:04:36,230
+Notice stopped in this program.
+
+48
+00:04:36,320 --> 00:04:40,330
+I've added each new struct to the beginning of the list.
+
+49
+00:04:40,460 --> 00:04:48,140
+You can of course add them to the end of the list if you prefer but it's easier and usually more efficient
+
+50
+00:04:48,230 --> 00:04:49,480
+to add elements.
+
+51
+00:04:49,700 --> 00:04:53,240
+As I have done here to the start of a list.
+

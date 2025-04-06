@@ -1,0 +1,160 @@
+1
+00:00:01,770 --> 00:00:04,500
+So what exactly is a list.
+
+2
+00:00:04,650 --> 00:00:07,900
+Let's go back to my spreadsheet to explain this.
+
+3
+00:00:08,870 --> 00:00:16,630
+This is how we can think of an array an array of five elements is like a row of spreadsheet cells.
+
+4
+00:00:16,640 --> 00:00:24,380
+Each cell represents a chunk of memory sufficient to hold a single element of a certain type say 4 bytes
+
+5
+00:00:24,380 --> 00:00:31,250
+of memory per integer or however many bytes of memory needed per struct before I add any elements to
+
+6
+00:00:31,250 --> 00:00:32,050
+my array.
+
+7
+00:00:32,210 --> 00:00:37,620
+I have to allocate enough memory to hold a fixed number of data items.
+
+8
+00:00:37,850 --> 00:00:44,270
+Each chunk of memory for each item in the array starts with the previous chunk of memory ends with one
+
+9
+00:00:44,270 --> 00:00:51,770
+element following the next but a linked list isn't like that at all with a linked list.
+
+10
+00:00:51,770 --> 00:00:55,150
+I don't allocate a fixed block of memory in advance.
+
+11
+00:00:55,280 --> 00:00:59,780
+Instead I allocate memory on an element by element basis.
+
+12
+00:00:59,780 --> 00:01:02,400
+If I create a list the contains two elements.
+
+13
+00:01:02,570 --> 00:01:06,520
+I allocate just enough memory to hold two elements.
+
+14
+00:01:06,860 --> 00:01:13,310
+If I now want to add a third element to the list I allocate another chunk of memory for that new element
+
+15
+00:01:13,490 --> 00:01:15,660
+and then add it to my list.
+
+16
+00:01:15,660 --> 00:01:22,100
+But since I'm adding and maybe deleting elements at various different points of my program there locations
+
+17
+00:01:22,100 --> 00:01:26,130
+in memory are likely to be all over the place.
+
+18
+00:01:26,240 --> 00:01:32,760
+They don't occupy a single sequential block of memory like an array.
+
+19
+00:01:35,190 --> 00:01:41,580
+So I just can't iterate through them through the memory by counting along a certain number of bytes
+
+20
+00:01:42,000 --> 00:01:48,490
+as I did when using pointer arithmetic or by using array indexing with square brackets.
+
+21
+00:01:50,430 --> 00:01:56,220
+How then does element 1 in my list know where element 2 can be found.
+
+22
+00:01:56,220 --> 00:02:03,620
+The answer is that it keeps a pointer to element to the pointer stores element two's address.
+
+23
+00:02:04,110 --> 00:02:11,910
+So if I know where element 1 is I can use the pointer in Element 1 to find element 2 from element 2.
+
+24
+00:02:11,940 --> 00:02:16,340
+I can use a pointer to find element 3 and so on.
+
+25
+00:02:16,740 --> 00:02:21,550
+That's a bit like having non-adjacent cells in a spreadsheet in a spreadsheet.
+
+26
+00:02:21,570 --> 00:02:23,170
+I can access another how.
+
+27
+00:02:23,190 --> 00:02:31,680
+For example if I'm writing a formula to do a calculation by using its location data is the address of
+
+28
+00:02:31,680 --> 00:02:33,920
+the cell in the spreadsheet.
+
+29
+00:02:35,040 --> 00:02:41,700
+For example in my spreadsheet the integer 2 that you can see here is stored at the address.
+
+30
+00:02:41,850 --> 00:02:43,340
+B 3
+
+31
+00:02:46,260 --> 00:02:48,480
+and I can enter the address to go to.
+
+32
+00:02:48,550 --> 00:02:48,970
+So
+
+33
+00:02:52,250 --> 00:02:57,100
+you can see it's moved to highlight this double lined Square.
+
+34
+00:02:57,150 --> 00:03:06,500
+Shows the cell that is currently active is so at be 3 and that's kind of how a linked list works in
+
+35
+00:03:06,540 --> 00:03:09,650
+C except in C.
+
+36
+00:03:09,650 --> 00:03:14,960
+A struct in a list can contain both its data say an integer.
+
+37
+00:03:15,340 --> 00:03:21,830
+Under Ponta that gives the address of the next struct in the list element.
+
+38
+00:03:21,850 --> 00:03:31,830
+One might be a struct that contains a pointer to element to element to has a pointer to element 3 and
+
+39
+00:03:31,830 --> 00:03:32,620
+so on.
+
+40
+00:03:34,050 --> 00:03:39,640
+Let's now look at some C code to see how this can be done in a program.
+

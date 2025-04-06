@@ -1,0 +1,28 @@
+1
+00:00:02,980 --> 00:00:10,510
+Incidentally in this simple program no attempt has been made ever to free any of the allocated memory.
+
+2
+00:00:10,840 --> 00:00:17,010
+You often don't need to do that in programs where memory it's allocated and remains in use.
+
+3
+00:00:17,180 --> 00:00:25,320
+But is it remains referenced by pointers throughout the entire lifetime of the program.
+
+4
+00:00:25,650 --> 00:00:31,570
+And when you close the program allocated memory will be automatically freed up.
+
+5
+00:00:31,720 --> 00:00:35,200
+At least it will on a desktop operating system.
+
+6
+00:00:35,200 --> 00:00:41,480
+Even so we do need to know how to free memory from list items explicitly.
+
+7
+00:00:41,980 --> 00:00:44,630
+And I look at that in a later to lessen.
+

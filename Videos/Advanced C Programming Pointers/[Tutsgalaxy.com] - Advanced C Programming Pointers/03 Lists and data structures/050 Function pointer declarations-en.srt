@@ -1,0 +1,160 @@
+1
+00:00:00,780 --> 00:00:05,980
+The syntax for declaring a function pointer Well it looks a bit odd at first sight.
+
+2
+00:00:06,210 --> 00:00:13,330
+Here's how I can declare a pointer to a function that takes an entire argument and returns an int he
+
+3
+00:00:13,330 --> 00:00:21,970
+heard the INT on the left shows the return type int in the parentheses shows the argument and test preceded
+
+4
+00:00:21,970 --> 00:00:29,360
+by a star is the name of the function pointer this pointer cannot store the address of any function
+
+5
+00:00:29,360 --> 00:00:33,600
+that takes a single argument and returns an int value.
+
+6
+00:00:33,620 --> 00:00:40,100
+So for example I can set test to point to the square function simply by assigning the function name
+
+7
+00:00:40,160 --> 00:00:41,940
+to the test variable.
+
+8
+00:00:42,350 --> 00:00:49,040
+I look at this in a few moments but first I want to go back to the function pointer declaration.
+
+9
+00:00:49,040 --> 00:00:53,510
+It turns out that I can mess up this declaration and yet it will still work.
+
+10
+00:00:53,630 --> 00:00:57,490
+More or less if I omit the argument it works fine.
+
+11
+00:00:57,790 --> 00:00:58,870
+Let's try that out.
+
+12
+00:01:01,680 --> 00:01:06,650
+So get rid of it int and it continues to work
+
+13
+00:01:09,820 --> 00:01:12,460
+attenuate with the compiler I'm using.
+
+14
+00:01:13,250 --> 00:01:20,450
+And if I enter the wrong argument and return types it will still compile X do that now so the function
+
+15
+00:01:20,600 --> 00:01:25,130
+requires an int argument and return type.
+
+16
+00:01:25,130 --> 00:01:30,560
+I'm going to substitute double in my pointed declaration
+
+17
+00:01:34,490 --> 00:01:35,670
+see if that works.
+
+18
+00:01:35,750 --> 00:01:37,840
+OK it seems to continue to work.
+
+19
+00:01:38,090 --> 00:01:39,070
+Let's try it out.
+
+20
+00:01:39,730 --> 00:01:43,530
+But clearly the result is not what I'm expecting.
+
+21
+00:01:45,730 --> 00:01:55,060
+So in short the syntax is quite tricky and some in incorrect declarations will compile and the pointer
+
+22
+00:01:55,060 --> 00:01:59,080
+points to the correct function but they don't work as expected.
+
+23
+00:01:59,230 --> 00:02:03,900
+When you actually run the program and for that reason it's common practice.
+
+24
+00:02:04,060 --> 00:02:07,160
+Typedef function pointers in advance.
+
+25
+00:02:07,210 --> 00:02:13,270
+Once you've got the correct typedef you can use the type in function pointer declarations and that should
+
+26
+00:02:13,270 --> 00:02:15,760
+be neater and less error prone.
+
+27
+00:02:15,760 --> 00:02:18,970
+Let me show you an example of typedef thing.
+
+28
+00:02:19,230 --> 00:02:24,030
+So I'm going to typedef.
+
+29
+00:02:24,170 --> 00:02:27,300
+This is the syntax for the type that iteration
+
+30
+00:02:32,600 --> 00:02:33,950
+right.
+
+31
+00:02:34,110 --> 00:02:42,870
+So this declares a type called PFI which is a pointer to a function that takes one integer argument
+
+32
+00:02:43,380 --> 00:02:46,340
+and returns an integer value.
+
+33
+00:02:46,350 --> 00:02:50,270
+Now it's easy to declare a function pointer variable let me do that.
+
+34
+00:02:50,270 --> 00:03:00,060
+Down here let's get rid of this confusing declaration and just put in a very simple declaration of the
+
+35
+00:03:00,060 --> 00:03:02,700
+type typedef at PFI.
+
+36
+00:03:02,730 --> 00:03:10,470
+Now I can assign the address of a function to the test variable like this and I can use the variable
+
+37
+00:03:10,470 --> 00:03:18,130
+name test instead of the function name because test now points to the square function.
+
+38
+00:03:19,130 --> 00:03:21,120
+Just check it all runs
+
+39
+00:03:24,720 --> 00:03:28,950
+OK so it runs on the output is correct.
+
+40
+00:03:28,950 --> 00:03:36,300
+Now let's look at a more complicated example in which I have an array of function pointers.
+

@@ -1,0 +1,412 @@
+1
+00:00:01,380 --> 00:00:07,770
+Now over the years when I've been teaching C programming one thing comes up time and time again it's
+
+2
+00:00:08,040 --> 00:00:10,160
+something that's raised by my students.
+
+3
+00:00:10,230 --> 00:00:19,470
+It's a struggle to understand exactly how pointers work and worst of all pointers to other pointers.
+
+4
+00:00:19,560 --> 00:00:21,550
+So here's an example.
+
+5
+00:00:21,620 --> 00:00:23,680
+Now just look at this.
+
+6
+00:00:23,700 --> 00:00:26,640
+This here is a pointer to an int.
+
+7
+00:00:26,640 --> 00:00:31,880
+The asterisk star before I.P shows us it's a pointer.
+
+8
+00:00:32,430 --> 00:00:33,590
+So let's look at this.
+
+9
+00:00:33,590 --> 00:00:34,930
+What's this then.
+
+10
+00:00:34,950 --> 00:00:36,420
+This one has got two stars.
+
+11
+00:00:36,420 --> 00:00:40,990
+Well that means it's a pointer to a pointer to an int.
+
+12
+00:00:41,370 --> 00:00:43,310
+And if you starting to panic at this point.
+
+13
+00:00:43,320 --> 00:00:44,490
+Well I've got bad news here.
+
+14
+00:00:44,490 --> 00:00:48,530
+It's going to get a lot worse because look at this variable.
+
+15
+00:00:48,570 --> 00:00:54,700
+It's got three stars and that means it's a pointer to a pointer to a pointer to an int.
+
+16
+00:00:54,990 --> 00:00:58,240
+How the heck are you supposed to make sense of a lot.
+
+17
+00:00:58,560 --> 00:01:02,330
+Well let's use the visual studio debugger.
+
+18
+00:01:02,340 --> 00:01:07,710
+Now you can use other debuggers Of course I mean whatever ID you are using has probably got some sort
+
+19
+00:01:07,710 --> 00:01:14,640
+of debugging to build 10 but I'm using Visual Studio because Visual Studio has a great set of debugging
+
+20
+00:01:14,640 --> 00:01:15,280
+tools.
+
+21
+00:01:15,390 --> 00:01:23,310
+And in this lesson I particularly want to show you how to use the memory window by the way you notice
+
+22
+00:01:23,310 --> 00:01:28,160
+that I grouped the pointers here inside a struct.
+
+23
+00:01:28,500 --> 00:01:30,590
+There's nothing special about that.
+
+24
+00:01:30,630 --> 00:01:34,530
+The pointers would work in exactly the same way if they were ordinary variables.
+
+25
+00:01:34,530 --> 00:01:47,910
+Well look I got another project down here and if I open this up you can see that here I've got the pointers
+
+26
+00:01:47,970 --> 00:01:52,690
+freestanding as freestanding variables and not grouped in a struct.
+
+27
+00:01:53,070 --> 00:01:59,700
+But for our purposes is going to be more convenient if they're placed in a struct because then they
+
+28
+00:01:59,700 --> 00:02:05,640
+will occupy contiguous memory locations and that's going to make it much easier for me to show you some
+
+29
+00:02:05,640 --> 00:02:10,020
+of the relationships between the point is when we get into the debugger and particularly in the memory
+
+30
+00:02:10,020 --> 00:02:11,460
+window.
+
+31
+00:02:11,460 --> 00:02:18,180
+Now one other thing if you want to try this for yourself I'd suggest that you compile for Win32 not
+
+32
+00:02:18,180 --> 00:02:19,520
+correct 64.
+
+33
+00:02:19,710 --> 00:02:21,420
+Again that's for convenience.
+
+34
+00:02:21,420 --> 00:02:26,720
+Win32 works with smaller data types and that just makes debugging a bit easier.
+
+35
+00:02:26,760 --> 00:02:33,180
+You can set it in Visual Studio you can set this target up you're in the Configuration Manager and you
+
+36
+00:02:33,180 --> 00:02:39,790
+pick whichever project you're running on and alongside it use select when.
+
+37
+00:02:39,930 --> 00:02:44,960
+And that's going to make sure that it can compile it as a 32 bit application.
+
+38
+00:02:46,490 --> 00:02:49,710
+OK so let's briefly look at what the program does.
+
+39
+00:02:50,200 --> 00:02:57,550
+I set I P P P to point to the address of IBP or that's actually the dot.
+
+40
+00:02:57,550 --> 00:03:00,080
+Here is the pointers are in a struct.
+
+41
+00:03:00,110 --> 00:03:04,520
+I said I Peepy to point IP and IP points to an integer.
+
+42
+00:03:04,520 --> 00:03:11,460
+I do which I've assigned the hexadecimal number just to make it easy to see when we start debugging.
+
+43
+00:03:11,480 --> 00:03:23,780
+Now I put a breakpoint here on return and start the debugger and immediately we hit a breakpoint on
+
+44
+00:03:23,810 --> 00:03:25,520
+the program pauses.
+
+45
+00:03:25,530 --> 00:03:30,020
+Now let's here we can trace our way through this set of pointers.
+
+46
+00:03:30,050 --> 00:03:40,790
+One way would be to go into the watch window on just a struct P and you can see that it shows some information
+
+47
+00:03:40,790 --> 00:03:42,510
+there which I can expand.
+
+48
+00:03:42,890 --> 00:03:45,900
+But that's already starting to look a bit confusing.
+
+49
+00:03:46,040 --> 00:03:50,600
+Just show me a bit too much information and it's quite hard for me to pick So instead of going to use
+
+50
+00:03:50,600 --> 00:03:52,070
+the memory window.
+
+51
+00:03:52,190 --> 00:03:59,780
+Now if you can't see the memory window go to debug select Windows and then you can scroll down to memory
+
+52
+00:03:59,880 --> 00:04:04,090
+on pick memory one to display one of memory windows.
+
+53
+00:04:04,310 --> 00:04:06,850
+Now at first sight here you can see the memory window.
+
+54
+00:04:06,850 --> 00:04:13,190
+This might look even more confusing than the watch window did because it shows a massively detailed
+
+55
+00:04:13,190 --> 00:04:15,070
+view of the memory that's being used.
+
+56
+00:04:15,080 --> 00:04:16,890
+But I can simplify that.
+
+57
+00:04:16,970 --> 00:04:24,100
+So first of all I right click on to get rid of all this stuff on the right which is the text display.
+
+58
+00:04:24,710 --> 00:04:37,010
+So I just select no text and once I've done that I need to set it to 4 byte integer and 32 bit programs
+
+59
+00:04:37,010 --> 00:04:40,940
+of 4 bytes is the size I need and I don't want all these columns.
+
+60
+00:04:40,940 --> 00:04:43,480
+I just want I got here.
+
+61
+00:04:43,910 --> 00:04:46,200
+I just want one column.
+
+62
+00:04:46,220 --> 00:04:51,610
+OK so that's tidying up this memory window display a bit.
+
+63
+00:04:51,710 --> 00:04:54,680
+Now I need to display the location that I am interested in.
+
+64
+00:04:54,680 --> 00:05:02,020
+As this is a display of memory I have to specify an address in memory so I enter the address of my struct
+
+65
+00:05:02,020 --> 00:05:11,680
+to my struct called P So I enter ampersand P for the address of the struct right.
+
+66
+00:05:11,770 --> 00:05:13,420
+So let's see what we've got here.
+
+67
+00:05:13,420 --> 00:05:14,620
+Let's start with this.
+
+68
+00:05:14,620 --> 00:05:18,160
+Here's how I got this information here.
+
+69
+00:05:18,460 --> 00:05:21,510
+That's the value that I entered for my Int.
+
+70
+00:05:21,640 --> 00:05:24,180
+I over here.
+
+71
+00:05:24,770 --> 00:05:27,920
+So that's helped me spot where I am in the memory.
+
+72
+00:05:27,920 --> 00:05:34,250
+Now on the left this is its address but look that's the same address.
+
+73
+00:05:35,260 --> 00:05:36,860
+This one here.
+
+74
+00:05:37,030 --> 00:05:40,990
+So this must be a pointer the point to i.p.
+
+75
+00:05:40,990 --> 00:05:49,320
+That points to Ivy and I can check that by addressing or by entering up here the address which is P
+
+76
+00:05:50,070 --> 00:05:52,000
+or type B.
+
+77
+00:05:54,020 --> 00:05:59,540
+And you can see this is the address of the IP pointer.
+
+78
+00:06:00,160 --> 00:06:08,020
+The value of that pointer is shown here the value is this address and at that address is my integer
+
+79
+00:06:08,530 --> 00:06:08,930
+here.
+
+80
+00:06:08,980 --> 00:06:16,210
+So that's the IP pointer pointing to my integer.
+
+81
+00:06:16,320 --> 00:06:19,530
+Let me go back to the it displayed my structure of the address of P.
+
+82
+00:06:19,530 --> 00:06:22,480
+So here I'm just being struck again.
+
+83
+00:06:22,500 --> 00:06:23,600
+Now let me work forward.
+
+84
+00:06:23,610 --> 00:06:30,060
+This time the first item in the struct P is at the same address as the struct itself.
+
+85
+00:06:30,450 --> 00:06:37,230
+And it is my pointer to a pointer to a pointer pointer variable contains as its value a number that
+
+86
+00:06:37,230 --> 00:06:46,590
+number represents an address and the number here is the first one in the right to column and it points
+
+87
+00:06:46,740 --> 00:06:48,970
+to this address in the left column
+
+88
+00:06:53,620 --> 00:06:57,730
+and you can see now why I've put these pointers in the struct by grouping them in a struct like this
+
+89
+00:06:57,730 --> 00:07:02,050
+I've be able to ensure that they are stored next to one another in memory and that makes it easier for
+
+90
+00:07:02,050 --> 00:07:03,930
+me to debug in the memory window.
+
+91
+00:07:04,210 --> 00:07:11,120
+OK so now this address is the pointer to another point of us IBP or is this value here.
+
+92
+00:07:11,170 --> 00:07:16,180
+Trace down to its values is the address of that pointer.
+
+93
+00:07:16,180 --> 00:07:23,740
+So the next pointer is shown here and that contains another pointer remember.
+
+94
+00:07:23,860 --> 00:07:27,290
+And that points to the integer.
+
+95
+00:07:27,860 --> 00:07:35,760
+OK so by tracing through the pointers values in the memory window we've gone from a pointer it stores
+
+96
+00:07:35,760 --> 00:07:41,130
+an address to the address it stores to the address that stores so on.
+
+97
+00:07:41,130 --> 00:07:50,340
+And eventually we've arrived at the value of the integer which is pointed to by the last pointer in
+
+98
+00:07:50,430 --> 00:07:53,640
+the whole list of pointers.
+
+99
+00:07:53,640 --> 00:08:00,000
+So I know it's quite complicated to work out multiple indirection like this but using the debugger and
+
+100
+00:08:00,030 --> 00:08:06,270
+in this case using the visual studio memory window you can use the watch window as well as I showed
+
+101
+00:08:06,270 --> 00:08:07,010
+earlier.
+
+102
+00:08:07,140 --> 00:08:14,280
+It should help you to understand how to peek into memory to see exactly where pointers or even pointers
+
+103
+00:08:14,280 --> 00:08:17,940
+to pointers to pointers are actually pointing.
+

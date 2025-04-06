@@ -1,0 +1,64 @@
+1
+00:00:02,620 --> 00:00:09,040
+If you've been using pointers for a while the chances are that you've already run into some problems.
+
+2
+00:00:09,110 --> 00:00:16,410
+The fact of the matter is that pointers are one of the major sources of error in C programs.
+
+3
+00:00:16,440 --> 00:00:22,110
+Trouble is a pointer can point to anything even things it has no business pointing out.
+
+4
+00:00:22,490 --> 00:00:29,120
+It can get it bits of memory that really shouldn't be messing about with and that can cause memory corruption
+
+5
+00:00:29,570 --> 00:00:35,690
+memory leaks and even catastrophic program crashes.
+
+6
+00:00:36,950 --> 00:00:42,330
+In this final section of the course I want to take you through a few of the most common problems you're
+
+7
+00:00:42,350 --> 00:00:45,220
+likely to encounter when using pointers.
+
+8
+00:00:45,260 --> 00:00:54,260
+These include incorrect typecasts when you cost a generic pointer to a pointer to a specific type problems
+
+9
+00:00:54,260 --> 00:00:59,230
+you might get if you accidentally freeze a memory that has already been freed.
+
+10
+00:01:00,180 --> 00:01:09,110
+Or if you try to reuse a memory after it's been freed I'll also explain memory leaks scoping problems
+
+11
+00:01:09,710 --> 00:01:12,760
+and why you should never dereference a null pointer.
+
+12
+00:01:13,960 --> 00:01:21,180
+But first I want to explain a particularly tricky subject deep and shallow copies.
+
+13
+00:01:21,250 --> 00:01:22,750
+Why you when you copy some data.
+
+14
+00:01:22,760 --> 00:01:29,700
+Say when you copy some struts from one list to another you need to be careful to understand when a copy
+
+15
+00:01:29,800 --> 00:01:31,850
+is a copy and why.
+
+16
+00:01:32,020 --> 00:01:37,700
+If you make even a very tiny mistake your program is going to end up crashing.
+

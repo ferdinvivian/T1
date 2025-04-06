@@ -1,0 +1,168 @@
+1
+00:00:02,280 --> 00:00:08,430
+Another common procedure that you may need to do at some time is to make a copy of a list.
+
+2
+00:00:08,460 --> 00:00:09,990
+There are lots of ways you could do that.
+
+3
+00:00:09,990 --> 00:00:16,080
+Some ways may be simpler some more elegant and some faster than others.
+
+4
+00:00:16,440 --> 00:00:24,220
+I am going for simplicity since I've already implemented enqueue dequeue functions for my Q.
+
+5
+00:00:24,330 --> 00:00:31,110
+The easiest way for me to make a new copy of an existing queue would be to transfer the items from one
+
+6
+00:00:31,110 --> 00:00:37,220
+list to another by doing one queue and keeping the other.
+
+7
+00:00:37,320 --> 00:00:46,080
+In this example I start by creating my two queue headers SIRC is the source queue DST that's the destination
+
+8
+00:00:46,110 --> 00:00:53,130
+queue and I initialize the first and last pointers to point to themselves which shows that they start
+
+9
+00:00:53,130 --> 00:00:55,370
+out as empty queues.
+
+10
+00:00:55,380 --> 00:00:57,710
+Now I add some elements to the source queue.
+
+11
+00:00:57,720 --> 00:00:59,850
+Using my enqueue function.
+
+12
+00:00:59,860 --> 00:01:03,270
+By now you should be familiar with this from previous examples.
+
+13
+00:01:03,330 --> 00:01:11,220
+Then I run this loop to dequeue the source Q Which returns this temp element at each turn through the
+
+14
+00:01:11,220 --> 00:01:20,800
+loop and I build the new queue by passing the Decoud element to my end queue function calling it with
+
+15
+00:01:20,790 --> 00:01:21,880
+the DST.
+
+16
+00:01:21,900 --> 00:01:24,390
+That's the destination queue header.
+
+17
+00:01:24,930 --> 00:01:30,900
+I actually noticed that when I pass DST as an argument down here I precede the variable name with the
+
+18
+00:01:30,900 --> 00:01:32,860
+address of operator.
+
+19
+00:01:32,970 --> 00:01:41,060
+So I'm actually parsing the address of the DST struct but the matching parameter in my function header
+
+20
+00:01:41,210 --> 00:01:42,450
+we got here.
+
+21
+00:01:45,660 --> 00:01:51,990
+Well you can see that that is this this parameter called queue that is declared as a pointer.
+
+22
+00:01:52,350 --> 00:01:58,020
+In fact you will see a number of examples in my code where I pass an address as an argument but receive
+
+23
+00:01:58,020 --> 00:02:00,110
+it as a pointer parameter.
+
+24
+00:02:00,120 --> 00:02:08,760
+That's because the value of a pointer is an address so the pointer parameter is initialized with the
+
+25
+00:02:08,760 --> 00:02:10,910
+address that I pass to it.
+
+26
+00:02:14,750 --> 00:02:16,360
+Look at this.
+
+27
+00:02:16,690 --> 00:02:22,990
+Now finally in these two loops I call the dequeue function with the two Qs under display the result.
+
+28
+00:02:23,020 --> 00:02:24,900
+So let me run this now.
+
+29
+00:02:27,130 --> 00:02:29,020
+And this is what I see.
+
+30
+00:02:29,020 --> 00:02:35,680
+This shows that the elements from the source Q were added to the destination queue.
+
+31
+00:02:36,750 --> 00:02:43,570
+Leaving the source queue empty at the end.
+
+32
+00:02:43,830 --> 00:02:51,620
+Now in this example as I add the items to the destination queue I delete them from the source queue.
+
+33
+00:02:55,890 --> 00:03:02,730
+That's because Id queue the source removing elements and then in queueing those same elements to the
+
+34
+00:03:02,730 --> 00:03:03,450
+destination.
+
+35
+00:03:03,450 --> 00:03:10,140
+But if you want to keep the original Q intact so you end up with two copies.
+
+36
+00:03:10,140 --> 00:03:16,530
+You could simply iterate through the queue as I did in the previous example where I iterated over items
+
+37
+00:03:16,980 --> 00:03:21,540
+in order to count them instead of decreasing them.
+
+38
+00:03:21,540 --> 00:03:25,560
+But be careful if you do that.
+
+39
+00:03:25,700 --> 00:03:36,100
+If you end up with 2 queues that point to the same elements and one queue deletes an element without
+
+40
+00:03:36,100 --> 00:03:43,780
+informing the second queue that is done so you could create big problems for yourself because the second
+
+41
+00:03:43,780 --> 00:03:52,800
+Q will contain elements that point to something that no longer exists.
+
+42
+00:03:52,940 --> 00:03:59,720
+I have more to say about this problem when I explain deep and shallow copy in.
+

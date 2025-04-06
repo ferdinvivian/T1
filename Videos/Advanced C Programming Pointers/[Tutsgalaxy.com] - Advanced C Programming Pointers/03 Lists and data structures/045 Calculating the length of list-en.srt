@@ -1,0 +1,172 @@
+1
+00:00:03,180 --> 00:00:09,380
+In the next few videos I want to show a few examples of humbling lists in various ways.
+
+2
+00:00:09,410 --> 00:00:13,870
+To begin with let's see how we could count items in a list to find its length.
+
+3
+00:00:14,790 --> 00:00:20,470
+My example I'll once again use a q which is a doubly linked list.
+
+4
+00:00:20,520 --> 00:00:27,200
+Now I've written the function queue length so let's have a look at that right.
+
+5
+00:00:27,270 --> 00:00:32,460
+Kulang is the one that counts the elements in the list and it returns an integer the functions called
+
+6
+00:00:32,460 --> 00:00:34,590
+with a pointer to the list header.
+
+7
+00:00:34,660 --> 00:00:37,000
+That's the Q parameter here.
+
+8
+00:00:37,020 --> 00:00:41,870
+List header is the struct that contains pointers to the first and last elements in the list.
+
+9
+00:00:42,180 --> 00:00:46,890
+And as in my other examples when the list is empty the headers pointer points to the head of struct
+
+10
+00:00:46,890 --> 00:00:48,300
+itself.
+
+11
+00:00:48,300 --> 00:00:50,540
+So now I follow the headers.
+
+12
+00:00:50,540 --> 00:00:52,230
+First pointer.
+
+13
+00:00:52,230 --> 00:00:58,340
+If this points to the list header then the list is empty and the function exits.
+
+14
+00:00:58,620 --> 00:01:04,200
+Since length was initialized to zero that's the value that would then be returned.
+
+15
+00:01:04,200 --> 00:01:10,290
+Otherwise I just keep moving through the list elements using the next pointers and every time I do that
+
+16
+00:01:10,410 --> 00:01:15,830
+I increment this local counter variable length when I get to the end of the list.
+
+17
+00:01:15,830 --> 00:01:17,930
+Temp will be pointing to the header.
+
+18
+00:01:18,240 --> 00:01:25,410
+I then set temp to now and that provides the end condition for the do while loop so the function exits
+
+19
+00:01:25,790 --> 00:01:28,490
+and I return the value of the local variable length.
+
+20
+00:01:28,530 --> 00:01:33,360
+This simple way of iterating over the elements in the linked list can be used to do other things to
+
+21
+00:01:33,450 --> 00:01:34,890
+not just count them.
+
+22
+00:01:34,890 --> 00:01:40,620
+This is a generic technique for iterating over elements and that might be useful in all kinds of different
+
+23
+00:01:40,620 --> 00:01:45,960
+places when you need to do some operational calculation on all the elements of the list.
+
+24
+00:01:46,110 --> 00:01:52,080
+For example you may want to calculate a total of the values of a certain field in each struct in the
+
+25
+00:01:52,080 --> 00:01:52,640
+list.
+
+26
+00:01:52,770 --> 00:01:53,980
+Well all sorts of other things.
+
+27
+00:01:54,010 --> 00:02:00,310
+At any rate this gives you a simple way of iterating over an entire list.
+
+28
+00:02:00,490 --> 00:02:07,330
+Now bear in mind that this and the other examples I show in the next few videos are just some ideas
+
+29
+00:02:07,330 --> 00:02:10,000
+of the sorts of things you might be able to do with lists.
+
+30
+00:02:10,000 --> 00:02:16,120
+This is not a course about complex data structures and algorithms and there are many many more types
+
+31
+00:02:16,120 --> 00:02:23,140
+of list and list operations that you could come across but if you understand how to create and manipulate
+
+32
+00:02:23,140 --> 00:02:30,010
+lists by iterating over items adding and deleting items and ensuring that list pointers all point to
+
+33
+00:02:30,010 --> 00:02:35,680
+valid items in the list then you should be able to understand how pointers are used in other types of
+
+34
+00:02:35,680 --> 00:02:36,660
+data structure.
+
+35
+00:02:36,820 --> 00:02:42,250
+And you should be able to work out how to code the types of operations on lists and the elements they
+
+36
+00:02:42,250 --> 00:02:43,270
+contain.
+
+37
+00:02:43,270 --> 00:02:46,820
+Now let's run this program to see how it works.
+
+38
+00:02:48,330 --> 00:02:53,000
+OK so these are the results I see at the outset.
+
+39
+00:02:53,000 --> 00:02:56,080
+You can see that the list is empty so its length is zero.
+
+40
+00:02:56,240 --> 00:02:59,520
+Then I add three struts and its length is now three.
+
+41
+00:02:59,570 --> 00:03:07,520
+Then Id Q The queue removing items one by one and displaying the new length which as you would expect
+
+42
+00:03:07,520 --> 00:03:10,620
+is initially 3 to 1.
+
+43
+00:03:10,730 --> 00:03:14,180
+And finally when there are no more items left 0.
+

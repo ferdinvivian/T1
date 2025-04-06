@@ -1,0 +1,92 @@
+1
+00:00:01,170 --> 00:00:07,470
+Another problem that you might run into is the incorrect casting of pointers.
+
+2
+00:00:07,470 --> 00:00:13,770
+A pointer can point to anything but when you need to access the actual data at the address to which
+
+3
+00:00:13,770 --> 00:00:20,160
+it points you may need to cast the pointer to the correct data type.
+
+4
+00:00:20,160 --> 00:00:24,290
+Costs are placed in parentheses like this.
+
+5
+00:00:24,300 --> 00:00:32,130
+This costs the generic pointer returned by Kellock to a pointer to type called my struct in my code.
+
+6
+00:00:32,170 --> 00:00:35,710
+That's a struct that I type left.
+
+7
+00:00:35,710 --> 00:00:42,480
+Now bear in mind that when you cast one type to another you're not actually changing one type to another.
+
+8
+00:00:42,840 --> 00:00:49,590
+What you are doing is giving an instruction to the compiler telling it that you know that the thing
+
+9
+00:00:49,590 --> 00:00:54,820
+you are casting will be of the type you are casting it to.
+
+10
+00:00:54,820 --> 00:01:00,950
+So if you go ahead and for example use a pointer to get at the fields of a specific structure.
+
+11
+00:01:01,150 --> 00:01:06,820
+Well that's OK the compiler shouldn't treat it as an error without custom p.
+
+12
+00:01:06,820 --> 00:01:11,040
+In this case the compiler only knows that it's a pointer to something.
+
+13
+00:01:11,140 --> 00:01:12,690
+It could be anything.
+
+14
+00:01:12,700 --> 00:01:18,270
+Your cost tells it to a point specifically to my struct struct.
+
+15
+00:01:18,460 --> 00:01:25,360
+From now on it's your responsibility as the programmer to make sure that is really what it points to
+
+16
+00:01:26,260 --> 00:01:28,770
+the compiler assumes you know what you're doing.
+
+17
+00:01:29,020 --> 00:01:36,910
+So you had better make sure you do to remember that the cost is not something magic that converts one
+
+18
+00:01:36,910 --> 00:01:38,570
+type to another type.
+
+19
+00:01:38,920 --> 00:01:46,030
+It's an instruction to the compiler to let you treat one type as another type but if you now go ahead
+
+20
+00:01:46,060 --> 00:01:52,180
+and point P yet something that is not in my struct while the compiler is not going to help you out your
+
+21
+00:01:52,180 --> 00:01:57,400
+program will in all probability just crash.
+
+22
+00:01:57,460 --> 00:02:06,760
+It's entirely up to you to make sure that the type you cast to is the type that your code will actually
+
+23
+00:02:06,970 --> 00:02:07,870
+use.
+

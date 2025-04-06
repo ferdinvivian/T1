@@ -1,0 +1,96 @@
+1
+00:00:01,120 --> 00:00:05,520
+A single linked list lets you move from one element to the next.
+
+2
+00:00:05,770 --> 00:00:11,000
+But in so doing you immediately lose track of the previous element.
+
+3
+00:00:11,220 --> 00:00:15,220
+It's sometimes useful to be able to move either way in a list.
+
+4
+00:00:15,220 --> 00:00:22,380
+For example imagine that you created the list contain records structures of some sort.
+
+5
+00:00:22,380 --> 00:00:28,950
+I don't know a list of employees or a list of books in a library or maybe the treasures in a game.
+
+6
+00:00:29,160 --> 00:00:36,940
+And you know iterate through that list and you discover that element number 10 is a duplicate of element
+
+7
+00:00:36,940 --> 00:00:38,110
+number nine.
+
+8
+00:00:38,410 --> 00:00:43,460
+So you decide to delete element number 10 from the list.
+
+9
+00:00:43,530 --> 00:00:47,490
+Think of the problem you'd have if you had a singly linked list.
+
+10
+00:00:47,490 --> 00:00:54,720
+When you delete element 10 you break a link in the chain of pointers element 9 points to Element 10.
+
+11
+00:00:54,720 --> 00:00:59,930
+But when element 10 is deleted element 9 is left with nothing to point to.
+
+12
+00:01:00,000 --> 00:01:04,950
+You really want to rewire its pointer to the next valid element.
+
+13
+00:01:04,950 --> 00:01:07,610
+The one that was element 11.
+
+14
+00:01:07,890 --> 00:01:15,860
+But how do you do that as soon as you moved it to Element 10 in the list you lost track of element 9.
+
+15
+00:01:15,930 --> 00:01:22,450
+That's because element 10 does not have any reference to any preceding elements in the list.
+
+16
+00:01:22,530 --> 00:01:26,190
+It only has a pointer to the next element.
+
+17
+00:01:26,310 --> 00:01:32,750
+So you can't get it element 9 to update its pointer and the list is broken.
+
+18
+00:01:32,820 --> 00:01:37,590
+One simple way of dealing with this problem is to create a doubly linked list.
+
+19
+00:01:37,590 --> 00:01:43,900
+That's one that not only has a pointer to the next element but also a pointer to the previous element.
+
+20
+00:01:43,920 --> 00:01:51,450
+Then when you delete element 10 you can simply rewire the list by backtracking to Element 9 and setting
+
+21
+00:01:51,450 --> 00:01:55,590
+a pointer in element 9 to point to Element 11.
+
+22
+00:01:55,590 --> 00:02:01,890
+Once that's done you can safely delete element 10 and the integrity of the list is maintained.
+
+23
+00:02:01,890 --> 00:02:04,170
+There are no broken links.
+
+24
+00:02:04,170 --> 00:02:09,380
+Now let's see how you go about creating a linked list in C..
+

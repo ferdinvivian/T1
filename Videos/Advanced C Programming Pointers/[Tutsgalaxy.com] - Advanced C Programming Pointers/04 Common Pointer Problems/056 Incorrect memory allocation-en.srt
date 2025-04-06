@@ -1,0 +1,80 @@
+1
+00:00:01,030 --> 00:00:05,950
+I've already mentioned a number of common problems that you might come across when using pointers in
+
+2
+00:00:05,950 --> 00:00:07,690
+previous lessons.
+
+3
+00:00:07,690 --> 00:00:14,530
+Let me start here by reminding you of a problem we've seen already namely when allocating memory you
+
+4
+00:00:14,530 --> 00:00:18,330
+must make sure that you allocate the right amount.
+
+5
+00:00:18,430 --> 00:00:23,470
+It's dangerous to assume that you know how much memory some data will require.
+
+6
+00:00:23,470 --> 00:00:31,480
+For example if you write a bit of code to malloc for that will work with a 4 byte integer but it won't
+
+7
+00:00:31,480 --> 00:00:34,170
+work with an 8 byte double.
+
+8
+00:00:34,780 --> 00:00:41,380
+And as I explained in an earlier lesson things can get even more complicated with straps due to the
+
+9
+00:00:41,380 --> 00:00:44,110
+way the data is aligned.
+
+10
+00:00:44,200 --> 00:00:49,900
+Change the order of fields in a struct and you change the amount of memory it needs.
+
+11
+00:00:49,900 --> 00:00:54,370
+Or at least you may do depending on what's stored in those fields.
+
+12
+00:00:54,910 --> 00:01:03,070
+For instance if you've declared a type of struct such as my struct and it contains 24 bytes of data
+
+13
+00:01:03,820 --> 00:01:09,620
+it would be unsafe to allocate memory like this.
+
+14
+00:01:09,670 --> 00:01:16,120
+That's because the actual amount of memory needed might depend on the order of the fields in the struct.
+
+15
+00:01:16,120 --> 00:01:22,390
+In some cases you might need more than 24 bytes of memory.
+
+16
+00:01:22,440 --> 00:01:29,230
+It's therefore safer to use the size of operator when allocating memory and let me change this code
+
+17
+00:01:29,230 --> 00:01:36,300
+to show how to do that of this and use size of my struct.
+
+18
+00:01:36,430 --> 00:01:43,120
+So the example that I'm showing here is found in my address arithmetic 3 sample program.
+
+19
+00:01:43,120 --> 00:01:48,340
+If you can't recall the details of this problem you might also want to go back and watch the lessons
+
+20
+00:01:48,340 --> 00:01:54,430
+on malloc and Carlock and data type alignment on boundaries.
+

@@ -1,0 +1,527 @@
+0
+00:00.850 --> 00:06.870
+Have some questions I've been asked by students I know that some programs using pointers can be incredibly
+
+1
+00:06.870 --> 00:08.470
+hard to understand.
+
+2
+00:08.480 --> 00:14.070
+Now unfortunately there's no single program that causes the same problems for everybody.
+
+3
+00:14.070 --> 00:18.360
+One program might be difficult for somebody to understand it's a different program might cause somebody
+
+4
+00:18.360 --> 00:19.670
+else problems.
+
+5
+00:19.710 --> 00:26.790
+So rather than give you a specific solution to a specific problem I want to show you a way of solving
+
+6
+00:26.980 --> 00:31.470
+point of problems for yourself using a debugger.
+
+7
+00:31.470 --> 00:39.720
+Now here I've picked a sample program from the code archive it's the one that goes through the command
+
+8
+00:39.720 --> 00:46.920
+line arguments and this one uses multiple indirection that is pointers to pointers.
+
+9
+00:46.920 --> 00:50.260
+Now the program itself is fairly short.
+
+10
+00:50.430 --> 00:55.730
+You can see I've got it loaded here into Visual Studio but it is not double level of indirection.
+
+11
+00:55.740 --> 01:01.870
+The **argv can be really challenging to get into your mind.
+
+12
+01:02.340 --> 01:05.080
+So let's see how the debugger can help us.
+
+13
+01:05.100 --> 01:07.680
+I'm usually using Visual Studio.
+
+14
+01:08.000 --> 01:13.460
+I mean just start the debugger so that you can see something happening.
+
+15
+01:13.830 --> 01:20.670
+Now most other good ideas with how similar tools for stepping through code and watching variables but
+
+16
+01:20.670 --> 01:27.840
+they may not have all the same tools as Visual Studio and a window that I like for debugging is the
+
+17
+01:27.840 --> 01:32.410
+one down here it's the immediate window and I'll be showing you how to use that shot.
+
+18
+01:32.490 --> 01:38.670
+So some of ideas may not have that but they will allow you to set breakpoints and step through your
+
+19
+01:38.670 --> 01:39.910
+code.
+
+20
+01:39.930 --> 01:48.300
+Now before we start let me remind you what Argosy is actually supposed to be in principle it's an argument
+
+21
+01:48.300 --> 01:51.140
+vector that's an array of strings.
+
+22
+01:51.180 --> 02:00.450
+Now in fact to be more accurate it's a pointer to an array of pointers with those pointers each pointing
+
+23
+02:00.900 --> 02:02.430
+to a string.
+
+24
+02:02.460 --> 02:05.420
+So let's draw a diagram to show this.
+
+25
+02:05.700 --> 02:08.250
+I've got Aag the
+
+26
+02:12.260 --> 02:13.180
+OK.
+
+27
+02:13.270 --> 02:13.840
+So
+
+28
+02:16.440 --> 02:21.940
+this is a pointer to an array draw my array down here.
+
+29
+02:25.020 --> 02:29.790
+And he is going to have three elements.
+
+30
+02:30.120 --> 02:37.540
+So the array is some address in memory and this race contains some pointers.
+
+31
+02:39.660 --> 02:46.110
+Two strings.
+
+32
+02:46.200 --> 02:57.370
+So all the points to this array and the array contains pointers to the three strings and each of those
+
+33
+02:57.370 --> 03:03.180
+strings is remember in fact an array of char an array of characters.
+
+34
+03:03.190 --> 03:04.960
+Now back to the debugger.
+
+35
+03:05.290 --> 03:10.320
+Whichever debugger you are using the first thing you need to do is to set one or more breakpoints.
+
+36
+03:10.320 --> 03:17.440
+Now I'll do that here in Visual Studio so in Visual Studio I just click in the margin and you see that
+
+37
+03:17.440 --> 03:24.340
+red breakpoint Mark appear a breakpoint tells the debugger to pause on a specific line to give you the
+
+38
+03:24.340 --> 03:28.840
+chance to look at the value of variables at that point in the program.
+
+39
+03:28.840 --> 03:36.730
+Now I want to understand how the ARG the argument in Maine actually works as I've already explained
+
+40
+03:36.880 --> 03:41.460
+óg V is an array of character arrays.
+
+41
+03:41.740 --> 03:45.760
+The first string is the name of the program that you are running.
+
+42
+03:46.030 --> 03:53.530
+If you enter any command line arguments they will also be added to the ARG V array at least to the array
+
+43
+03:53.980 --> 03:56.730
+to which ARG V points.
+
+44
+03:56.800 --> 04:02.800
+Now as I'm not actually running this from the command line I need to tell visual studio to pass some
+
+45
+04:02.800 --> 04:04.150
+arguments to the program.
+
+46
+04:04.270 --> 04:12.270
+Do that by right clicking the project node hears selecting properties going into the configuration properties
+
+47
+04:12.280 --> 04:16.110
+debugging on it's got this entry command arguments.
+
+48
+04:16.150 --> 04:21.910
+By the way if you do this I'd recommend you select all platforms it can get very confusing if you select
+
+49
+04:21.910 --> 04:26.080
+one platform and I compile it for another and you find that you have a different set of arguments or
+
+50
+04:26.080 --> 04:27.070
+no arguments at all.
+
+51
+04:27.070 --> 04:28.870
+So all platforms and then
+
+52
+04:32.550 --> 04:38.790
+these will be these will take the place of the command line arguments that I would have passed to the
+
+53
+04:38.790 --> 04:41.900
+program had I been running it from the command line.
+
+54
+04:42.420 --> 04:43.970
+OK so I'm ready to go.
+
+55
+04:44.010 --> 04:46.750
+So I'll start in debugging mode.
+
+56
+04:46.800 --> 04:48.040
+Click up here.
+
+57
+04:48.810 --> 04:52.310
+And when my breakpoint is hit the program pauses.
+
+58
+04:52.320 --> 04:58.110
+Now down here in the locals window I can see the values of variables.
+
+59
+04:58.110 --> 04:59.300
+First I can see that.
+
+60
+04:59.370 --> 04:59.870
+Argh.
+
+61
+04:59.890 --> 05:08.250
+See the value for óg c stores a count of the arguments where the first at index 0 is the name of the
+
+62
+05:08.250 --> 05:13.460
+program itself and you can see that down here is the full path.
+
+63
+05:14.320 --> 05:16.530
+To my program.
+
+64
+05:17.320 --> 05:22.160
+OK so I have carry on debugging I press 5 to carry on.
+
+65
+05:22.560 --> 05:25.530
+And now the breakpoint is hit again.
+
+66
+05:26.460 --> 05:27.870
+And that's on another turn.
+
+67
+05:27.900 --> 05:30.060
+Through this for loop.
+
+68
+05:30.150 --> 05:37.790
+So this time I see the first argument the specific argument that I entered that was the string one and
+
+69
+05:37.930 --> 05:41.860
+not shown alongside V here.
+
+70
+05:41.910 --> 05:44.140
+So what are the two asterisks for.
+
+71
+05:45.480 --> 05:50.450
+Now these are after all supposed to indicate that this is a pointer to a pointer.
+
+72
+05:51.320 --> 05:59.870
+Well look this number here gives the value of the ARG the variable its value is an address it's the
+
+73
+05:59.870 --> 06:06.300
+address of another pointer and it's not a pointer that points to the string.
+
+74
+06:06.320 --> 06:09.470
+The array of characters of a single argument.
+
+75
+06:09.510 --> 06:13.890
+Now I think this might be clearer if I switch to the immediate window.
+
+76
+06:14.000 --> 06:21.740
+Now if you can't see the immediate window you may need to activate the Debug menu go to Windows and
+
+77
+06:21.740 --> 06:26.080
+then down here you can see the option to display the immediate window.
+
+78
+06:26.720 --> 06:32.030
+Well I've already got the immediate window shown so I can start entering some things to be evaluated
+
+79
+06:32.030 --> 06:32.910
+in them.
+
+80
+06:33.290 --> 06:37.080
+Now all will remember as a pointer to a pointer to char.
+
+81
+06:37.190 --> 06:41.250
+Let's just enter argufy and see what we see.
+
+82
+06:42.410 --> 06:44.610
+OK that's the results.
+
+83
+06:44.630 --> 06:49.050
+So this is the same information as was shown in the locals window.
+
+84
+06:49.220 --> 06:50.720
+But let's break this down a bit.
+
+85
+06:50.720 --> 06:56.690
+First what is the address of the ARG of the variable.
+
+86
+06:56.720 --> 07:01.610
+Let me enter the address of operator ampersand.
+
+87
+07:01.640 --> 07:03.290
+ARG.
+
+88
+07:04.860 --> 07:07.110
+And now this is what we see.
+
+89
+07:07.250 --> 07:11.310
+The important bit of data here is this first number.
+
+90
+07:11.330 --> 07:16.300
+That's the address of the ARG the variable itself.
+
+91
+07:16.640 --> 07:21.030
+It's where that variable is stored in memory.
+
+92
+07:21.080 --> 07:22.360
+Now this stuff here.
+
+93
+07:22.370 --> 07:24.250
+All this between curly brackets.
+
+94
+07:24.320 --> 07:33.860
+This is like a full expansion of where the OG V pointer ultimately points to Daag V is remember a pointer
+
+95
+07:33.920 --> 07:38.540
+to a pointer to a character char star star OG V.
+
+96
+07:38.900 --> 07:41.250
+So let's see if we can unpick this.
+
+97
+07:41.420 --> 07:46.850
+Let's start with the idea that ARG V is a pointer to a pointer.
+
+98
+07:47.330 --> 07:53.700
+That means its value is an address that contains another pointer.
+
+99
+07:54.110 --> 07:58.820
+Or to put it another way the og the pointer points to another pointer.
+
+100
+07:59.330 --> 08:06.470
+This first value inside the curly brackets here is the address of that other pointer.
+
+101
+08:06.480 --> 08:16.100
+In other words the all v variable lives at this address but its value is this address an immediate window
+
+102
+08:16.130 --> 08:20.510
+I can see the value of a variable by entering the variable name.
+
+103
+08:20.540 --> 08:29.630
+So let me do that again into arguably one small plane all this time and sure enough the value stored
+
+104
+08:29.660 --> 08:35.370
+by the org the variable is another number another address.
+
+105
+08:35.460 --> 08:38.490
+So what is it the address of.
+
+106
+08:39.130 --> 08:42.800
+Well all being well it should be the address of another pointer.
+
+107
+08:44.080 --> 08:51.050
+In this case a pointer to an array of characters that is a string the string is one of the command line
+
+108
+08:51.110 --> 08:51.980
+arguments.
+
+109
+08:52.160 --> 08:54.200
+But how can we verify that.
+
+110
+08:54.260 --> 08:58.680
+Why do we need to dereference all the to one level.
+
+111
+08:58.730 --> 09:10.060
+I do that by entering asterisk all star óg the and this time I arrive at another point.
+
+112
+09:11.150 --> 09:14.300
+Which is at the address shown here.
+
+113
+09:14.300 --> 09:22.320
+And this pointer points to the string 1 the characters 0 and E form that string.
+
+114
+09:22.320 --> 09:29.290
+And if I want to get at the string itself I need to use one more level of direction.
+
+115
+09:29.750 --> 09:35.850
+I do that with Star Star OG v.
+
+116
+09:36.620 --> 09:36.950
+Right.
+
+117
+09:36.960 --> 09:43.350
+And this time I've arrived at the address of the string one.
+
+118
+09:43.930 --> 09:50.750
+What's stored at that address the character o the first character of the array of characters that forms
+
+119
+09:50.750 --> 09:58.300
+the string one the value on the left is not an address because this is not a pointer.
+
+120
+09:58.380 --> 10:01.990
+Hundred and eleven is the ascii value of the character.
+
+121
+10:02.030 --> 10:10.880
+Oh Incidentally you may be wondering how he ended up pointing to an array of strings in the first place.
+
+122
+10:10.930 --> 10:14.890
+That how did each of the command line arguments get assigned the pointer.
+
+123
+10:14.960 --> 10:19.940
+And how did those pointers get put into an array before the program even ran.
+
+124
+10:19.940 --> 10:25.650
+Well it turns out that the C language runtime does that for you.
+
+125
+10:25.730 --> 10:32.770
+There are in fact a few startup operations that go on before your program executes.
+
+126
+10:32.840 --> 10:42.500
+So anyway I hope this helps you understand the basics of multiple interaction how to use the debugger.
+
+127
+10:42.530 --> 10:47.590
+In this case the Visual Studio debug but in general how to use a debugger to solve pointer problems.
+
+128
+10:47.780 --> 10:55.130
+We've looked at a fairly complicated example here of dereferencing several levels.
+
+129
+10:55.130 --> 11:02.840
+Two levels of pointers and when you are debugging difficult pointer programs I strongly recommend that
+
+130
+11:02.840 --> 11:09.680
+you go into your debugger and use the sort of tools that I've shown in this video to help you understand
+
+131
+11:10.010 --> 11:14.500
+the relationship between pointers and the addresses to which they point.

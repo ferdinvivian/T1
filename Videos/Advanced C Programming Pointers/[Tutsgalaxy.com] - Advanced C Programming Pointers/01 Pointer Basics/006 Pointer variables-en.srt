@@ -1,0 +1,148 @@
+1
+00:00:04,520 --> 00:00:10,220
+Now let's see how we can create and use a pointer variable in C here.
+
+2
+00:00:10,220 --> 00:00:18,230
+I've declared a simple interfered called number and I've declared a pointer variable the asterisk store
+
+3
+00:00:18,340 --> 00:00:24,790
+operator shows that this is a pointer the data type shows the type of data to which this pointer will
+
+4
+00:00:24,790 --> 00:00:25,190
+point.
+
+5
+00:00:25,210 --> 00:00:31,270
+So this pointer will point to a memory location containing an integer.
+
+6
+00:00:31,270 --> 00:00:35,330
+Incidentally it's up to you to put the asterisk when declaring the pointer.
+
+7
+00:00:35,350 --> 00:00:42,270
+Some programmers put it immediately after the data type in star.
+
+8
+00:00:42,550 --> 00:00:44,230
+Others put it before the variable name.
+
+9
+00:00:44,380 --> 00:00:47,960
+So I could do this.
+
+10
+00:00:48,940 --> 00:00:53,750
+Leave a space after int and then put Stanham PDR.
+
+11
+00:00:53,750 --> 00:01:00,940
+So whichever you do they work the saying as long as the asterisk is placed between the type and the
+
+12
+00:01:00,940 --> 00:01:01,710
+variable name.
+
+13
+00:01:01,720 --> 00:01:10,360
+The declaration is valid here here I assign an interval you that's 100 into variable name and I set
+
+14
+00:01:10,360 --> 00:01:11,630
+the point available.
+
+15
+00:01:11,700 --> 00:01:14,730
+PDR to point to the NUM variable.
+
+16
+00:01:15,190 --> 00:01:17,450
+I do that using the addressable operator.
+
+17
+00:01:17,500 --> 00:01:21,930
+The ampersand in front of the NUM variable that gets the address.
+
+18
+00:01:21,970 --> 00:01:31,070
+Remember that's the memory location of the variable under the signs but address to the NUM PTL variable.
+
+19
+00:01:31,120 --> 00:01:32,140
+Let's be clear on this.
+
+20
+00:01:32,140 --> 00:01:36,790
+The address of operator does not return the value of the NUM variable.
+
+21
+00:01:36,790 --> 00:01:38,650
+That is 100.
+
+22
+00:01:38,650 --> 00:01:44,200
+It returns the address in memory at which that value is stored.
+
+23
+00:01:45,260 --> 00:01:56,080
+And if I run the program we should be able to see that this is my output.
+
+24
+00:01:56,240 --> 00:02:01,500
+So here you can see that the value of name variable is as expected 100.
+
+25
+00:02:01,670 --> 00:02:05,770
+But the value of the point available number PDR is this long.
+
+26
+00:02:05,780 --> 00:02:08,910
+Here here's a what is that number.
+
+27
+00:02:09,410 --> 00:02:14,700
+Well let's try using the address of operator and we just close this window first.
+
+28
+00:02:14,820 --> 00:02:18,600
+Use the address of operator here.
+
+29
+00:02:19,090 --> 00:02:26,810
+So I put in front of num here so when we run the code this time we're not going to see the value which
+
+30
+00:02:26,810 --> 00:02:27,640
+was 100.
+
+31
+00:02:27,860 --> 00:02:31,060
+We see the address of the variable and do it now.
+
+32
+00:02:33,520 --> 00:02:34,810
+Start here again.
+
+33
+00:02:37,200 --> 00:02:41,250
+So this now displays the address of num.
+
+34
+00:02:41,250 --> 00:02:51,190
+Or we can see that the value of PTO or is the address of the variable name.
+
+35
+00:02:51,350 --> 00:02:58,130
+Those two numbers are the same but of course just having an address of a variable is not likely to be
+
+36
+00:02:58,310 --> 00:03:06,770
+all that useful unless we can also find out what data is stored at that address and in the next lesson.
+
+37
+00:03:06,770 --> 00:03:09,430
+I'll show you how to access data.
+

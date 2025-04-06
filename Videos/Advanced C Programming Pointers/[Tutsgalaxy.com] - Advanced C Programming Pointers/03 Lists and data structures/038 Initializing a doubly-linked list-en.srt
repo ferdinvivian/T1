@@ -1,0 +1,44 @@
+1
+00:00:01,020 --> 00:00:07,300
+Initializing a doubly linked list is a bit trickier than initializing a singly linked list.
+
+2
+00:00:07,350 --> 00:00:14,280
+Remember when I create a singly linked list I just keep adding a new struct at the front of the existing
+
+3
+00:00:14,280 --> 00:00:14,640
+list
+
+4
+00:00:17,540 --> 00:00:25,150
+and that makes it easy to initialize a pointer to point to the struct that was added previously but
+
+5
+00:00:25,750 --> 00:00:34,040
+with a doubly linked list I need pointers to point in both directions both the previous element in the
+
+6
+00:00:34,040 --> 00:00:42,340
+list and to the next element and that poses an interesting problem since of course when I add a struct
+
+7
+00:00:42,820 --> 00:00:46,510
+I can set its pointer to the struct on one side of it.
+
+8
+00:00:49,110 --> 00:00:57,250
+I like that that is to the previously added struct but I can't set a pointer to the struct.
+
+9
+00:00:57,280 --> 00:01:00,390
+On the other side that is the next element in the list.
+
+10
+00:01:02,010 --> 00:01:03,530
+Because I haven't tested it yet.
+
+11
+00:01:04,760 --> 00:01:09,450
+Now let's look at my code to see how I can deal with that problem.
+

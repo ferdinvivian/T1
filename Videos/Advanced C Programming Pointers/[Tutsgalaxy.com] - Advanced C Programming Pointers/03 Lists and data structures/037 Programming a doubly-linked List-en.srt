@@ -1,0 +1,164 @@
+1
+00:00:01,190 --> 00:00:09,090
+In this first example I'll show how to create a very simple double linked list as before I start by
+
+2
+00:00:09,090 --> 00:00:15,540
+defining a struct to hold some data here that's just a minute but it could be any sort of data maybe
+
+3
+00:00:15,540 --> 00:00:18,820
+with multiple data fields in each struct.
+
+4
+00:00:18,980 --> 00:00:26,030
+Then I declare two pointers to a struct of the same type one to the next struct in a list another to
+
+5
+00:00:26,030 --> 00:00:28,340
+the previous struct.
+
+6
+00:00:28,340 --> 00:00:35,240
+Notice here that I've declared two variables temp which is a pointer to struct and head which is a struct
+
+7
+00:00:35,330 --> 00:00:37,050
+not a pointer.
+
+8
+00:00:37,070 --> 00:00:43,430
+It's common practice when manipulating lists to keep track of the first element and the last element
+
+9
+00:00:43,580 --> 00:00:45,050
+in that list.
+
+10
+00:00:45,230 --> 00:00:51,950
+You could do that by defining two point variables a head pointer and the tail pointer and update those
+
+11
+00:00:52,100 --> 00:00:54,620
+to point to the first and last elements.
+
+12
+00:00:54,800 --> 00:01:01,250
+And if the list is changed by adding new elements to the start or end then those two variables would
+
+13
+00:01:01,250 --> 00:01:03,240
+be updated accordingly.
+
+14
+00:01:03,680 --> 00:01:08,630
+It's a bit neater to put those two variables into a special header structure.
+
+15
+00:01:08,630 --> 00:01:13,120
+I'll explain the value of a head struct in more detail in a later lesson.
+
+16
+00:01:13,130 --> 00:01:20,300
+But for now just keep in mind that the head struct is treated specially it's not treated as an element
+
+17
+00:01:20,450 --> 00:01:21,680
+of the list itself.
+
+18
+00:01:23,170 --> 00:01:29,890
+Here I initialize the head struct by setting both its next pointer and its previous pointers to point
+
+19
+00:01:30,100 --> 00:01:32,010
+to the head struct itself.
+
+20
+00:01:32,170 --> 00:01:39,190
+Using address of head I could set them to now but it is easier to make it point to something valid which
+
+21
+00:01:39,400 --> 00:01:44,830
+is itself the data field is superfluous because this struct is not a realist element.
+
+22
+00:01:44,980 --> 00:01:46,360
+So I set it to minus one.
+
+23
+00:01:46,360 --> 00:01:48,400
+Just for clarity.
+
+24
+00:01:48,400 --> 00:01:53,230
+Incidentally it's worth explaining at this stage why when I declare a point at the struct I have to
+
+25
+00:01:53,440 --> 00:01:58,330
+allocate memory for it when I declare a simple struct variable like this.
+
+26
+00:01:58,330 --> 00:02:00,210
+I don't have to do that.
+
+27
+00:02:00,220 --> 00:02:07,660
+The reason is that the C compiler knows the exact size and location in memory of a simple struct variable
+
+28
+00:02:08,020 --> 00:02:14,690
+at the time the program is compiled run so it allocates sufficient memory for it.
+
+29
+00:02:14,920 --> 00:02:21,620
+But with pointers destructs new struts can be created and deleted during the execution of the program.
+
+30
+00:02:21,880 --> 00:02:29,930
+Since those can come and go at runtime the memory needed is not known and can't be allocated in advance.
+
+31
+00:02:30,180 --> 00:02:37,270
+That's why you have to allocate memory explicitly with pointers to struts but not with simple struct
+
+32
+00:02:37,270 --> 00:02:39,380
+variables.
+
+33
+00:02:39,520 --> 00:02:42,620
+This fall loop creates some stunts.
+
+34
+00:02:42,670 --> 00:02:47,450
+It allocates memory and initializes the data field for each of them.
+
+35
+00:02:48,590 --> 00:02:50,950
+Now look how it deals with the pointers.
+
+36
+00:02:51,020 --> 00:02:57,770
+It should be obvious even at first sight that this is quite a bit more complicated than the code we
+
+37
+00:02:57,770 --> 00:03:02,790
+used to why the elements in a singly linked list.
+
+38
+00:03:02,840 --> 00:03:08,210
+In fact if this is the first time you've used doubly linked lists the chances are you'll need to stare
+
+39
+00:03:08,210 --> 00:03:10,210
+at this code and run it.
+
+40
+00:03:10,440 --> 00:03:14,710
+Maybe using your debugger to understand what's going on.
+
+41
+00:03:15,560 --> 00:03:18,890
+I look at this in detail in the next lesson.
+

@@ -1,0 +1,460 @@
+1
+00:00:00,810 --> 00:00:04,170
+This is my sample project showing a double dealing list.
+
+2
+00:00:04,530 --> 00:00:10,200
+I've already created a head structure with pointers that will point to the first and last elements in
+
+3
+00:00:10,200 --> 00:00:12,400
+my list at the outset.
+
+4
+00:00:12,420 --> 00:00:14,010
+These pointers go nowhere.
+
+5
+00:00:14,160 --> 00:00:19,840
+They just point back to the head struct itself because that's how I initialize them.
+
+6
+00:00:19,890 --> 00:00:22,980
+They point to the address of head.
+
+7
+00:00:23,010 --> 00:00:29,010
+Now I'm going to draw this out in my spreadsheet so that it will help you to visualize what's going
+
+8
+00:00:29,010 --> 00:00:30,210
+on here.
+
+9
+00:00:30,240 --> 00:00:37,890
+I warn you in advance that this is going to be quite a difficult lesson but it's an important one.
+
+10
+00:00:38,190 --> 00:00:44,550
+You may need to watch this video more than once and run the code and maybe also draw your own diagrams
+
+11
+00:00:44,580 --> 00:00:48,940
+in order to understand fully how this works.
+
+12
+00:00:48,960 --> 00:00:51,000
+So let's get started.
+
+13
+00:00:51,000 --> 00:00:54,650
+This is how the pointers of head are initialized.
+
+14
+00:00:54,660 --> 00:01:00,540
+They point they contain the address of the head structure.
+
+15
+00:01:00,540 --> 00:01:02,760
+Now let's create the list.
+
+16
+00:01:03,260 --> 00:01:08,150
+When I create a new struct I use this temp variable.
+
+17
+00:01:08,150 --> 00:01:14,120
+Here the data that each strip contains is just an int for the sake of simplicity but it's the punters
+
+18
+00:01:14,240 --> 00:01:17,230
+that are important.
+
+19
+00:01:17,250 --> 00:01:22,920
+Now I assign head next to temp's next pointer.
+
+20
+00:01:22,920 --> 00:01:30,750
+This makes it point to the head struct because that's where the head next pointer points at the moment
+
+21
+00:01:31,450 --> 00:01:37,950
+both the head next and head prev pointers point to the head struct itself.
+
+22
+00:01:39,670 --> 00:01:47,710
+Then I make the head struts next pointer point to my new temp struct.
+
+23
+00:01:47,850 --> 00:01:50,250
+That's the struct I'm initializing at the moment.
+
+24
+00:01:51,000 --> 00:01:59,470
+Then I set the temp struct prev pointer to point to head and here's the really tricky bit.
+
+25
+00:02:01,620 --> 00:02:11,910
+I use the next pointer to get at the next element and I set the prev pointer of that element to point
+
+26
+00:02:11,940 --> 00:02:14,530
+to the temp struct.
+
+27
+00:02:14,540 --> 00:02:16,460
+Let's look at this carefully.
+
+28
+00:02:16,550 --> 00:02:17,030
+Temp.
+
+29
+00:02:17,060 --> 00:02:19,330
+Next points to head.
+
+30
+00:02:19,790 --> 00:02:30,650
+So I end up making this assignment to the prev pointer of head and I assign the new struct temp to the
+
+31
+00:02:30,650 --> 00:02:33,150
+prev point of head.
+
+32
+00:02:33,290 --> 00:02:36,570
+So this is now the situation
+
+33
+00:02:40,290 --> 00:02:47,640
+now I have just one element in my list both it's next and prev pointers point to a special structure
+
+34
+00:02:47,670 --> 00:02:53,130
+called head that keeps track of the start and end of the list.
+
+35
+00:02:53,520 --> 00:03:00,740
+But as there's only one element in the list head next and head prive both point to the same element
+
+36
+00:03:02,050 --> 00:03:08,550
+and let's see what happens when we add another element later this time is the integer 1 temp.
+
+37
+00:03:08,550 --> 00:03:11,650
+Next is head next head.
+
+38
+00:03:11,670 --> 00:03:15,190
+Next points to the previously added element.
+
+39
+00:03:15,420 --> 00:03:20,040
+So that's where the temp next pointer now points like this
+
+40
+00:03:22,770 --> 00:03:26,900
+head next point is set to point to the new Strutt 10.
+
+41
+00:03:30,590 --> 00:03:36,650
+10 prev is set to point to the head struct.
+
+42
+00:03:36,990 --> 00:03:39,650
+Finally temp next prev.
+
+43
+00:03:39,700 --> 00:03:41,500
+Now let's work that out.
+
+44
+00:03:41,510 --> 00:03:46,880
+Ten next points to the struct we lost added to the list.
+
+45
+00:03:46,930 --> 00:03:48,150
+I called this pointer.
+
+46
+00:03:48,150 --> 00:03:53,630
+Next because I'm treating the most recently added structure as the start of my list.
+
+47
+00:03:53,680 --> 00:04:01,030
+Conceptually the last item I add always becomes the first element in my list and so the next element
+
+48
+00:04:01,270 --> 00:04:07,470
+is the one that was added before it which in my spreadsheet is the one shown above it.
+
+49
+00:04:07,560 --> 00:04:11,020
+So the prev point of that struct.
+
+50
+00:04:11,020 --> 00:04:17,030
+The one I added before creating this new struct that we are now updating.
+
+51
+00:04:17,190 --> 00:04:23,370
+OK so it's prev pointer is now set to point to temp
+
+52
+00:04:26,840 --> 00:04:32,480
+the prev point of the newly added struct always points back to the head struct.
+
+53
+00:04:32,720 --> 00:04:39,440
+That indicates that this struct is at one end of the list because it's prev pointer does not point to
+
+54
+00:04:39,440 --> 00:04:41,130
+another list element.
+
+55
+00:04:41,780 --> 00:04:48,110
+However its next pointer points to an adjacent struct in the list.
+
+56
+00:04:48,110 --> 00:04:52,580
+This may look a bit confusing at the moment but if we add another struct you'll see that there is a
+
+57
+00:04:52,580 --> 00:04:53,440
+pattern here.
+
+58
+00:04:53,630 --> 00:04:58,920
+Let's see what happens when we add a third struct.
+
+59
+00:04:59,050 --> 00:05:06,250
+This time its data is to its next pointer points to head next head next currently points to the previously
+
+60
+00:05:06,310 --> 00:05:07,560
+added struct.
+
+61
+00:05:07,780 --> 00:05:15,670
+So its next pointer also points to the previously added struct head next is set to point to this new
+
+62
+00:05:15,670 --> 00:05:24,080
+struct and temp prev is set to point to head.
+
+63
+00:05:24,110 --> 00:05:28,950
+Finally we set temp next prev that see temp.
+
+64
+00:05:28,970 --> 00:05:33,830
+Next point to the previous struct in the list.
+
+65
+00:05:33,830 --> 00:05:42,150
+So we are setting its prev pointer to point to the newly added struct like this.
+
+66
+00:05:43,630 --> 00:05:47,600
+You should by now see that a pattern is gradually emerging.
+
+67
+00:05:48,010 --> 00:05:51,890
+Let me read color the next and prev point to our rows here.
+
+68
+00:05:52,120 --> 00:05:59,260
+To clarify that can you see you know that every time a new struct is added its next pointer points to
+
+69
+00:05:59,260 --> 00:06:05,320
+the struct that was added before it in the list its press pointer points to the struct added after it
+
+70
+00:06:05,380 --> 00:06:06,390
+in the list.
+
+71
+00:06:06,730 --> 00:06:12,970
+So for simplicity we can think of the last item here the one that contains the int 2 as being the start
+
+72
+00:06:12,970 --> 00:06:14,740
+or the head of the list.
+
+73
+00:06:14,740 --> 00:06:20,050
+And the first item I added the one that contains zero we can think of that as being at the end or the
+
+74
+00:06:20,050 --> 00:06:21,550
+tail of the list.
+
+75
+00:06:21,550 --> 00:06:30,480
+So starting with this I can navigate through the list using its next pointer to get to this struct and
+
+76
+00:06:30,480 --> 00:06:33,760
+then its next pointer to get to the struct.
+
+77
+00:06:34,140 --> 00:06:37,450
+I see that its next pointer points to the head struct.
+
+78
+00:06:37,650 --> 00:06:44,010
+So I know I've come to the end of my list if I go backward through the list I start with this struct
+
+79
+00:06:44,560 --> 00:06:50,400
+the one that contains 0 and I call the press pointers one by one until I get to the other end of the
+
+80
+00:06:50,400 --> 00:06:50,800
+list.
+
+81
+00:06:50,850 --> 00:06:53,420
+That is the struct containing to.
+
+82
+00:06:53,950 --> 00:06:56,440
+Prev pointer points to the head struct.
+
+83
+00:06:56,490 --> 00:07:05,630
+So I know I've arrived at the end of the list and that's exactly what I do in these two wild loops in
+
+84
+00:07:05,630 --> 00:07:07,380
+the forward moving loop.
+
+85
+00:07:07,670 --> 00:07:10,400
+I start with head next.
+
+86
+00:07:10,400 --> 00:07:12,190
+That's the struct containing the two.
+
+87
+00:07:12,200 --> 00:07:20,680
+And I trace through all the next links to 1 0 until I get to head again in the backwood moving loop.
+
+88
+00:07:20,720 --> 00:07:26,870
+I use had prev to start with a struct containing zero Updyke trace through all the private links.
+
+89
+00:07:26,880 --> 00:07:28,870
+0 1 2 and 2.
+
+90
+00:07:28,970 --> 00:07:33,110
+I arrive at a pointer to head and that's the end of the list.
+
+91
+00:07:33,110 --> 00:07:41,850
+Now let me run this code so you can see the output.
+
+92
+00:07:41,870 --> 00:07:44,480
+I also print the addresses that are appointed to here.
+
+93
+00:07:44,620 --> 00:07:51,130
+You may want to stare at those later on to see how the pointers reference the struct addresses.
+
+94
+00:07:51,230 --> 00:07:53,780
+Compare this with my diagram in the spreadsheet
+
+95
+00:07:57,460 --> 00:08:04,300
+so you can see that when I trace forward I start with a struct containing 2 and I use the next pointers
+
+96
+00:08:04,720 --> 00:08:10,690
+to traverse the list in one direction and when I go backward I start the struct containing zero and
+
+97
+00:08:10,690 --> 00:08:14,750
+I use the prev pointers to traverse the list in the other direction.
+
+98
+00:08:19,410 --> 00:08:21,880
+I can easily find the struct at either end of the list.
+
+99
+00:08:21,930 --> 00:08:27,480
+Since the heads press pointer points to one end in my code I can think of that as the tail end of my
+
+100
+00:08:27,480 --> 00:08:28,060
+list.
+
+101
+00:08:28,260 --> 00:08:35,340
+The next pointer points together and one that I've chosen to think of as the start of the list.
+
+102
+00:08:35,340 --> 00:08:41,640
+Now bear in mind that talking about beginning and end are the first and last items in a doubly linked
+
+103
+00:08:41,640 --> 00:08:50,610
+list it's purely a matter of convenience unlike a linear array a list does not have an intrinsic sequential
+
+104
+00:08:50,760 --> 00:08:58,260
+order if you like you could treat this record the one containing 0 as the start of the list and this
+
+105
+00:08:58,260 --> 00:09:06,210
+record the one containing 2 as the end and you could rename the prev and next pointers to indicate that
+
+106
+00:09:06,210 --> 00:09:07,630
+relationship.
+
+107
+00:09:07,770 --> 00:09:14,760
+But there's really no first or last element as they're all linked to one another in both directions
+
+108
+00:09:15,170 --> 00:09:18,130
+and the list can be traversed in either direction.
+
+109
+00:09:19,260 --> 00:09:25,950
+The important thing to know is that the two pointers in each struct are used to navigate to the struct
+
+110
+00:09:26,130 --> 00:09:35,490
+on either side of it like this the terminating struts the ones at the end of the list of pointers.
+
+111
+00:09:35,680 --> 00:09:42,480
+Here they are either next or prev that point back to the head struct like this.
+
+112
+00:09:44,580 --> 00:09:51,790
+And the two pointers in the header struct point to the strikes at either end of the list so that you
+
+113
+00:09:51,790 --> 00:09:56,070
+can easily navigate through the list from either end.
+
+114
+00:09:57,640 --> 00:10:04,170
+So now we know how to create a doubling Clyst we need to find out how we can actually use it.
+
+115
+00:10:04,500 --> 00:10:07,280
+And I'll explain that in the next lesson.
+

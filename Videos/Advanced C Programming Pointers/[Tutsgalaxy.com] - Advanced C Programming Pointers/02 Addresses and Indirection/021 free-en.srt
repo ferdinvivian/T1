@@ -1,0 +1,128 @@
+1
+00:00:02,520 --> 00:00:08,320
+In a new program that's this one in which I used my luck to set aside some memory for a string.
+
+2
+00:00:08,540 --> 00:00:16,180
+I allocated the memory and I left it allocated throughout my program once memory is allocated.
+
+3
+00:00:16,230 --> 00:00:20,170
+It's no longer available to the rest of your program.
+
+4
+00:00:20,190 --> 00:00:26,730
+So in principle if you continue to allocate chunks of memory you might eventually run out of memory
+
+5
+00:00:27,120 --> 00:00:31,750
+when there is no more memory left to be allocated.
+
+6
+00:00:31,860 --> 00:00:39,810
+Now on modern desktop computers this is rarely in fact the case because they simply have huge amounts
+
+7
+00:00:39,810 --> 00:00:41,310
+of memory.
+
+8
+00:00:41,340 --> 00:00:45,240
+I could go on allocating more and more memory for strings.
+
+9
+00:00:45,270 --> 00:00:48,630
+I never run into any problems.
+
+10
+00:00:48,750 --> 00:00:56,670
+Even so if you allocated very large amounts of memory without ever freeing any up when it's no longer
+
+11
+00:00:56,670 --> 00:01:06,070
+needed you'd be using memory very inefficiently keeping memory allocated even when it's not needed.
+
+12
+00:01:06,140 --> 00:01:11,870
+That is when it's no longer referenced by any variables or pointers in your program.
+
+13
+00:01:12,110 --> 00:01:18,210
+Well that creates what are usually referred to as memory leaks.
+
+14
+00:01:18,350 --> 00:01:24,860
+This could be a real problem if you happen to be writing C programs for devices that don't have huge
+
+15
+00:01:24,860 --> 00:01:26,010
+amounts of memory.
+
+16
+00:01:26,090 --> 00:01:32,720
+For example hardware controllers for machines or a Bartik devices and they might have very small amounts
+
+17
+00:01:32,720 --> 00:01:35,700
+of memory at any rate.
+
+18
+00:01:35,920 --> 00:01:43,940
+It's good practice to d allocate memory to make it available again for use in your program.
+
+19
+00:01:44,080 --> 00:01:53,160
+When that memory is no longer needed and the usual way to do that in C is by calling the free function
+
+20
+00:01:54,270 --> 00:01:58,970
+let's look at this other program so you can see this program.
+
+21
+00:01:58,990 --> 00:02:00,430
+I've already done that.
+
+22
+00:02:00,430 --> 00:02:02,680
+I've called free.
+
+23
+00:02:02,910 --> 00:02:09,190
+This is the program where I showed in an earlier lesson how to use the clock function and I called free
+
+24
+00:02:09,190 --> 00:02:11,170
+to free up memory that's no longer needed.
+
+25
+00:02:11,170 --> 00:02:19,930
+For example I've allocated memory for an array of 6 characters and here for six integers and then later
+
+26
+00:02:19,930 --> 00:02:26,490
+on when I no longer need that array I call free passing to it.
+
+27
+00:02:26,560 --> 00:02:31,540
+The variable for which the memory was allocated here.
+
+28
+00:02:31,720 --> 00:02:38,500
+That's the string s the char pointer s and here it's the pointer.
+
+29
+00:02:38,500 --> 00:02:41,150
+The pointer p.
+
+30
+00:02:41,290 --> 00:02:46,070
+You should make a habit of freeing memory whenever it's no longer needed.
+
+31
+00:02:46,810 --> 00:02:53,910
+But be careful if you call free on a variable that was never allocated.
+
+32
+00:02:54,310 --> 00:03:03,880
+Or if you try to use allocated memory after you've called free then your program will go horribly wrong.
+

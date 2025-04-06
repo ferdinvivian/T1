@@ -1,0 +1,104 @@
+1
+00:00:02,830 --> 00:00:09,490
+Another common problem occurs when you try to use memory that's already been freed here for example
+
+2
+00:00:10,150 --> 00:00:13,890
+I allocate 100 bytes for my child pointer B.
+
+3
+00:00:14,010 --> 00:00:20,590
+I then assign B to C and then later on I free the.
+
+4
+00:00:20,900 --> 00:00:24,010
+And then I decided to use my char pointer.
+
+5
+00:00:24,060 --> 00:00:28,430
+See I copy the string Hello into the memory to which it points.
+
+6
+00:00:28,520 --> 00:00:33,700
+But that's a mistake because that memory is no longer allocated.
+
+7
+00:00:33,710 --> 00:00:39,420
+I fried it when I called free with the B pointer.
+
+8
+00:00:39,750 --> 00:00:46,120
+So what happens when I run my code once again that's unpredictable.
+
+9
+00:00:46,190 --> 00:00:51,740
+It may cause different problems with different compilers and it might also depend on what else you've
+
+10
+00:00:51,740 --> 00:00:55,070
+done in your program that might have some other side effect.
+
+11
+00:00:55,070 --> 00:01:02,780
+All I can say for sure is that trying to use memory that's being freed is not at all a good thing to
+
+12
+00:01:02,780 --> 00:01:02,990
+do.
+
+13
+00:01:02,990 --> 00:01:08,350
+Let's let's try this out let's try first to see what Visual Studio does.
+
+14
+00:01:11,060 --> 00:01:12,290
+OK well this is what it does.
+
+15
+00:01:12,290 --> 00:01:13,420
+It keeps on printing.
+
+16
+00:01:13,430 --> 00:01:15,750
+C is c.
+
+17
+00:01:15,920 --> 00:01:19,120
+Time after time after time.
+
+18
+00:01:19,280 --> 00:01:22,000
+Now I've no idea why it does that.
+
+19
+00:01:22,010 --> 00:01:25,290
+Frankly your guess is as good as mine.
+
+20
+00:01:25,650 --> 00:01:28,690
+Well let's see what happens in code light.
+
+21
+00:01:29,090 --> 00:01:37,710
+So here I am using code like with a new C compiler GCC and Romanes Well at first sight looks fine.
+
+22
+00:01:37,750 --> 00:01:44,240
+Ah but now I can see there is a problem.
+
+23
+00:01:44,460 --> 00:01:48,930
+So in those two compilers I get two different problems.
+
+24
+00:01:48,930 --> 00:01:58,650
+Clearly neither is good so the problem that was hidden in my code.
+
+25
+00:01:58,790 --> 00:02:08,520
+The reuse of memory that is freed causes unpredictable errors depending on which compiler I am using.
+
+26
+00:02:08,540 --> 00:02:11,740
+Either way this is not a good thing.
+

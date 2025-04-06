@@ -1,0 +1,68 @@
+1
+00:00:01,050 --> 00:00:04,670
+INRI This is how data alignment works.
+
+2
+00:00:04,800 --> 00:00:12,720
+Data Types of a certain size are aligned on boundaries of size for byte into is aligned at as it starts
+
+3
+00:00:12,720 --> 00:00:20,210
+in memory on a full byte boundary and 8 byte double starts at an 8 byte boundary.
+
+4
+00:00:20,310 --> 00:00:27,540
+If a single four byte and immediately preceding and 8 byte double as it does in my struct for extra
+
+5
+00:00:27,540 --> 00:00:36,510
+bytes I did after the end to ensure that the 8 by double starts on an 8 byte boundary that is at a multiple
+
+6
+00:00:36,510 --> 00:00:45,080
+of 8 bytes from the start of the struct with boundaries at 8 16 24 bytes and so on.
+
+7
+00:00:45,390 --> 00:00:53,390
+But when 2 4 byte insecure one after the other the and I could not Charile 8 byte boundary.
+
+8
+00:00:53,670 --> 00:01:02,340
+So the double is aligned with that boundary and no extra padding is needed and really important lesson
+
+9
+00:01:02,370 --> 00:01:10,230
+you need to learn from this is that the size of data types cannot be a feud with different compilers
+
+10
+00:01:10,290 --> 00:01:12,210
+on different architectures.
+
+11
+00:01:12,480 --> 00:01:17,230
+Even simple data types might take different amounts of memory.
+
+12
+00:01:17,430 --> 00:01:25,710
+So if you allocate a specific number of bytes when you write your code on one computer the program may
+
+13
+00:01:25,710 --> 00:01:35,600
+not work correctly when it's deployed on some other computer or some other device or microcontroller.
+
+14
+00:01:35,770 --> 00:01:45,850
+And if you use complex data types such as struts the situation becomes even more error prone the way
+
+15
+00:01:45,850 --> 00:01:54,080
+struts are stored in memory is not predictable across different machine architectures on its iPhone
+
+16
+00:01:54,180 --> 00:02:04,300
+or even making an apparently trivial change to a struct by reordering its Philo's may change the amount
+
+17
+00:02:04,300 --> 00:02:06,100
+of memory it needs.
+

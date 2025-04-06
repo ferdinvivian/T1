@@ -1,0 +1,364 @@
+1
+00:00:01,360 --> 00:00:03,440
+Now let's find out what's going on.
+
+2
+00:00:03,480 --> 00:00:09,240
+When I reorder the fields of a struct in the last lesson I showed that when I declare a struct with
+
+3
+00:00:09,240 --> 00:00:16,710
+these two integer fields next to one another the size of the struct is 24 that's equal to the total
+
+4
+00:00:16,710 --> 00:00:21,290
+number of bytes required by each of the four data types.
+
+5
+00:00:22,110 --> 00:00:27,960
+When I declare them in a different order like this.
+
+6
+00:00:28,200 --> 00:00:32,370
+So now the inputs are separated by the double.
+
+7
+00:00:32,670 --> 00:00:36,440
+No the size of the struct is 32.
+
+8
+00:00:36,460 --> 00:00:38,500
+So what's going on.
+
+9
+00:00:38,620 --> 00:00:43,960
+The answer is that the data types are being aligned in memory.
+
+10
+00:00:44,940 --> 00:00:48,900
+At least this is what happens on desktop computers such as.
+
+11
+00:00:49,080 --> 00:00:51,020
+Such as the PC that I'm using here.
+
+12
+00:00:51,120 --> 00:00:58,570
+But it may be quite different on other architectures such as microcontrollers to understand data alignment.
+
+13
+00:00:58,570 --> 00:01:05,380
+Imagine that I'm storing my struct in the matrix of cells like in a spreadsheet.
+
+14
+00:01:05,380 --> 00:01:06,630
+Now here's my point.
+
+15
+00:01:06,730 --> 00:01:14,520
+A It takes up full bytes of 4 cells in my spreadsheet.
+
+16
+00:01:14,730 --> 00:01:16,800
+I double B comes next.
+
+17
+00:01:16,870 --> 00:01:26,940
+That takes 8 bytes another c another 4 bytes and then the long long int d.
+
+18
+00:01:27,000 --> 00:01:33,980
+And that also takes 8 bytes these data fields arranged in memory.
+
+19
+00:01:33,980 --> 00:01:41,450
+Much as I've arranged them here in the spreadsheet they form a nice neat regular matrix.
+
+20
+00:01:41,450 --> 00:01:47,630
+Now it's not exactly the way that memory is arranged in your computer but it might be a useful way to
+
+21
+00:01:47,630 --> 00:01:57,510
+imagine that the fields of a struct are aligned so that they all start at a predefined boundary and
+
+22
+00:01:57,510 --> 00:02:05,430
+to visualize that in a spreadsheet I can start counting along the cells in my matrix of cells so each
+
+23
+00:02:06,360 --> 00:02:14,760
+8 byte data type needs to start at some multiple of 8 bytes in memory from the start of the matrix.
+
+24
+00:02:15,270 --> 00:02:28,680
+So I count the cells all the bytes used by a 1 to 3 4 but my double B constant starts here in the fifth
+
+25
+00:02:28,680 --> 00:02:36,780
+cell because that's on a 4 byte boundary it's where the full byte int A ends.
+
+26
+00:02:36,780 --> 00:02:40,890
+So I carry on counting along the four empty cells or unused bytes.
+
+27
+00:02:40,900 --> 00:02:51,030
+That's five six seven eight and now I've arrived at an 8 byte boundary.
+
+28
+00:02:51,030 --> 00:02:55,920
+Now the empty cells here on the right aren't used in fact but they are important because they help to
+
+29
+00:02:55,920 --> 00:03:02,550
+pad out the gap between the full byte int and 8 byte double and that's how I ensure that the double
+
+30
+00:03:02,550 --> 00:03:05,260
+starts on this 8 byte boundary.
+
+31
+00:03:07,180 --> 00:03:08,820
+So that's where it starts.
+
+32
+00:03:09,080 --> 00:03:16,490
+Now since I've used the clock function when allocating memory these empty cells the ones shown on the
+
+33
+00:03:16,490 --> 00:03:24,840
+right of the A and C it's what they've been initialized with Nos.
+
+34
+00:03:24,940 --> 00:03:30,520
+They don't have to be initialized that way but it's a good idea to do so and it makes debugging easier
+
+35
+00:03:30,580 --> 00:03:33,520
+because at least their values are predictable.
+
+36
+00:03:33,520 --> 00:03:44,070
+Think of this struct as occupying a matrix of 4 by 8 fulfills 8 bytes wide to accommodate the largest
+
+37
+00:03:44,160 --> 00:03:45,080
+data type.
+
+38
+00:03:45,090 --> 00:03:53,850
+That's the double and the long long int plus some padding unused bytes after the smaller int fields.
+
+39
+00:03:53,850 --> 00:04:00,780
+Hence my struct takes up four multiplied by 8.
+
+40
+00:04:01,080 --> 00:04:03,630
+That's 32 bytes.
+
+41
+00:04:04,020 --> 00:04:11,950
+But when I rearrange the field order by putting the two int fields one after the other so that's
+
+42
+00:04:14,890 --> 00:04:15,550
+like this
+
+43
+00:04:19,480 --> 00:04:26,270
+changes the structure of my that the layout of my structure rather to something like this.
+
+44
+00:04:28,430 --> 00:04:34,680
+So the C-compiler cannot optimize the structure in memory.
+
+45
+00:04:34,880 --> 00:04:42,020
+Instead of putting out the first field a with extra bytes it just puts the next data field which is
+
+46
+00:04:42,020 --> 00:04:44,180
+now another INT with the full byte.
+
+47
+00:04:44,180 --> 00:04:46,560
+And that's the C int.
+
+48
+00:04:46,640 --> 00:04:48,400
+It puts it alongside a.
+
+49
+00:04:48,450 --> 00:04:52,590
+And that also forms now a nice neat Matrix.
+
+50
+00:04:53,980 --> 00:05:01,670
+But this time no extra bytes needed to align the 8 byte data fields at 8 byte boundaries.
+
+51
+00:05:01,900 --> 00:05:09,120
+So the Matrix now takes eight fuel cells in my spreadsheet or eight fewer bytes in memory.
+
+52
+00:05:09,580 --> 00:05:14,900
+My spreadsheet now has three rows and columns three times eight.
+
+53
+00:05:14,910 --> 00:05:16,560
+A lot ECOs 24.
+
+54
+00:05:16,900 --> 00:05:22,500
+And so now my struct takes up 24 bytes in memory.
+
+55
+00:05:22,630 --> 00:05:29,110
+But let's go back to this version of my struct where the interviews are not adjacent to one another
+
+56
+00:05:30,440 --> 00:05:40,430
+so that's shown here in the spreadsheet where I've got the in a divided from C by the double B.
+
+57
+00:05:40,730 --> 00:05:44,680
+And then I've shown these nodes alongside.
+
+58
+00:05:44,960 --> 00:05:49,580
+Let me go back into my code to put the code back into that state.
+
+59
+00:05:50,240 --> 00:05:57,400
+So once again I've got the it's two ints separated by this double.
+
+60
+00:05:57,680 --> 00:06:00,800
+So let's see what happens when I run this
+
+61
+00:06:03,920 --> 00:06:10,530
+as the output of my program.
+
+62
+00:06:10,710 --> 00:06:16,070
+I've written this code to display the fields of the struct at index 0.
+
+63
+00:06:16,140 --> 00:06:25,980
+The first element and index 3 last element in my array this fall displays data stored at full byte offsets.
+
+64
+00:06:25,980 --> 00:06:31,800
+That's four bytes because that's the size of an int from the start of the address containing the struct
+
+65
+00:06:31,890 --> 00:06:38,130
+at index 3 the first four bytes contains the int variable a.
+
+66
+00:06:38,250 --> 00:06:39,540
+And if I look at the output
+
+67
+00:06:42,220 --> 00:06:51,860
+you can see that the value 3 the next 4 bytes is 0 that is it contains the nose that we use to initialize
+
+68
+00:06:51,860 --> 00:06:52,370
+the memory.
+
+69
+00:06:52,400 --> 00:06:59,960
+When I called Carlock to allocate the memory initially the memory contain Knowles is the painting.
+
+70
+00:07:00,260 --> 00:07:05,570
+These are the unused bytes between the end of the end and the start of the double and they are there
+
+71
+00:07:05,570 --> 00:07:08,940
+in order to line the sort of the the double tonight by boundary.
+
+72
+00:07:08,930 --> 00:07:15,990
+Remember we saw that represented in this way in the spreadsheet so this structure contains a mix of
+
+73
+00:07:15,990 --> 00:07:25,620
+data for the fields and unused bytes which here is just like that matrix in my spreadsheet.
+
+74
+00:07:25,620 --> 00:07:27,760
+Then we come to field B which is a double.
+
+75
+00:07:27,840 --> 00:07:29,660
+Stored over 8 bytes.
+
+76
+00:07:29,750 --> 00:07:31,660
+Don't worry what these two numbers are.
+
+77
+00:07:32,010 --> 00:07:38,160
+I'm displaying a decimal representation divided up into two four byte chunks of the floating point data
+
+78
+00:07:38,490 --> 00:07:40,170
+which occupies 8 bytes.
+
+79
+00:07:40,170 --> 00:07:42,860
+So it's not good to make much sense.
+
+80
+00:07:43,050 --> 00:07:44,970
+The actual numbers are not important.
+
+81
+00:07:44,970 --> 00:07:51,510
+What's important is to note that the 8 byte double fills up to adjacent four by chunks of memory so
+
+82
+00:07:51,510 --> 00:07:54,690
+no additional bytes were needed to align it.
+
+83
+00:07:54,690 --> 00:08:03,010
+Then there's another INT see its value is 60 days i.e. times 20 which I set in my code but that takes
+
+84
+00:08:03,010 --> 00:08:04,230
+up only 4 bytes.
+
+85
+00:08:04,270 --> 00:08:09,690
+So once again the full bytes have been added onto the end of it.
+
+86
+00:08:09,710 --> 00:08:16,400
+This is the chunk of memory that contains the nose that were added by clock and finally there's the
+
+87
+00:08:16,430 --> 00:08:20,480
+DeFeo that's another 8 bytes to represent a long long int.
+
+88
+00:08:20,570 --> 00:08:26,810
+Again the actual numbers shown here are not useful or informative as I'm showing two four by chunks
+
+89
+00:08:27,050 --> 00:08:31,560
+of an actual 8 byte number but that's not important for our purposes.
+
+90
+00:08:31,760 --> 00:08:39,320
+What's important is to see that once again no extra bytes have been added because the full 8 bytes used
+
+91
+00:08:39,430 --> 00:08:43,890
+and no padding is needed to line this data field.
+

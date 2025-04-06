@@ -1,0 +1,240 @@
+1
+00:00:02,110 --> 00:00:10,820
+Let's now look at how pointers and addresses work and why array's especial in this program I declare
+
+2
+00:00:10,860 --> 00:00:15,260
+to string variables Esti all one under TR two.
+
+3
+00:00:15,660 --> 00:00:20,850
+You can create string variables using either syntax but you need to understand that these two variables
+
+4
+00:00:21,150 --> 00:00:24,810
+are by no means the same as one another.
+
+5
+00:00:24,950 --> 00:00:34,780
+The first SDL one declared with a pair of square brackets is an array second SDR two declared using
+
+6
+00:00:34,780 --> 00:00:42,420
+the store operator is a pointer as we know an array and an address or equivalent.
+
+7
+00:00:42,760 --> 00:00:49,550
+So Esti one is the address at which the array of characters in the string hello is stored.
+
+8
+00:00:50,110 --> 00:01:00,230
+But Esti are two is a pointer whose value is not the string goodbye but the address of that string.
+
+9
+00:01:00,730 --> 00:01:08,110
+So here are two points to the address at which the characters goodbye are stored.
+
+10
+00:01:09,040 --> 00:01:13,010
+This I hope should be clear when I run the program let's do that now.
+
+11
+00:01:13,480 --> 00:01:15,920
+So here you can see the results.
+
+12
+00:01:16,000 --> 00:01:22,240
+Now as you can see when displayed as an integer value the address of all one returned by the address
+
+13
+00:01:22,240 --> 00:01:29,430
+of operator is the same as the value of the variable as TR 1 itself.
+
+14
+00:01:29,440 --> 00:01:37,370
+That's because SDL one is an array and an array is in effect an address but the address of Vestiaire
+
+15
+00:01:37,450 --> 00:01:45,920
+to return by the address of operator is different from the value of the Esti are two variable here the
+
+16
+00:01:45,920 --> 00:01:50,610
+address gives us the location in memory of the pointer variable as too.
+
+17
+00:01:50,630 --> 00:01:58,390
+But the value of that variable is the address of the array of chars to which it points.
+
+18
+00:01:58,430 --> 00:02:05,600
+Let me repeat that because it's important an array variable such as Esti or one is an address.
+
+19
+00:02:05,600 --> 00:02:15,590
+In fact it has its own address an array variable is the address of an array but a pointer variable is
+
+20
+00:02:15,590 --> 00:02:21,650
+not an array it's a variable that stores the address of an array.
+
+21
+00:02:21,660 --> 00:02:25,860
+The pointer variable itself is stored at one address.
+
+22
+00:02:25,970 --> 00:02:31,480
+The array is stored at a completely different address.
+
+23
+00:02:31,490 --> 00:02:37,130
+Think back to the analogy I gave in an earlier lesson where I need to go to a specific warehouse on
+
+24
+00:02:37,130 --> 00:02:42,770
+a road containing many warehouses on my index card you remember I had the address written down.
+
+25
+00:02:42,770 --> 00:02:47,700
+Warehouse 13 of the index card is like a point available.
+
+26
+00:02:47,720 --> 00:02:57,290
+It is not the location which in our example might be the address of an array but it stores a value that
+
+27
+00:02:57,380 --> 00:03:04,240
+is the address that lets me find that location not swat a pointer variable does.
+
+28
+00:03:04,330 --> 00:03:10,460
+Now as for the warehouse itself that is the physical building we can think of that as being like our
+
+29
+00:03:10,460 --> 00:03:11,750
+array variable.
+
+30
+00:03:11,750 --> 00:03:14,850
+Its not just a reference to the location.
+
+31
+00:03:15,170 --> 00:03:26,550
+It is the location go back to my code and be sure that you really understand that SDL one is the location
+
+32
+00:03:26,700 --> 00:03:28,760
+of the start of this array of characters.
+
+33
+00:03:28,830 --> 00:03:29,590
+Hello.
+
+34
+00:03:29,910 --> 00:03:36,450
+In computer memory the address of SDL one is the location where that string of chaws begins.
+
+35
+00:03:37,330 --> 00:03:44,830
+But the value of the pointer variable or two is a number that gives the location of the start of the
+
+36
+00:03:44,830 --> 00:03:46,330
+array of characters.
+
+37
+00:03:46,330 --> 00:03:47,190
+Good bye.
+
+38
+00:03:47,200 --> 00:03:55,690
+In computer memory the address of Vestiaire 2 is the location where the SDR two pointer variable is
+
+39
+00:03:55,690 --> 00:03:57,130
+stored.
+
+40
+00:03:57,130 --> 00:04:03,040
+And if we just want to get the data in the array the address of the pointer variable itself is of no
+
+41
+00:04:03,040 --> 00:04:04,620
+interest to us.
+
+42
+00:04:05,020 --> 00:04:08,310
+The address of pointer variables will however be of interest later on.
+
+43
+00:04:08,320 --> 00:04:16,950
+But for now I'm only interested in the address of the array to which this pointer points the value of
+
+44
+00:04:16,950 --> 00:04:20,330
+SDR too is the address of the array.
+
+45
+00:04:21,250 --> 00:04:23,890
+The address of the first character in the string.
+
+46
+00:04:23,930 --> 00:04:25,120
+Goodbye.
+
+47
+00:04:25,390 --> 00:04:33,000
+In other words the value of the pointer variable refers to all points to the address of the array.
+
+48
+00:04:36,490 --> 00:04:40,680
+If you still finding this confusing try playing around with this code.
+
+49
+00:04:41,020 --> 00:04:43,380
+For example let's try an experiment.
+
+50
+00:04:43,930 --> 00:04:50,280
+I set Esti to a point available to the address of SDR one let me do that now.
+
+51
+00:04:51,380 --> 00:05:02,740
+The simple assignment as TR to Eco's ampersand for address of all one.
+
+52
+00:05:03,200 --> 00:05:12,580
+Run my program so the value of the pointer as TR to is now the address of the array.
+
+53
+00:05:12,590 --> 00:05:13,360
+Hello.
+
+54
+00:05:13,850 --> 00:05:17,870
+So as TR two can be thought of as pointing to the string.
+
+55
+00:05:17,920 --> 00:05:21,540
+Hello let's close down.
+
+56
+00:05:21,630 --> 00:05:29,290
+But instead of assigning the address the string array as TR 1 let's try assigning the array itself.
+
+57
+00:05:29,300 --> 00:05:33,970
+So all I have to do in order to do that is get rid of the address of operator.
+
+58
+00:05:34,010 --> 00:05:36,010
+I make this a simple assignment.
+
+59
+00:05:36,080 --> 00:05:43,080
+Let's see what happens now now well we get exactly the same results as before.
+
+60
+00:05:43,100 --> 00:05:48,800
+That's because as I've said before an array is an address.
+
