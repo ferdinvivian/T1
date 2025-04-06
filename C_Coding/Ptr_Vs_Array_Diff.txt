@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <string.h>
+
+char arr[20];
+char a;
+char *ptr = &a;
+
+int main()
+{
+    sprintf(arr,"Ferdin \n\r");
+    printf("arr: %p %s",arr, arr);
+    
+    sprintf(ptr,"Vivian \n\r");
+    printf("ptr: %p %p %s",ptr, &ptr, ptr);
+    
+    printf("a: %c %p %c %s ", a, &a, *(&a+1), &a);
+    return 0;
+}
+
+/*
+Output:
+arr: 0x5e5077e81030 Ferdin 
+ptr: 0x5e5077e81044 0x5e5077e81010 Vivian 
+a: V 0x5e5077e81044 i Vivian 
+*/
+
+/***************************************************************/
+
+#include <stdio.h>
+#include <string.h>
+
+struct structure
+{
+  char a;
+  char b;
+}chk;
+
+char arr[20];
+char *ptr = &chk.a;
+
+int main()
+{
+    sprintf(arr,"Ferdin \n\r");
+    printf("arr: %p %s",arr, arr);
+    
+    sprintf(ptr,"Vivian \n\r");
+    printf("ptr: %p %p %s \n\r",ptr, &ptr, ptr);
+  
+    printf("chk.b: %c %p %c %s", chk.a, &chk.a, *(&chk.a+1), &chk.a);
+    printf("chk.a: %c %p %s", chk.b, &chk.b, &chk.b);
+    return 0;
+}
+
+/*
+Output:
+arr: 0x5ffef720b040 Ferdin 
+ptr: 0x5ffef720b030 0x5ffef720b010 Vivian 
+ 
+chk.b: V 0x5ffef720b030 i Vivian 
+chk.a: i 0x5ffef720b031 ivian 
+*/
+
+/************************************************************************/
