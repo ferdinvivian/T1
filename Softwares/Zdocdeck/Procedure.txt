@@ -1,0 +1,72 @@
+Works well in WSL, uBUNTU 24.04.1 LTS
+There are some minor bugs, but overall performance is good.
+
+
+Commands to follow, before Installation.
+ sudo apt-get update
+ sudo apt update
+ sudo apt-get upgrade
+ sudo apt upgrade
+ sudo apt-get install dia
+ sudo apt install dia
+ sudo apt --fix-broken install dia fop xsltproc asciidoc docbook-xsl
+ sudo apt --fix-broken install dia
+ sudo apt --fix-broken install
+ sudo apt  install dia fop xsltproc asciidoc docbook-xsl
+
+
+Commands to Install. 
+ sudo dpkg -i zdoc_1.11.0_all.deb
+ sudo apt install ./zdoc_1.11.0_all.deb
+ sudo apt --fix-broken install
+ sudo apt install ./zdoc_1.11.0_all.deb
+ 
+ sudo dpkg -i zdeck_0.2.0_all.deb
+ sudo apt install ./zdeck_0.2.0_all.deb
+ sudo apt --fix-broken install
+ sudo apt install ./zdeck_0.2.0_all.deb
+
+
+After Installation:
+
+mkdir zdeck
+cd zdeck/
+zdeck-init
+ls
+cd lightning/
+make 
+firefox slides.html 
+
+mkdir zdoc
+cd zdoc/
+zdoc --init
+ls
+make 
+
+/***************************** grep -int "string" *******************************************/
+1)
+cd /usr/share/zdoc,
+goto common.xsl,
+goto line 86 <xsl:text>Zilogic Systems</xsl:text>
+edit the required text.
+
+2) add your needed image as logo here
+usr\share\zdoc
+rename the image, it must by png format
+
+
+3) usr\share\zdoc,
+   goto titlepage.xsl,
+   goto line 31 line in parameter border_bottom_color, only title page
+   
+4) usr\share\zdoc,
+   goto common.xsl,
+   goto line 130 line in parameter header line text color
+   goto line 142 line in parameter footer line text color
+   
+5) usr\share\zdoc,
+   goto titlepage.xsl,
+   goto line 24,33,41 line in parameter font family to cursive
+   in same line added a parameter called color to change font color
+   title page font, color, size
+/************************************************************************/
