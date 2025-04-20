@@ -1,0 +1,104 @@
+Summary of Commonly used 7 GIT Commands
+
+git branch -a
+git checkout -b new_branch_name
+git status
+git add .
+git commit -m "commit message"
+git log
+git push -f origin branch_name
+
+/*************************************************************************************************************/
+
+To check all branches in your Git repository:
+
+Command:
+git branch -a
+
+The above command will show you:
+- Local branches
+- Remote branches
+
+/*************************************************************************************************************/
+
+You can use the following commands to Create and switch to a new branch
+
+Command:
+git checkout -b new_branch_name
+
+/*************************************************************************************************************/
+
+To check the changes in your Git repository, you can use:
+
+command:
+git status
+
+The above command will show you:
+- Untracked files
+- Modified files
+- Staged files
+- Files to be committed
+
+/*************************************************************************************************************/
+
+The git add command is used to stage changes in your repository.
+
+command: Stage a specific file
+git add filename
+
+command: Stage all changes
+git add .
+
+/*************************************************************************************************************/
+
+The git commit command is used to record changes to the repository
+
+command:
+git commit -m "commit message"
+
+command:
+git commit --amend
+
+The Amend command allows you to modify the most recent commit.
+
+/*************************************************************************************************************/
+
+command:
+git log
+
+The above command is useful for:
+- Reviewing commit history
+- Finding specific commits
+- Understanding changes made to the codebase
+
+/*************************************************************************************************************/
+
+You can use the following commands to force push changes to the remote repository.
+The -f flag is a shorthand for --force, 
+
+command:
+git push -f origin branch_name
+
+/*************************************************************************************************************/
+
+To reset back to the commit and push the changes to the server, you can use the following commands:
+
+Step 1: Reset to the desired commit
+Command:
+git reset --hard 4d7e22d1c65a2955466022791624a42ee5a329ba
+
+Step 2: Force push to the server
+Command:
+git push origin main --force
+
+/*************************************************************************************************************/
+
+To pull changes from a remote server, use:
+
+command:
+git pull origin branch_name
+
+The above command will:
+Automatically merges the changes into your current local branch
+
+/*************************************************************************************************************/
