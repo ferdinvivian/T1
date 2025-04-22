@@ -1,0 +1,59 @@
+note: C:\Users\Lenovo\Documents\GIT_Ferdin\T1\Videos\Data Structures
+/****************************************************************************/
+
+1) Install Git LFS using PowerShell, command:
+
+	winget install --id Git.GitLFS -e
+
+/******************************************************************************/
+
+2)Navigate your PowerShell to your GIT Repository:
+
+	cd "C:\Users\Lenovo\Documents\GIT_Ferdin\T1"
+
+/******************************************************************************/
+
+3)Track all files in the Data Structures folder:
+
+	git lfs track "Videos/Data Structures/**"
+
+/******************************************************************************/
+
+4) Stage the .gitattributes file, Git LFS automatically updates this file to track large files:
+
+	git add .gitattributes
+
+/******************************************************************************/
+
+5) git add command:
+
+	git add "Videos/Data Structures"
+
+/******************************************************************************/
+
+6) git commit command:
+
+	git commit -m "Added Data Structures folder with Git LFS"
+
+/******************************************************************************/
+
+6.1) git amend commit command:
+
+	git commit --amend
+
+ctrl+x 
+:wq
+
+/******************************************************************************/
+
+7) check the status, if the commit (6)is successful, if not do amend(6.1):
+
+	git status
+
+/******************************************************************************/
+
+8) Force push is must, if amend commit is done:
+
+	git push -f origin main
+
+/******************************************************************************/
