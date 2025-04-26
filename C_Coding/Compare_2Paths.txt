@@ -1,0 +1,358 @@
+#include <dirent.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdint.h>
+#include <sys/stat.h>
+
+#define MAX_PATH_LENGTH 102400
+#define BUFFER_SIZE 4096 // Increased buffer size for reading lines
+
+
+//D:\STM32_2022\Workspace_1	D:\STM32_2022\Workspace_2
+const char *dir1 = "D:\\STM32_2022\\Workspace_1";
+const char *dir2 = "D:\\STM32_2022\\Workspace_2";
+
+// Structure to store comparison results
+typedef struct {
+    char filename[MAX_PATH_LENGTH];
+    char fullpath1[MAX_PATH_LENGTH];
+    char fullpath2[MAX_PATH_LENGTH];
+    char status[20]; // "Missing in dir1", "Missing in dir2", "Same", "Different"
+} ComparisonResult;
+
+void Ferdin_function_Display_Different_string(char * str1, char *str2);
+int compareFilesAndShowDiff(const char *file1, const char *file2, char *str1path, char *str2path);
+void traverseAndCompareOptimized(const char *dir1, const char *dir2, ComparisonResult **results, int *count);
+int compareResults(const void *a, const void *b);
+
+int main() {
+    ComparisonResult *results = NULL;
+    int count = 0;
+    int missing_count = 0;
+    int different_count = 0;
+    int same_count = 0;
+
+    traverseAndCompareOptimized(dir1, dir2, &results, &count);
+    // Sort the results
+    qsort(results, count, sizeof(ComparisonResult), compareResults);
+	
+    // Print the results side by side with full paths and separators
+    printf("\n\n%-35s | %-15s | %-50s | %-50s\n", "File", "Status", "Path in Dir1", "Path in Dir2");
+    printf("----------------------------|----------------|--------------------------------------------|-------------------------------------------\n\n");
+
+    // Print missing files
+    printf("MISSING FILES:\n");
+    for (int i = 0; i < count; i++) {
+        if (strcmp(results[i].status, "Missing in dir1") == 0 || strcmp(results[i].status, "Missing in dir2") == 0) {
+            missing_count++;
+            printf("%d) %-35s | %-15s \n%s \t| %-50s\n\n", missing_count, results[i].filename, results[i].status,
+                   results[i].fullpath1, results[i].fullpath2);
+        }
+    }
+	printf("--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t");
+	printf("--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t");
+	printf("--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\n");
+    printf("Total Missing Files: %d\n", missing_count);
+    printf("--------/\\---------/\\--------/\\---------/\\--------/\\---------/\\--------/\\---------/\\--------/\\---------/\\--------/\\---------\n\n");
+
+    // Print different files and their differing lines
+    printf("\nDIFFERENT FILES:\n");
+    for (int i = 0; i < count; i++) {
+        if (strcmp(results[i].status, "Different") == 0) {
+            different_count++;
+            //printf("%d) %-35s | \t %-15s \n%s | %-50s\n", different_count, results[i].filename, results[i].status,	results[i].fullpath1, results[i].fullpath2);
+			printf("\n%d)", different_count);
+            compareFilesAndShowDiff(results[i].fullpath1, results[i].fullpath2, results[i].fullpath1, results[i].fullpath2);
+            printf("\n");
+        }
+    }
+	printf("\n--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t------\t");
+	printf("--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t");
+	printf("--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\n");
+    printf("Total Different Files: %d\n", different_count);
+    printf("--------/\\---------/\\--------/\\---------/\\--------/\\---------/\\--------/\\---------/\\--------/\\---------/\\--------/\\---------\n\n");
+
+
+    // Print same files
+    printf("\nSAME FILES:\n");
+    for (int i = 0; i < count; i++) 
+	{
+        if (strcmp(results[i].status, "Same") == 0) 
+		{
+            same_count++;
+            printf("%d) %-35s | %-15s \n%s |\t %s\n\n", same_count, results[i].filename, results[i].status, results[i].fullpath1, results[i].fullpath2);
+        }
+    }
+	printf("--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t");
+	printf("--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t");
+	printf("--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\n");
+    printf("Total Same Files: %d\n", same_count);
+    printf("--------/\\---------/\\--------/\\---------/\\--------/\\---------/\\--------/\\---------/\\--------/\\---------/\\--------/\\---------\n\n");
+	
+    free(results);
+    return 0;
+}
+
+// Function to compare two files line by line and show differing lines
+int compareFilesAndShowDiff(const char *file1, const char *file2, char *str1path, char *str2path) {
+    FILE *fp1 = fopen(file1, "r");
+    FILE *fp2 = fopen(file2, "r");
+
+    if (!fp1 || !fp2) {
+        perror("Error opening files for line-by-line comparison");
+        if (fp1) fclose(fp1);
+        if (fp2) fclose(fp2);
+        return 0; // Files not accessible
+    }
+
+    char *line1 = NULL;
+    char *line2 = NULL;
+    size_t len1 = 0;
+    size_t len2 = 0;
+    ssize_t read1, read2;
+    int line_num = 1;
+    int differences_found = 0;
+
+	uint32_t diff_count_inside_same_file = 0;
+    printf(" Differences->	%s	|	%s ", str1path, str2path);
+    while ((read1 = getline(&line1, &len1, fp1)) != -1 && (read2 = getline(&line2, &len2, fp2)) != -1) 
+	{
+        if (strcmp(line1, line2) != 0) 
+		{
+			diff_count_inside_same_file+=1;
+			printf("\nLine Number %d : \t Count:%d, ", line_num, diff_count_inside_same_file);
+			Ferdin_function_Display_Different_string(line1, line2);
+            differences_found = 1;
+        }
+        line_num++;
+    }
+
+    // Handle cases where one file is longer than the other
+    while ((read1 = getline(&line1, &len1, fp1)) != -1) {
+        printf("    Line %d: Only in %s: %s", line_num++, file1, line1);
+        differences_found = 1;
+    }
+
+    while ((read2 = getline(&line2, &len2, fp2)) != -1) {
+        printf("    Line %d: Only in %s: %s", line_num++, file2, line2);
+        differences_found = 1;
+    }
+
+    if (!differences_found) {
+        printf("    (No line differences found after initial binary difference)\n");
+    }
+
+    if (line1) free(line1);
+    if (line2) free(line2);
+    fclose(fp1);
+    fclose(fp2);
+    return 1; // Comparison done
+}
+
+
+// Function to compare two files byte by byte
+int compareFilesByteByByte(const char *file1, const char *file2) {
+    FILE *fp1 = fopen(file1, "rb");
+    FILE *fp2 = fopen(file2, "rb");
+
+    if (!fp1 || !fp2) {
+        if (fp1) fclose(fp1);
+        if (fp2) fclose(fp2);
+        return 0; // Files not accessible
+    }
+
+    char buffer1[1024];
+    char buffer2[1024];
+    int same = 1;
+    size_t bytesRead1, bytesRead2;
+
+    while ((bytesRead1 = fread(buffer1, 1, sizeof(buffer1), fp1)) > 0 &&
+           (bytesRead2 = fread(buffer2, 1, sizeof(buffer2), fp2)) > 0) {
+        if (bytesRead1 != bytesRead2 || memcmp(buffer1, buffer2, bytesRead1) != 0) {
+            same = 0;
+            break;
+        }
+    }
+
+    if (same) {
+        // Check for different file sizes
+        if (fread(buffer1, 1, 1, fp1) || fread(buffer2, 1, 1, fp2)) {
+            same = 0;
+        }
+    }
+
+    fclose(fp1);
+    fclose(fp2);
+    return same;
+}
+
+// Function to traverse directory and compare files (Optimized - now uses compareFilesAndShowDiff)
+void traverseAndCompareOptimized(const char *dir1, const char *dir2, ComparisonResult **results, int *count) {
+    DIR *dp1 = opendir(dir1);
+    DIR *dp2 = opendir(dir2);
+
+    if (!dp1 || !dp2) {
+        if (dp1) closedir(dp1);
+        if (dp2) closedir(dp2);
+        printf("Error opening directories\n");
+        return;
+    }
+
+    struct dirent *entry1;
+    while ((entry1 = readdir(dp1)) != NULL) {
+        if (strcmp(entry1->d_name, ".") == 0 || strcmp(entry1->d_name, "..") == 0) continue;
+
+        char path1[MAX_PATH_LENGTH];
+        snprintf(path1, MAX_PATH_LENGTH, "%s/%s", dir1, entry1->d_name);
+
+        struct stat statbuf1;
+        if (stat(path1, &statbuf1) == 0) {
+            char path2[MAX_PATH_LENGTH];
+            snprintf(path2, MAX_PATH_LENGTH, "%s/%s", dir2, entry1->d_name);
+
+            struct stat statbuf2;
+            int exists_in_dir2 = (stat(path2, &statbuf2) == 0);
+            int is_reg_in_dir1 = S_ISREG(statbuf1.st_mode);
+            int is_reg_in_dir2 = exists_in_dir2 ? S_ISREG(statbuf2.st_mode) : 0;
+            int is_dir_in_dir1 = S_ISDIR(statbuf1.st_mode);
+            int is_dir_in_dir2 = exists_in_dir2 ? S_ISDIR(statbuf2.st_mode) : 0;
+
+            if (is_reg_in_dir1) {
+                ComparisonResult *temp = realloc(*results, (*count + 1) * sizeof(ComparisonResult));
+                if (temp == NULL) {
+                    perror("Memory allocation failed");
+                    closedir(dp1);
+                    closedir(dp2);
+                    free(*results);
+                    exit(EXIT_FAILURE);
+                }
+                *results = temp;
+                strcpy((*results)[*count].filename, entry1->d_name);
+                strcpy((*results)[*count].fullpath1, path1);
+
+                if (is_reg_in_dir2) {
+                    strcpy((*results)[*count].fullpath2, path2);
+                    if (compareFilesByteByByte(path1, path2)) {
+                        strcpy((*results)[*count].status, "Same");
+                    } else {
+                        strcpy((*results)[*count].status, "Different");
+                        // Call the line-by-line comparison to show differences
+                        //compareFilesAndShowDiff(path1, path2); // This displays at beginning
+                    }
+                } else {
+                    strcpy((*results)[*count].fullpath2, "N/A");
+                    strcpy((*results)[*count].status, "Missing in dir2");
+                }
+                (*count)++;
+            } else if (is_dir_in_dir1) {
+                if (is_dir_in_dir2) {
+                    traverseAndCompareOptimized(path1, path2, results, count);
+                } else {
+                    ComparisonResult *temp = realloc(*results, (*count + 1) * sizeof(ComparisonResult));
+                    if (temp == NULL) {
+                        perror("Memory allocation failed");
+                        closedir(dp1);
+                        closedir(dp2);
+                        free(*results);
+                        exit(EXIT_FAILURE);
+                    }
+                    *results = temp;
+                    strcpy((*results)[*count].filename, entry1->d_name);
+                    strcpy((*results)[*count].fullpath1, path1);
+                    strcpy((*results)[*count].fullpath2, "N/A");
+                    strcpy((*results)[*count].status, "Missing in dir2 (directory)");
+                    (*count)++;
+                }
+            }
+        }
+    }
+    closedir(dp1);
+
+    rewinddir(dp2);
+    struct dirent *entry2;
+    while ((entry2 = readdir(dp2)) != NULL) {
+        if (strcmp(entry2->d_name, ".") == 0 || strcmp(entry2->d_name, "..") == 0) continue;
+
+        char path1[MAX_PATH_LENGTH];
+        snprintf(path1, MAX_PATH_LENGTH, "%s/%s", dir1, entry2->d_name);
+        char path2_full[MAX_PATH_LENGTH];
+        snprintf(path2_full, MAX_PATH_LENGTH, "%s/%s", dir2, entry2->d_name);
+
+        struct stat statbuf1;
+        if (stat(path1, &statbuf1) != 0) {
+            struct stat statbuf2;
+            if (stat(path2_full, &statbuf2) == 0) {
+                int is_reg_in_dir2 = S_ISREG(statbuf2.st_mode);
+                int is_dir_in_dir2 = S_ISDIR(statbuf2.st_mode);
+                int found = 0;
+                for (int i = 0; i < *count; i++) {
+                    if (strcmp((*results)[i].filename, entry2->d_name) == 0) {
+                        found = 1;
+                        break;
+                    }
+                }
+                if (!found) {
+                    ComparisonResult *temp = realloc(*results, (*count + 1) * sizeof(ComparisonResult));
+                    if (temp == NULL) {
+                        perror("Memory allocation failed");
+                        closedir(dp2);
+                        free(*results);
+                        exit(EXIT_FAILURE);
+                    }
+                    *results = temp;
+                    strcpy((*results)[*count].filename, entry2->d_name);
+                    strcpy((*results)[*count].fullpath1, "N/A");
+                    strcpy((*results)[*count].fullpath2, path2_full);
+                    strcpy((*results)[*count].status, is_reg_in_dir2 ? "Missing in dir1" : "Missing in dir1 (directory)");
+                    (*count)++;
+                }
+            }
+        }
+    }
+    closedir(dp2);
+}
+
+// Comparison function for qsort to order the results
+int compareResults(const void *a, const void *b) {
+    const ComparisonResult *resA = (const ComparisonResult *)a;
+    const ComparisonResult *resB = (const ComparisonResult *)b;
+
+    int orderA, orderB;
+
+    if (strcmp(resA->status, "Missing in dir2") == 0) orderA = 0;
+    else if (strcmp(resA->status, "Missing in dir1") == 0) orderA = 1;
+    else if (strcmp(resA->status, "Different") == 0) orderA = 2;
+    else orderA = 3;
+
+    if (strcmp(resB->status, "Missing in dir2") == 0) orderB = 0;
+    else if (strcmp(resB->status, "Missing in dir1") == 0) orderB = 1;
+    else if (strcmp(resB->status, "Different") == 0) orderB = 2;
+    else orderB = 3;
+
+    if (orderA != orderB) {
+        return orderA - orderB;
+    } else {
+        return strcmp(resA->filename, resB->filename); // Sort alphabetically within the same status
+    }
+}
+
+void Ferdin_function_Display_Different_string(char * str1, char *str2)
+{
+	uint32_t i=0;
+
+	while(*(str1+i))	{
+			if(*(str1+i) != 10)
+				printf("%c",*(str1+i));
+			i++;
+		}
+		
+	printf("	||Vs||	");
+	i=0;
+	
+	while(*(str2+i))	{
+			if(*(str2+i) != 10)
+				printf("%c",*(str2+i));
+			i++;
+		}
+}
