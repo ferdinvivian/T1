@@ -1,0 +1,106 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <dirent.h>
+#include <sys/stat.h>
+
+const char *path = "C:\\Users\\Lenovo\\Desktop\\folder"; // Your folder path
+
+#define MAX_PATH_LENGTH        1024
+#define TEMP_FILE              "temp_replace.txt"
+
+#define SEARCH_STRING          "vivian"
+#define REPLACE_STRING         "ferdin"
+
+int modifiedFileCount = 0;  // Global counter for modified files
+int totalOccurrences = 0;  // Global counter for occurrences replaced
+
+// Function to replace occurrences of SEARCH_STRING in a file and track modified line numbers
+void replaceStringInFile(const char *filepath) {
+    FILE *fp = fopen(filepath, "r");
+    if (!fp) {
+        perror("Error opening file");
+        return;
+    }
+
+    FILE *tempFp = fopen(TEMP_FILE, "w");
+    if (!tempFp) {
+        perror("Error creating temp file");
+        fclose(fp);
+        return;
+    }
+
+    int modified = 0, lineNumber = 0, occurrencesInFile = 0;
+    char line[4096]; // Buffer for reading lines
+
+    while (fgets(line, sizeof(line), fp)) {
+        lineNumber++;
+        char *pos;
+        while ((pos = strstr(line, SEARCH_STRING)) != NULL) {
+            char buffer[4096];
+            size_t len_before = pos - line;
+            snprintf(buffer, sizeof(buffer), "%.*s%s%s", (int)len_before, line, REPLACE_STRING, pos + strlen(SEARCH_STRING));
+            strcpy(line, buffer);
+            modified = 1;
+            occurrencesInFile++;
+            printf("Modified line %d in file: %s\n", lineNumber, filepath);
+        }
+        fputs(line, tempFp);
+    }
+
+    fclose(fp);
+    fclose(tempFp);
+
+    if (modified) {
+        // Replace original file with modified content
+        remove(filepath);
+        rename(TEMP_FILE, filepath);
+        modifiedFileCount++; // Increment counter if changes were made
+        totalOccurrences += occurrencesInFile; // Update total occurrences
+        printf("Processed file: %s	\t", filepath);
+		printf("Occurrences replaced in file-> %d	\n\n", occurrencesInFile);
+        printf("--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t");
+        printf("--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t------\n\n");
+    }
+}
+
+// Function to recursively traverse directories and process files
+void traverseDirectories(const char *dirPath) {
+    DIR *dp = opendir(dirPath);
+    if (!dp) {
+        perror("Error opening directory");
+        return;
+    }
+
+    struct dirent *entry;
+    char path[MAX_PATH_LENGTH];
+
+    while ((entry = readdir(dp)) != NULL) {
+        if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
+            continue;
+
+        snprintf(path, sizeof(path), "%s/%s", dirPath, entry->d_name);
+        struct stat statbuf;
+
+        if (stat(path, &statbuf) == 0) {
+            if (S_ISDIR(statbuf.st_mode)) {
+                // Recursively process subdirectories
+                traverseDirectories(path);
+            } else {
+                // Process files
+                replaceStringInFile(path);
+            }
+        }
+    }
+
+    closedir(dp);
+}
+
+int main() 
+{
+    printf("\n");
+    traverseDirectories(path);
+    printf("Total modified files: %d\n", modifiedFileCount);
+    printf("Total occurrences replaced: %d\n\n", totalOccurrences);
+    return 0;
+}

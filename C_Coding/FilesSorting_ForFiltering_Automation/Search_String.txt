@@ -1,0 +1,107 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <dirent.h>
+#include <sys/stat.h>
+
+const char *path = "C:\\Users\\Lenovo\\Desktop\\folder"; // Your folder path
+
+#define MAX_PATH_LENGTH 			1024
+#define SEARCH_STRING 				"vivian"
+#define SEARCH_ALL_EXTENSION 		1
+
+// Function to check if a file has the specified extension
+#if	SEARCH_ALL_EXTENSION
+	#define FILE_EXTENSION ""  // Macro for file type
+	int hasFileExtension(const char *filename) 
+		{
+			return 1; // Allow all file types
+		}
+#else
+	#define FILE_EXTENSION ".txt"  // Macro for file type
+	int hasFileExtension(const char *filename) 
+		{
+			const char *dot = strrchr(filename, '.'); // Find the last occurrence of '.'
+			return (dot && strcmp(dot, FILE_EXTENSION) == 0); // Compare with macro FILE_EXTENSION
+		}
+#endif
+
+int totalMatches = 0;   // Global counter for total occurrences
+int totalFilesMatched = 0; // Global counter for total matched files
+
+
+
+// Function to search for SEARCH_STRING occurrences in a file
+void searchStringInFile(const char *filepath) {
+    FILE *fp = fopen(filepath, "r");
+    if (!fp) {
+        perror("Error opening file");
+        return;
+    }
+
+    char line[4096];
+    int lineNumber = 0;
+    int fileMatches = 0;
+
+    while (fgets(line, sizeof(line), fp)) {
+        lineNumber++;
+        char *pos = line;
+        while ((pos = strstr(pos, SEARCH_STRING)) != NULL) {
+            printf("Found \"%s\" in file: %s at line %d: %s", SEARCH_STRING, filepath, lineNumber, line);
+            pos += strlen(SEARCH_STRING); // Move forward to find more occurrences
+            fileMatches++;
+        }
+    }
+
+    fclose(fp);
+
+    // Print summary only if matches were found
+    if (fileMatches > 0) {
+        printf("\nProcessed file: %s (Total matches in file: %d)\n\n", filepath, fileMatches);
+        totalMatches += fileMatches; // Update global occurrence count
+        totalFilesMatched++; // Count files where matches occurred
+			printf("--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t");
+			printf("--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t------\n\n");
+    }
+}
+
+// Function to traverse directories and process files
+void traverseDirectories(const char *dirPath) {
+    DIR *dp = opendir(dirPath);
+    if (!dp) {
+        perror("Error opening directory");
+        return;
+    }
+
+    struct dirent *entry;
+    char path[MAX_PATH_LENGTH];
+
+    while ((entry = readdir(dp)) != NULL) {
+        if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
+            continue;
+
+        snprintf(path, sizeof(path), "%s/%s", dirPath, entry->d_name);
+        struct stat statbuf;
+
+        if (stat(path, &statbuf) == 0) {
+            if (S_ISDIR(statbuf.st_mode)) {
+                traverseDirectories(path); // Recursively process directories
+            } else if (hasFileExtension(entry->d_name)) {
+                searchStringInFile(path); // Process matching file types
+            }
+        }
+    }
+
+    closedir(dp);
+}
+
+int main() {
+    printf("\nSearching for \"%s\" in '%s' files under: %s\n\n", SEARCH_STRING, FILE_EXTENSION, path);
+	printf("--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t");
+	printf("--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t--------\t------\n\n");
+    
+    traverseDirectories(path);
+    printf("\nTotal files matched: %d\n", totalFilesMatched);
+    printf("Total occurrences of \"%s\": %d\n", SEARCH_STRING, totalMatches);
+    return 0;
+}
