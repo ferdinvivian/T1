@@ -30,6 +30,9 @@ note: C:\Users\Lenovo\Documents\GIT_Ferdin\T1\Videos\Data Structures
 	git add "Videos/Data Structures"
 
 /******************************************************************************/
+Note: After doing Step 4&5, check the status, git status.
+Both .gitattributes & Videos/Data Structures/Files will be staged in Green
+/******************************************************************************/
 
 6) git commit command:
 
