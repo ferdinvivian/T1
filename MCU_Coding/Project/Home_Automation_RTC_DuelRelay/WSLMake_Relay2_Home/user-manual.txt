@@ -1,0 +1,159 @@
+= Relay Home
+Zilogic Systems
+:Subtitle: Manual
+:Date:     July 2025
+:Revision: Ver 1
+
+== Ordering Information
+
+[options="header",frame="all",align="center", cols = "7,15,60a"]
+|======
+| S.no | Components  	| Comment
+| 1    | STM32F103C8T6 	| BluePill Board (150Rs)
+| 2    | DS3231	 	 	| RTC with EEPROM Module (100Rs)
+| 3    | SSD1306	 	| 0.96Inch OLED Display (150Rs)
+| 4    | Power Supply 	| 5V 1A (35Rs) or 5V 2A (80Rs)
+| 5    | Relay Module	| 5V, Duel Channel (70Rs)
+| 6    | Enclosure		| PEM02, 60x55x24mm (Inner Dimension) (60Rs)
+| 7    | Additional Information
+| * MCU uses I2C Communication with RTC, EEPROM & Display
+  * DS3231 Runs the Clock also measures the Temperature
+  * EEPROM Stores the Relay ON/OFF Timings
+  * SSD1306 Displays the Required Information
+  * MCU Uses USB Rx Communication to Receive the Inputs
+  * MCU Uses USB Tx Communication to Transmit Information
+  * Power Supply 5V 1A is bought from "ifuturetech.org"
+  * Power Supply 5V 2A is bought from "Quartz Components"
+  * Enclosure (PEM02 )is bought from "www.probots.co.in"
+  * Rubber Sleeve, JST, RMC, FRC wires from "Componentstree.com"
+  * Other Items like STM, RTC etc can be ordered from "Robu.in"
+   
+   "Electron Components","Evelta","Etstore","Ktron"
+ 
+|======
+
+== Product 
+
+image::./images/Product.jpg[width=288]
+
+ * Sun Mon Tue Wed Thu Fri Sat
+ 
+	SetTime= 07:20:00 Sat 28:06:25
+
+	Relay1= On 18:00 Off 06:00
+	
+	Relay2= On 18:00 Off 22:00
+
+
+  
+== Introduction
+
+This product is developed as an Hobby for Home use. 
+I have enquired about the similar poduct in the Market, Its cost is 2000Rs.
+The Product is without Display and it has Only One Output.
+
+.Advantages
+ * The cost of Making this product is around 700Rs.
+ * It has duel Relay and Display with Additional Features.
+ * The cost can be even reduced without Display.
+
+
+=== Application
+
+The One of the Use case is mentioned Below.
+
+[options="header",grid="none"]
+|======================================
+|Purpose                      | Value
+|Automatic TurnOn and TurnOFF | The Required Time is set
+|======================================
+
+
+=== Commands
+
+	The Below Command has to be sent serially, to set the Values
+
+Sun Mon Tue Wed Thu Fri Sat
+	
+.Set Time Command
+Sets The RTC Time.
+
+Command:: `SetTime= 07:20:00 Sat 28:06:25`
+Response:: `USB_SetTime_Success `
+
+Sun Mon Tue Wed Thu Fri Sat
+
+.Set Relay Time Command
+Sets The Relay ON Time and OFF Time.
+
+Command:: `Relay1= On 18:00 Off 06:00`
+Response:: `USB_Relay1_SetTime_Success `
+
+Command:: `Relay2= On 18:00 Off 22:00`
+Response:: `USB_Relay2_SetTime_Success `
+
+
+=== Recommended Operating Range
+
+[width="95%",options="header",frame="all",cols="45,15,15,15,10"]
+|======
+|Parameter                     | Minimum | Typical | Maximum | Units
+|Voltage                       |   4.5   |    5    |    5.5  | V
+|======
+
+== USB Protocol
+
+Link to Merge Image
+https://image.pi7.org/join-images-online
+
+Link to convert jpeg to jpg
+https://cloudconvert.com/jpeg-to-jpg
+
+
+=== Cube IDE settings
+
+image::./images/USB_CUBE.jpg[align="center",width="50%"]
+
+=== Code Changes
+
+image::./images/USB_CODE.jpg[align="center",width="70%"]
+
+
+
+
+== I2C Protocol
+
+ * Since SSD1306 Display is used, 400Khz is Must
+ 
+  /* USER CODE END I2C1_Init 1 */
+  hi2c1.Instance = I2C1;
+  hi2c1.Init.ClockSpeed = 400000;
+  hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
+  hi2c1.Init.OwnAddress1 = 0;
+  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c1.Init.OwnAddress2 = 0;
+  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+ 
+ 
+ * GPIO Pull up must be set, check inside  stm32f1xx_hal_msp.c
+  
+    __HAL_RCC_GPIOB_CLK_ENABLE();
+    /**I2C1 GPIO Configuration
+    PB6     ------> I2C1_SCL
+    PB7     ------> I2C1_SDA
+    */
+    GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+	
+
+.Note: Give 3.3v to SSD1306 and 5V to Other Modules
+	
+	
+=== Full Working Code is Attached in the GitHub Link
+ 
+ https://github.com/ferdinvivian/T1/tree/main/MCU_Coding/Project

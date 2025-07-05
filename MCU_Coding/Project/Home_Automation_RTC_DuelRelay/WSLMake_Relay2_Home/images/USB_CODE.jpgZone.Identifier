@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://cloudconvert.com/
+HostUrl=https://eu-central.storage.cloudconvert.com/tasks/89d71c7b-3a73-4969-98bf-d3330c0a6d79/USB_CODE.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cloudconvert-production%2F20250705%2Ffra%2Fs3%2Faws4_request&X-Amz-Date=20250705T054740Z&X-Amz-Expires=86400&X-Amz-Signature=313bfee90088b61dd638bf82cd7c6f460ce147b150e16d9e989393011979b8c4&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22USB_CODE.jpg%22&response-content-type=image%2Fjpeg&x-id=GetObject
