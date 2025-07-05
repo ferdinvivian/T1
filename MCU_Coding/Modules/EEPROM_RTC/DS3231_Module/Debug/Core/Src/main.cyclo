@@ -1,0 +1,14 @@
+../Core/Src/main.c:100:5:main	1
+../Core/Src/main.c:158:6:SystemClock_Config	3
+../Core/Src/main.c:195:13:MX_I2C1_Init	2
+../Core/Src/main.c:229:13:MX_GPIO_Init	1
+../Core/Src/main.c:255:9:decToBcd	1
+../Core/Src/main.c:260:5:bcdToDec	1
+../Core/Src/main.c:265:6:Set_Time	1
+../Core/Src/main.c:279:6:Get_Time	1
+../Core/Src/main.c:292:7:Get_Temp	1
+../Core/Src/main.c:299:6:force_temp_conv	2
+../Core/Src/main.c:311:6:EEPROM_Write	3
+../Core/Src/main.c:324:6:EEPROM_Read	3
+../Core/Src/main.c:337:6:EEPROM_FULL_ERASE	1
+../Core/Src/main.c:357:6:Error_Handler	1
