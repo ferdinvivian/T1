@@ -1,0 +1,8 @@
+../Core/Src/Proj/RTC_DS3231.c:5:9:decToBcd	1
+../Core/Src/Proj/RTC_DS3231.c:10:5:bcdToDec	1
+../Core/Src/Proj/RTC_DS3231.c:15:6:Set_Time	1
+../Core/Src/Proj/RTC_DS3231.c:29:6:Get_Time	1
+../Core/Src/Proj/RTC_DS3231.c:42:7:Get_Temp	1
+../Core/Src/Proj/RTC_DS3231.c:50:6:force_temp_conv	2
+../Core/Src/Proj/RTC_DS3231.c:65:6:Split_Time_Function	1
+../Core/Src/Proj/RTC_DS3231.c:93:6:DS3231_While_Function	1

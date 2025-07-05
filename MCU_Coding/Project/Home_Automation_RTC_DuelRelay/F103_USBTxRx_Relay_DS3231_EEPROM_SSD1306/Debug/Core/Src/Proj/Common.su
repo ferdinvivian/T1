@@ -1,0 +1,3 @@
+../Core/Src/Proj/Common.c:7:6:Proj_Init_Function	8	static
+../Core/Src/Proj/Common.c:20:6:Proj_While_Function	8	static
+../Core/Src/Proj/Common.c:40:6:Systick_Function	4	static
