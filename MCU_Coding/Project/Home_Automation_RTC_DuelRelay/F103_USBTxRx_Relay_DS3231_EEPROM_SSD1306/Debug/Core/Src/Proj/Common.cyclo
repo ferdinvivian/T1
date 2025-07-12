@@ -1,0 +1,3 @@
+../Core/Src/Proj/Common.c:7:6:Proj_Init_Function	1
+../Core/Src/Proj/Common.c:21:6:Proj_While_Function	2
+../Core/Src/Proj/Common.c:41:6:Systick_Function	1

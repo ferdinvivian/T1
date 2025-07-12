@@ -1,0 +1,6 @@
+../Core/Src/Proj/USB_TxRx.c:6:6:USB_RxIT	2
+../Core/Src/Proj/USB_TxRx.c:18:6:USB_Tx_while	2
+../Core/Src/Proj/USB_TxRx.c:41:6:USB_Rx2Tx_Instant	6
+../Core/Src/Proj/USB_TxRx.c:67:9:USB_SetTime	19
+../Core/Src/Proj/USB_TxRx.c:115:9:USB_Relay1_SetTime	5
+../Core/Src/Proj/USB_TxRx.c:134:9:USB_Relay2_SetTime	5

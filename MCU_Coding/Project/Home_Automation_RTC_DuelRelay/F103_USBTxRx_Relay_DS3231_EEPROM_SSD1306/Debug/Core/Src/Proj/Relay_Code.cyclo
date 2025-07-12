@@ -1,0 +1,6 @@
+../Core/Src/Proj/Relay_Code.c:5:6:Relay_While	1
+../Core/Src/Proj/Relay_Code.c:16:6:Relay_Init_Code	5
+../Core/Src/Proj/Relay_Code.c:35:6:Relay_Time_Calculate	1
+../Core/Src/Proj/Relay_Code.c:53:6:Relay_Possible_Scenario	3
+../Core/Src/Proj/Relay_Code.c:68:6:Relay1_Control	10
+../Core/Src/Proj/Relay_Code.c:98:6:Relay2_Control	10
