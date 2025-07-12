@@ -1,7 +1,0 @@
-../Core/Src/Proj/SSD1306_Application.c:5:6:SSD1306_Init_Code	8	static
-../Core/Src/Proj/SSD1306_Application.c:20:6:SSD1306_WhileCode	8	static
-../Core/Src/Proj/SSD1306_Application.c:50:6:SSD1306_ReInitialize	8	static
-../Core/Src/Proj/SSD1306_Application.c:57:6:SSD1306_All_Information	16	static
-../Core/Src/Proj/SSD1306_Application.c:90:6:SSD1306_Time_Information	64	static
-../Core/Src/Proj/SSD1306_Application.c:149:6:SSD1306_Relay1_Information	24	static
-../Core/Src/Proj/SSD1306_Application.c:201:6:SSD1306_Relay2_Information	24	static

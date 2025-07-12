@@ -1,6 +1,0 @@
-../Core/Src/Proj/EEPROM_24C32.c:5:6:EEPROM_Write	40	static
-../Core/Src/Proj/EEPROM_24C32.c:18:6:EEPROM_Read	40	static
-../Core/Src/Proj/EEPROM_24C32.c:31:6:EEPROM_FULL_ERASE	64	static
-../Core/Src/Proj/EEPROM_24C32.c:47:6:EE_Write_Relay_Time	24	static
-../Core/Src/Proj/EEPROM_24C32.c:90:6:EE_Read_Init	8	static
-../Core/Src/Proj/EEPROM_24C32.c:99:6:EE_Read_while	8	static
