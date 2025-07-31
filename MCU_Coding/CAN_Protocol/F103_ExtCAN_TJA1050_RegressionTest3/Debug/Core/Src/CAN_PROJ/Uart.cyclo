@@ -1,0 +1,2 @@
+../Core/Src/CAN_PROJ/Uart.c:7:6:Uart_Rx2Tx_Instant	5
+../Core/Src/CAN_PROJ/Uart.c:41:6:HAL_UART_RxCpltCallback	3
