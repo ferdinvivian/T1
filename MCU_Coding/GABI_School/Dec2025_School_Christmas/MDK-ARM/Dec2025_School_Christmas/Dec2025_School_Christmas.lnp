@@ -1,0 +1,28 @@
+--cpu=Cortex-M4.fp.sp
+"dec2025_school_christmas\startup_stm32f401xc.o"
+"dec2025_school_christmas\project_source.o"
+"dec2025_school_christmas\dfplayer_mini.o"
+"dec2025_school_christmas\main.o"
+"dec2025_school_christmas\stm32f4xx_it.o"
+"dec2025_school_christmas\stm32f4xx_hal_msp.o"
+"dec2025_school_christmas\stm32f4xx_hal_tim.o"
+"dec2025_school_christmas\stm32f4xx_hal_tim_ex.o"
+"dec2025_school_christmas\stm32f4xx_hal_rcc.o"
+"dec2025_school_christmas\stm32f4xx_hal_rcc_ex.o"
+"dec2025_school_christmas\stm32f4xx_hal_flash.o"
+"dec2025_school_christmas\stm32f4xx_hal_flash_ex.o"
+"dec2025_school_christmas\stm32f4xx_hal_flash_ramfunc.o"
+"dec2025_school_christmas\stm32f4xx_hal_gpio.o"
+"dec2025_school_christmas\stm32f4xx_hal_dma_ex.o"
+"dec2025_school_christmas\stm32f4xx_hal_dma.o"
+"dec2025_school_christmas\stm32f4xx_hal_pwr.o"
+"dec2025_school_christmas\stm32f4xx_hal_pwr_ex.o"
+"dec2025_school_christmas\stm32f4xx_hal_cortex.o"
+"dec2025_school_christmas\stm32f4xx_hal.o"
+"dec2025_school_christmas\stm32f4xx_hal_exti.o"
+"dec2025_school_christmas\stm32f4xx_hal_uart.o"
+"dec2025_school_christmas\system_stm32f4xx.o"
+--strict --scatter "Dec2025_School_Christmas\Dec2025_School_Christmas.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "Dec2025_School_Christmas.map" -o Dec2025_School_Christmas\Dec2025_School_Christmas.axf
