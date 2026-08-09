@@ -1,0 +1,195 @@
+/********************************************************************************
+ * STM32F429 USB_OTG_HS FULL-SPEED DEVICE DRIVER SUMMARY
+ * Covers: HW/PHY Init, Endpoint/FIFO, Core Interrupts
+ * Target: Internal FS PHY on PB14/PB15, 12Mbps
+ ********************************************************************************/
+
+/*
+
+1. HARDWARE / PHY INITIALIZATION
+
+What it does: Power, clocks, pins, and core mode setup so the host can "see" D+
+If ANY of these 5 are missing, D+ stays 0V and syslog stays silent.
+
+1. Peripheral Clocks: Enable RCC clocks BEFORE touching registers
+    - RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN; // GPIO Port B
+    - RCC->AHB1ENR |= RCC_AHB1ENR_OTGHSEN; // USB_OTG_HS Core
+
+2. GPIO Alternate Function: Connect peripheral to PB14(DM) / PB15(DP)
+    - MODER = 0b10 Alternate Function
+    - AFR[1] = AF12 for PB14 and PB15
+
+3. Core Mode: Force Device + Internal FS PHY
+    - GUSBCFG.FDMOD = 1 // Force Device Mode, ignore ID pin
+    - GUSBCFG.PHYSEL = 1 // Use internal 12Mbps FS transceiver
+    - GUSBCFG.TRDT = 9 // Turnaround time for AHB 30-60MHz. PHY Rx->Tx switch delay
+
+4. Device Speed: Tell core to enumerate as Full-Speed
+    - DCFG.DSPD = 0x3 // 12 Mbps, Internal FS PHY
+
+5. VBUS + Power: Detect cable and turn on PHY
+    - GCCFG.VBUSBSEN = 1 // Enable VBUS sensing: device checks if host 5V is present
+    - GCCFG.PWRDWN = 1 // Power up internal transceiver and 1.5k D+ pull-up
+    - DCTL.SDIS = 0 // Clear SoftDisconnect: attach 1.5k pull-up to D+ to signal "device present"
+*/
+
+/*
+
+2. ENDPOINT & FIFO MANAGEMENT
+
+What it does: Set up memory and software API for USB data transfer
+
+1. FIFO Sizing: Dynamic TxFIFO start addresses + depths
+    - Configure shared RxFIFO size
+    - Configure individual TxFIFO size per IN EP
+
+2. FIFO Control:
+    - Functions to flush RxFIFO and TxFIFOs
+
+3. Endpoint Control:
+    - Functions to Configure, Activate, De-configure IN/OUT Endpoints
+    - EP0 is bidirectional: uses DIEPCTL0 and DOEPCTL0
+    - EP1-EP5 are unidirectional: separate IN and OUT pipes
+*/
+
+/*
+
+3. CORE INTERRUPT HANDLING
+
+3-Tier Gating: [DIEPMSK/DOEPMSK] -> [GINTMSK] -> [GAHBCFG.GINT]
+All 3 must be set for an EP interrupt to reach NVIC
+
+1. Startup: Clear stale flags
+    - GINTSTS = 0xFFFFFFFF // W1C: Write 1 to Clear
+
+2. Unmask Global Core Interrupts GINTMSK:
+    - USBRST : Host did 10ms SE0 reset. Reset device state, addr=0
+    - ENUMDNEM : Speed negotiation done. Read DSTAT.ENUMSPD. Set EP0 MPSIZ=64
+    - RXFLVLM : Data/SETUP arrived in RxFIFO. Read it.
+    - IEPINT : IN EP transfer complete. Send next packet.
+    - OEPINT : OUT EP transfer complete. Process data.
+    - USBSUSPM : 3ms bus idle. Go low power.
+    - WUIM : Bus activity resumed. Wake up.
+    - SOFM : 1ms frame tick. Usually disabled.
+
+3. Unmask Endpoint Group Interrupts:
+    - DIEPMSK.XFRCM = 1 // IN transfer complete
+    - DOEPMSK.XFRCM = 1 // OUT transfer complete
+
+4. Global Enable LAST:
+    - GAHBCFG.GINT = 1 // Master switch to NVIC
+*/
+
+/*
+
+4. KEY REGISTER EXPLANATION
+
+Example: MODIFY_REG(USB_OTG_HS_DEVICE->DCFG, USB_OTG_DCFG_DSPD, _VAL2FLD(USB_OTG_DCFG_DSPD, 0x03))
+Reading: OTG_HS -> Section 35. DCFG -> Register. DSPD -> Bitfield in that register.
+Base: USB_OTG_HS starts at 0x40000
+Offsets: Global = +0x000, Device = +0x800, Host = +0x400
+*/
+
+/*
+
+5. HOST SIDE VERIFICATION
+
+lsusb will NOT show device until descriptors are answered.
+Use syslog to verify PHY is working.
+
+Success Sign: "new full-speed USB device number 11 using xhci_hcd"
+This proves: Clock, GPIO, PWRDWN, SDIS clear are all correct. 1.5k pull-up is on.
+
+Failure: "unable to enumerate" or "error -110"
+Means: Device detected but didn't respond. Check descriptors/EP0 handling next.
+
+5 CRITICAL STEPS FOR D+ PULL-UP:
+1. No Peripheral Clock -> Can't write registers. SDIS stays 1.
+2. No 48MHz PHY Clock -> PHY can't drive voltage.
+3. No GPIO AF12 Setup -> PB14/PB15 not connected to USB peripheral.
+4. No PWRDWN = 1 -> 3.3V to internal 1.5k pull-up is OFF.
+5. No SDIS = 0 -> Internal switch to D+ stays OPEN.
+*/
+
+/*
+
+6. CODE TEMPLATE
+
+*/
+
+#include "stm32f429xx.h"
+
+static void usb_gpio_init(void)
+{
+    // 1. Enable GPIOB clock
+    SET_BIT(RCC->AHB1ENR, RCC_AHB1ENR_GPIOBEN);
+
+    // 2. PB14, PB15 = Alternate Function
+    MODIFY_REG(GPIOB->MODER,
+        GPIO_MODER_MODER14 | GPIO_MODER_MODER15,
+        _VAL2FLD(GPIO_MODER_MODER14, 2) | _VAL2FLD(GPIO_MODER_MODER15, 2)
+    );
+
+    // 3. AF12 = USB_OTG_HS
+    MODIFY_REG(GPIOB->AFR[1],
+        GPIO_AFRH_AFSEL14 | GPIO_AFRH_AFSEL15,
+        _VAL2FLD(GPIO_AFRH_AFSEL14, 0xC) | _VAL2FLD(GPIO_AFRH_AFSEL15, 0xC)
+    );
+}
+
+static void usb_core_init(void)
+{
+    // 1. Enable USB clock
+    SET_BIT(RCC->AHB1ENR, RCC_AHB1ENR_OTGHSEN);
+
+    // 2. Device Mode + Internal FS PHY + TRDT
+    MODIFY_REG(USB_OTG_HS->GUSBCFG,
+        USB_OTG_GUSBCFG_FDMOD | USB_OTG_GUSBCFG_PHYSEL | USB_OTG_GUSBCFG_TRDT,
+        USB_OTG_GUSBCFG_FDMOD | USB_OTG_GUSBCFG_PHYSEL | _VAL2FLD(USB_OTG_GUSBCFG_TRDT, 0x09)
+    );
+
+    // 3. Force Full-Speed 12Mbps
+    MODIFY_REG(USB_OTG_HS_DEVICE->DCFG,
+        USB_OTG_DCFG_DSPD,
+        _VAL2FLD(USB_OTG_DCFG_DSPD, 0x03)
+    );
+
+    // 4. Enable VBUS Sensing
+    SET_BIT(USB_OTG_HS->GCCFG, USB_OTG_GCCFG_VBUSBSEN);
+
+    // 5. Clear pending interrupts
+    WRITE_REG(USB_OTG_HS->GINTSTS, 0xFFFFFFFF);
+
+    // 6. Unmask core interrupts
+    SET_BIT(USB_OTG_HS->GINTMSK,
+        USB_OTG_GINTMSK_USBRST | USB_OTG_GINTMSK_ENUMDNEM |
+        USB_OTG_GINTMSK_RXFLVLM | USB_OTG_GINTMSK_IEPINT |
+        USB_OTG_GINTMSK_OEPINT | USB_OTG_GINTMSK_USBSUSPM |
+        USB_OTG_GINTMSK_WUIM
+    );
+
+    // 7. Unmask EP transfer complete
+    SET_BIT(USB_OTG_HS_DEVICE->DOEPMSK, USB_OTG_DOEPMSK_XFRCM);
+    SET_BIT(USB_OTG_HS_DEVICE->DIEPMSK, USB_OTG_DIEPMSK_XFRCM);
+
+    // 8. Global Interrupt Enable
+    SET_BIT(USB_OTG_HS->GAHBCFG, USB_OTG_GAHBCFG_GINT);
+}
+
+static void usb_connect(void)
+{
+    // 1. Power up transceiver
+    SET_BIT(USB_OTG_HS->GCCFG, USB_OTG_GCCFG_PWRDWN);
+
+    // 2. Attach to bus: Clear SoftDisconnect
+    CLEAR_BIT(USB_OTG_HS_DEVICE->DCTL, USB_OTG_DCTL_SDIS);
+}
+
+/*
+
+NOTES:
+1. TRDT: Wait cycles for PHY to switch Rx->Tx. 0x09 for 30-60MHz AHB.
+2. ENUMDNEM: After reset, set EP0 MPSIZ=64 bytes so hardware can chunk packets.
+3. RWUSIG in DCTL: Pulse 1-15ms to do remote wakeup. Must clear after.
+
+*/
