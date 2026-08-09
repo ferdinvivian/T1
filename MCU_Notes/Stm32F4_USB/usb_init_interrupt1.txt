@@ -186,10 +186,8 @@ static void usb_connect(void)
 }
 
 /*
-
 NOTES:
 1. TRDT: Wait cycles for PHY to switch Rx->Tx. 0x09 for 30-60MHz AHB.
 2. ENUMDNEM: After reset, set EP0 MPSIZ=64 bytes so hardware can chunk packets.
 3. RWUSIG in DCTL: Pulse 1-15ms to do remote wakeup. Must clear after.
-
 */
