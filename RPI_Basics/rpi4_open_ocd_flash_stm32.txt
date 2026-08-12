@@ -1,0 +1,29 @@
+
+#!/bin/bash
+# Auto flash script for STM32 Nucleo
+
+BOARD_DIR="/usr/share/openocd/scripts/board"
+ELF_FILE="main.elf"
+
+echo "===== FINDING BOARD CFG ====="
+# 1. Find nucleo board cfg
+BOARD_CFG=$(ls $BOARD_DIR | grep st_nucleo | head -n 1)
+
+if [ -z "$BOARD_CFG" ]; then
+    echo "Error: No st_nucleo cfg found"
+    exit 1
+fi
+
+echo "Found board: $BOARD_CFG"
+
+# 2. Check if stm32 is in the name too - just for confirmation
+echo $BOARD_CFG | grep stm32 > /dev/null
+if [ $? -eq 0 ]; then
+    echo "Confirmed: stm32 board"
+fi
+
+echo "===== FLASHING $ELF_FILE ====="
+# 3. Flash command
+sudo openocd -f board/$BOARD_CFG -c "program $ELF_FILE verify reset exit"
+
+echo "===== DONE ====="

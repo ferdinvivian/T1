@@ -1,0 +1,41 @@
+note:
+	I used Raspberry Pi Imager v2.0.10 software to flash the OS
+	The Os version which i used is, 64bit debian trixie (desktop)
+	The other Os version is 64bit Debian Bookworm lite (no dektop)
+	
+/**************************************************************************************************/
+
+Full Steps to Fix + Make SD Card VisibleStep
+1: Open DiskpartPress Win + X > Command Prompt (Admin) or Windows PowerShell
+(Admin)Type: diskpart and hit EnterStep
+2: Find your card
+3. Type: list disk
+   Look for the size. Ex: 14GB, 32GB, 64GB. That’s your SD card.
+4. Type: select disk X
+   Replace X with your card number. Double check it's the right size so you don't delete your PC driveStep 3: Wipe and Recreate
+5. Type: clean
+   This erases everything on that card
+6. Type: convert mbr
+7. Type: create partition primary
+8. Type: format fs=fat32 quick
+   Use format fs=exfat quick if you want to store files >4GB
+9. Type: assign
+   Windows gives it a drive letter. It will pop up in "This PC"Step 4: Finish
+10. Type: exit to close diskpartDone! Check "This PC" and your card will be there.
+
+
+
+/**************************************************************************************************/
+1) open with admin -> cmd or powershell
+2) diskpart
+3) list disk
+4) select disk 3
+5) clean
+6) convert mbr
+7) create partition primary
+8) format fs=fat32 quick
+9) assign
+10) exit
+
+
+right click sd card -> properties -> tools -> check -> scan and repair drive -> close

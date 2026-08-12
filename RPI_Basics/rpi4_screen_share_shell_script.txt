@@ -1,0 +1,31 @@
+
+#!/bin/bash
+echo "=== Checking RPI Connect ==="
+
+# 1. Check internet
+if ping -c 1 google.com &> /dev/null
+then
+    echo "Internet: OK"
+else
+    echo "Internet: DOWN. Check WiFi/Dongle"
+    exit 1
+fi
+
+# 2. Check if service exists
+if systemctl list-units --full -all | grep -q "rpi-connect.service"; then
+    echo "Service: Found. Restarting..."
+    sudo systemctl restart rpi-connect
+else
+    echo "Service: Not found. Installing..."
+    sudo apt update
+    sudo apt install -y rpi-connect
+    sudo systemctl enable rpi-connect
+    sudo systemctl start rpi-connect
+fi
+
+# 3. Check status
+sleep 5
+systemctl status rpi-connect --no-pager
+
+echo "=== Done. Refresh connect.raspberrypi.com now ==="#!/bin/bash
+echo "=== Checking RPI Connect ==="

@@ -1,0 +1,43 @@
+1. Windows → RPi 
+Send files FROM your laptop TO the Pi
+
+Anywhere inside Powershell
+scp C:\Users\Lenovo\Desktop\myfile.py user@192.168.137.97:/home/user/
+
+-------------------------------------------------------------------------------------
+
+2. RPi → Windows
+Send files FROM the Pi TO your laptop
+
+Anywhere inside Powershell
+scp -r user@192.168.137.97:/home/user/fvivian_rpi4 C:\Users\Lenovo\Downloads\
+
+-------------------------------------------------------------------------------------
+
+#####################################################################################
+PS C:\Users\Lenovo\Pictures\Screenshots> ls
+
+
+    Directory: C:\Users\Lenovo\Pictures\Screenshots
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        05-07-2025     23:04         555422 pic.png
+-a----        27-08-2025     09:20         585201 Screenshot.png
+
+
+PS C:\Users\Lenovo\Pictures\Screenshots>
+PS C:\Users\Lenovo\Pictures\Screenshots>
+PS C:\Users\Lenovo\Pictures\Screenshots> scp C:\Users\Lenovo\Pictures\Screenshots\pic.png user@192.168.137.97:/home/user/fvivian_rpi4/
+user@192.168.137.97's password:
+pic.png                                                                               100%  542KB  10.2MB/s   00:00
+PS C:\Users\Lenovo\Pictures\Screenshots>
+PS C:\Users\Lenovo\Pictures\Screenshots>
+PS C:\Users\Lenovo\Pictures\Screenshots>
+PS C:\Users\Lenovo\Pictures\Screenshots> scp -r user@192.168.137.97:/home/user/fvivian_rpi4/rpi_pic.png C:\Users\Lenovo\Pictures\Screenshots\
+user@192.168.137.97's password:
+rpi_pic.png                                                                           100%  542KB  11.3MB/s   00:00
+PS C:\Users\Lenovo\Pictures\Screenshots>
+
+#####################################################################################

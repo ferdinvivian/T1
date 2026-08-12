@@ -1,0 +1,26 @@
+
+#!/bin/bash
+
+# Auto detect ACT LED
+if [ -d "/sys/class/leds/led0" ]; then
+  LED=/sys/class/leds/led0
+elif [ -d "/sys/class/leds/led1" ]; then
+  LED=/sys/class/leds/led1
+elif [ -d "/sys/class/leds/ACT" ]; then
+  LED=/sys/class/leds/ACT
+else
+  echo "Error: No ACT LED found"
+  exit 1
+fi
+
+echo "Using $LED"
+
+# Use timer trigger
+echo timer | sudo tee $LED/trigger > /dev/null
+echo 100 | sudo tee $LED/delay_on > /dev/null   # 0.1s ON
+echo 900 | sudo tee $LED/delay_off > /dev/null  # 0.9s OFF
+
+echo "LED heartbeat started. Press Ctrl+C to stop."
+
+trap "echo mmc0 | sudo tee $LED/trigger > /dev/null 2>/dev/null; echo mmc0 | sudo tee /sys/class/leds/led0/trigger > /dev/null 2>/dev/null; exit" INT
+while true; do sleep 1; done

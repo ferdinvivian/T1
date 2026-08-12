@@ -1,0 +1,41 @@
+
+# 1. Enable USB packet capture driver
+sudo nmcli con up "eth0-static"
+sudo modprobe usbmon
+
+# 2. See live kernel USB logs like tutorial - plug/unplug events
+sudo tail -f /var/log/syslog
+
+# 3. Read raw HID reports from device - shows hex as it moves
+sudo cat /dev/hidraw0 | hexdump -C
+
+# 4. List all usbmon interfaces - usbmon0=bus1, usbmon1=bus2
+ls /dev/usbmon*
+
+
+# 5. See USB device tree + which bus/device number
+lsusb -t
+
+# 6. See full details of 1 device - use -d VID:PID or -s Bus:Device
+lsusb -v -d 6666:13aa
+
+# 7. Alternative to syslog - uses journald if rsyslog not installed
+sudo journalctl -f -k
+
+# 8. Capture ALL USB packets live - like wireshark in terminal
+sudo tshark -i usbmon0
+
+# 9. Capture ALL USB packets with full verbose decode
+sudo tshark -i usbmon0 -V
+
+# 10. Capture only your device - Device 6 on Bus 1. Change "== 6"
+sudo tshark -i usbmon0 -Y "usb.device_address == 6"
+
+# 11. Capture only your device with full verbose decode
+sudo tshark -i usbmon0 -Y "usb.device_address == 6" -V
+
+# 12. Save USB packets to file for Wireshark on PC
+sudo tshark -i usbmon0 -Y "usb.device_address == 6" -w my_usb.pcap
+
+# 13. See all USB devices connected
+lsusb

@@ -1,0 +1,51 @@
+#!/bin/bash
+
+LED=/sys/class/leds/ACT
+PORT=8080
+
+# Web page with 1 button
+echo "Starting LED control server on http://$(hostname -I | awk '{print $1}'):$PORT"
+echo "Press Ctrl+C to stop"
+
+cd $(dirname "$0")
+
+# Use python3 to serve and handle button
+python3 - <<EOF
+import http.server
+import socketserver
+import subprocess
+
+LED = "/sys/class/leds/ACT"
+
+class Handler(http.server.SimpleHTTPRequestHandler):
+    def do_GET(self):
+        if self.path == "/on":
+            subprocess.run(["sudo", "sh", "-c", f"echo 1 > {LED}/brightness"])
+            self.send_response(302)
+            self.send_header("Location", "/")
+            self.end_headers()
+        elif self.path == "/off":
+            subprocess.run(["sudo", "sh", "-c", f"echo 0 > {LED}/brightness"])
+            self.send_response(302)
+            self.send_header("Location", "/")
+            self.end_headers()
+        else:
+            self.send_response(200)
+            self.send_header("Content-type", "text/html")
+            self.end_headers()
+            html = """
+            <html><body style='font-family:sans-serif; text-align:center; margin-top:50px'>
+            <h2>RPi4 LED Control</h2>
+            <a href='/on'><button style='font-size:24px; padding:20px 40px; margin:10px; background:green; color:white; border:none'>LED ON</button></a>
+            <a href='/off'><button style='font-size:24px; padding:20px 40px; margin:10px; background:red; color:white; border:none'>LED OFF</button></a>
+            </body></html>
+            """
+            self.wfile.write(html.encode())
+
+PORT = 8080
+with socketserver.TCPServer(("", PORT), Handler) as httpd:
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        print("\\nServer stopped")
+EOF

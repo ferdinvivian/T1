@@ -1,0 +1,62 @@
+
+#!/bin/bash
+cd "$(dirname "$0")"
+
+echo "================= RPI4 STATUS ================="
+echo ""
+
+echo "1. RPi Model:"
+cat /proc/device-tree/model 2>/dev/null || grep "Model" /proc/cpuinfo | head -1
+echo ""
+echo ""
+
+echo "2. RPi OS:"
+grep PRETTY_NAME /etc/os-release | cut -d= -f2 | tr -d '"'
+echo ""
+
+echo "3. Uptime:"
+uptime -p
+echo ""
+
+echo "4. CPU Temp:"
+vcgencmd measure_temp
+echo ""
+
+echo "5. CPU Clock:"
+CUR=$(vcgencmd measure_clock arm | awk -F= '{print $2/1000000}')
+echo "Current: ${CUR} MHz"
+echo ""
+
+echo "6. RAM Usage:"
+free -h | awk 'NR==2{print "Total: "$2"  Used: "$3"  Free: "$4}'
+free -h | awk 'NR==3{print "Swap:  Total: "$2"  Used: "$3"  Free: "$4}'
+echo ""
+
+echo "7. Disk Usage:"
+df -h / | awk 'NR==2{print "Root: Total "$2"  Used "$3"  Free "$4"  Usage "$5}'
+echo ""
+
+echo "8. CPU Load:"
+awk '{print "Load 1min: "$1"  5min: "$2" 15min: "$3}' /proc/loadavg
+echo ""
+
+echo "9. IP Address:"
+hostname -I | awk '{print "IP: "$1}'
+echo ""
+
+echo "10. Throttling Status:"
+THROT=$(vcgencmd get_throttled)
+val=${THROT#*=}
+val=$((val))
+if [ "$val" -eq 0 ]; then
+    echo "Status: All Good"
+else
+    echo "Status: ISSUE DETECTED"
+    [ $((val & 1)) -ne 0 ] && echo "  - Under-voltage NOW"
+    [ $((val & 2)) -ne 0 ] && echo "  - ARM Freq Capped NOW"
+    [ $((val & 4)) -ne 0 ] && echo "  - CPU Throttled NOW"
+    [ $((val & 65536)) -ne 0 ] && echo "  - Under-voltage HAS OCCURRED"
+fi
+
+echo ""
+echo "================= END ================="

@@ -1,0 +1,31 @@
+# Auto-find Raspberry Pi IP on ICS network using ARP - Fast version
+
+$user = "user"
+$piMacPrefix = "d8-3a-dd" # Raspberry Pi OUI
+$icsInterface = "192.168.137.1"
+$subnet = "192.168.137"
+
+Write-Host "Scanning for Raspberry Pi on $icsInterface..." -ForegroundColor Cyan
+
+# Step 1: Force ARP refresh by pinging gateway. This makes RPi reply
+ping $icsInterface -n 1 -w 1000 | Out-Null
+
+# Step 2: Get FULL arp table and filter for ICS subnet + Pi MAC
+$arpOutput = arp -a | Where-Object { $_ -match $subnet }
+
+# Step 3: Strict match for Pi MAC. arp shows dashes, so we match that
+$piLine = $arpOutput | Select-String -Pattern "$piMacPrefix-.."
+
+if ($piLine) {
+    # Extract IP. arp format: IP Address Physical Address Type
+    $ip = ($piLine.ToString() -split '\s+')[1]
+    Write-Host "Found Raspberry Pi at: $ip" -ForegroundColor Green
+
+    # Connect
+    Write-Host "Connecting..." -ForegroundColor Yellow
+    ssh "$user@$ip"
+} else {
+    Write-Host "Raspberry Pi not found on $subnet.x" -ForegroundColor Red
+    Write-Host "1. Check if RJ45 cable is connected and RPi is ON"
+    Write-Host "2. Run 'arp -a' manually and look for $piMacPrefix"
+}

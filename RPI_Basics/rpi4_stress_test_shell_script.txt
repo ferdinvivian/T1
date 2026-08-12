@@ -1,0 +1,89 @@
+#!/bin/bash
+cd "$(dirname "$0")"
+
+echo "================= RPI STRESS TEST MENU ================="
+echo "1. RAM Only"
+echo "2. DISK/Flash Only"
+echo "3. GPIO Toggle Only"
+echo "4. RAM + DISK"
+echo "5. RAM + GPIO"
+echo "6. DISK + GPIO"
+echo "7. RAM + DISK + GPIO"
+echo "8. CPU + RAM + DISK + GPIO - FULL TEST"
+echo ""
+read -p "Enter option 1-8: " opt
+read -p "Enter time in seconds [default 60]: " time
+time=${time:-60}
+
+echo ""
+echo "Starting test for $time seconds... Press Ctrl+C to stop"
+echo ""
+
+TMPFILE=/tmp/stress_test.tmp
+GPIO=17
+
+cleanup() {
+    killall stress stress-ng yes 2>/dev/null
+    echo 0 > /sys/class/gpio/gpio$GPIO/value 2>/dev/null
+    echo $GPIO > /sys/class/gpio/unexport 2>/dev/null
+    rm -f $TMPFILE
+    echo ""
+    echo "Test Stopped"
+    exit
+}
+trap cleanup INT
+
+case $opt in
+    1)
+        echo "[RAM TEST]"
+        stress --vm 2 --vm-bytes 1G --timeout ${time}s
+        ;;
+    2)
+        echo "[DISK TEST]"
+        stress --io 4 --hdd 2 --hdd-bytes 512M --timeout ${time}s
+        ;;
+    3)
+        echo "[GPIO TEST on GPIO$GPIO]"
+        echo $GPIO > /sys/class/gpio/export 2>/dev/null
+        echo out > /sys/class/gpio/gpio$GPIO/direction
+        timeout ${time}s bash -c "while true; do echo 1 > /sys/class/gpio/gpio$GPIO/value; echo 0 > /sys/class/gpio/gpio$GPIO/value; done"
+        ;;
+    4)
+        echo "[RAM + DISK TEST]"
+        stress --vm 2 --vm-bytes 512M --io 2 --hdd 1 --hdd-bytes 256M --timeout ${time}s
+        ;;
+    5)
+        echo "[RAM + GPIO TEST]"
+        stress --vm 2 --vm-bytes 1G --timeout ${time}s &
+        echo $GPIO > /sys/class/gpio/export 2>/dev/null
+        echo out > /sys/class/gpio/gpio$GPIO/direction
+        timeout ${time}s bash -c "while true; do echo 1 > /sys/class/gpio/gpio$GPIO/value; echo 0 > /sys/class/gpio/gpio$GPIO/value; done"
+        ;;
+    6)
+        echo "[DISK + GPIO TEST]"
+        stress --io 2 --hdd 1 --hdd-bytes 512M --timeout ${time}s &
+        echo $GPIO > /sys/class/gpio/export 2>/dev/null
+        echo out > /sys/class/gpio/gpio$GPIO/direction
+        timeout ${time}s bash -c "while true; do echo 1 > /sys/class/gpio/gpio$GPIO/value; echo 0 > /sys/class/gpio/gpio$GPIO/value; done"
+        ;;
+    7)
+        echo "[RAM + DISK + GPIO TEST]"
+        stress --vm 1 --vm-bytes 512M --io 1 --hdd 1 --hdd-bytes 256M --timeout ${time}s &
+        echo $GPIO > /sys/class/gpio/export 2>/dev/null
+        echo out > /sys/class/gpio/gpio$GPIO/direction
+        timeout ${time}s bash -c "while true; do echo 1 > /sys/class/gpio/gpio$GPIO/value; echo 0 > /sys/class/gpio/gpio$GPIO/value; done"
+        ;;
+    8)
+        echo "[FULL TEST: CPU + RAM + DISK + GPIO]"
+        stress --cpu 4 --vm 2 --vm-bytes 512M --io 2 --hdd 1 --hdd-bytes 256M --timeout ${time}s &
+        echo $GPIO > /sys/class/gpio/export 2>/dev/null
+        echo out > /sys/class/gpio/gpio$GPIO/direction
+        timeout ${time}s bash -c "while true; do echo 1 > /sys/class/gpio/gpio$GPIO/value; echo 0 > /sys/class/gpio/gpio$GPIO/value; done"
+        ;;
+    *)
+        echo "Invalid option"
+        exit 1
+        ;;
+esac
+
+cleanup

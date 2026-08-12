@@ -1,0 +1,74 @@
+
+#!/bin/bash
+set -euo pipefail
+
+echo "================= STARTING FULL PI SETUP ================="
+
+echo ""
+echo "=== 1. Updating system ==="
+sudo apt update
+sudo apt upgrade -y
+
+echo ""
+echo "=== 2. Installing build tools for STM32 ==="
+sudo apt install -y build-essential gcc make cmake git
+
+echo ""
+echo "=== 3. Installing OpenOCD for STM32 flashing ==="
+sudo apt install -y openocd
+
+echo ""
+echo "=== 4. Installing Wireshark + tshark for USB packet capture ==="
+# Set answer BEFORE installing so there's no prompt
+echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
+sudo DEBIAN_FRONTEND=noninteractive apt install -y wireshark tshark
+sudo dpkg-reconfigure -f noninteractive wireshark-common
+sudo usermod -aG wireshark $USER
+sudo setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/bin/dumpcap
+
+echo ""
+echo "=== 5. Installing text editors ==="
+sudo apt install -y gedit micro
+
+echo ""
+echo "=== 6. Installing Kodi and VLC Media Player ==="
+sudo apt install -y kodi vlc
+
+echo ""
+echo "=== 7. Installing screen + cpufrequtils ==="
+sudo apt install -y screen cpufrequtils
+
+echo ""
+echo "=== 8. CPU to Performance Mode - PERMANENT ==="
+command -v cpufreq-set >/dev/null && echo 'GOVERNOR="performance"' | sudo tee /etc/default/cpufrequtils > /dev/null
+for f in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do
+    [ -f "$f" ] || continue  # Skip if file doesn't exist
+    echo performance | sudo tee "$f" >/dev/null
+done
+
+echo ""
+echo "=== 9. Disable WiFi PowerSave - PERMANENT ==="
+echo "options brcmfmac feature_disable=0x82" | sudo tee /etc/modprobe.d/brcmfmac.conf > /dev/null
+sudo iwconfig wlan0 power off 2>/dev/null || true
+
+echo ""
+echo "=== 10. Enable USBMON - PERMANENT ==="
+echo "usbmon" | sudo tee /etc/modules-load.d/usbmon.conf > /dev/null
+sudo modprobe usbmon
+
+echo ""
+echo "=== 11. Services ==="
+sudo systemctl enable ssh
+sudo systemctl enable systemd-timesyncd
+sudo timedatectl set-timezone Asia/Kolkata
+
+echo ""
+echo "=== 12. Cleanup ==="
+sudo apt clean
+sudo apt autoremove -y
+
+echo ""
+echo "================= SETUP COMPLETE ================="
+echo "Rebooting in 10 seconds..."
+sleep 10
+sudo reboot
