@@ -1,0 +1,15 @@
+
+#!/bin/bash
+sudo modprobe usbmon
+sudo groupadd usbmon 2>/dev/null
+sudo usermod -a -G usbmon $USER
+echo 'SUBSYSTEM=="usbmon", GROUP="usbmon", MODE="640"' | sudo tee /etc/udev/rules.d/99-usbmon.rules >/dev/null
+sudo udevadm control --reload-rules && sudo udevadm trigger
+echo "Done. Logout and login, then run: wireshark"
+
+
+sudo groupadd usbmon
+sudo usermod -a -G usbmon $USER
+sudo chgrp usbmon /dev/usbmon*
+sudo chmod 640 /dev/usbmon*
+sudo wireshark
