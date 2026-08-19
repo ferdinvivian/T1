@@ -102,3 +102,8 @@ The above command will:
 Automatically merges the changes into your current local branch
 
 /*************************************************************************************************************/
+
+WSL command to convert .txt.docx to .pdf
+
+a)	pandoc "source.txt.docx" -o end_result.pdf
+a.1)pandoc "c_concept_pointer_string_literal.txt.docx" -o c_concept_pointer_string_literal.pdf
